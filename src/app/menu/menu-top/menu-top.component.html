@@ -1,0 +1,59 @@
+
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/sports']">{{ title }}</a>
+    <ul class="navbar-nav me-auto mb-lg-0" *ngIf="logged">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/sports']"
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{exact: true}"
+          >Inicio
+      </a>
+      </li>
+      <!-- <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/sports/add']"
+          [routerLinkActive]="['active']"
+          >Create sport
+        </a>
+      </li> -->
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/users/me']"
+          [routerLinkActive]="['active']"
+          >Perfil
+        </a>
+      </li>
+      <li class="nav-item">
+        <button
+          class="nav-link bg-transparent btn shadow-none border-0"
+          (click)="logout()"
+          >Logout
+        </button>
+      </li>
+    </ul>
+    <ul class="navbar-nav me-auto mb-lg-0" *ngIf="!logged">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/auth/login']"
+          [routerLinkActive]="['active']"
+          >Login
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/auth/register']"
+          [routerLinkActive]="['active']"
+          >Registro
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+

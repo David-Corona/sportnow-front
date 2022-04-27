@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://api.sportnow.local/'
+  baseUrl: 'http://api.sportnow.local/api'
 };
 
 /*
