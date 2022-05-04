@@ -35,10 +35,10 @@ export class AuthService {
   saveToken(token: Observable<TokenResponse>): void {
     token.subscribe({
       next: (t) => {
-        localStorage.setItem("token", t.accessToken);
+        localStorage.setItem("token", t.access_token);
         this.logged = true;
         this.loginChange$.next(true);
-        this.router.navigate(['/sports'])
+        this.router.navigate(['/sports']);
       },
       error: (error) => {
         console.error(error);

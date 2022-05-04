@@ -28,7 +28,6 @@ const routes: Routes = [
     canActivate: [LogoutActivateGuard],
     component: ResetPasswordComponent
   },
-  { path: '', redirectTo: '/sports', pathMatch: 'full' },
 ];
 
 @NgModule({
