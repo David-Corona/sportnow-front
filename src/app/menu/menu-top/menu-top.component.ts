@@ -11,6 +11,7 @@ export class MenuTopComponent implements OnInit {
 
   @Input() title!: string;
   logged: boolean = false;
+  isAdmin: boolean = true; //TODO
 
   constructor(private authService: AuthService) { }
 

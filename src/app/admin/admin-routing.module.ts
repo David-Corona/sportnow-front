@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-// import { LogoutActivateGuard } from './guards/logout-activate.guard';
-// import { LoginComponent } from './login/login.component';
+import { LoginActivateGuard } from '../auth/guards/login-activate.guard';
+import { UsersComponent } from './users/users.component';
 
 
 
 const routes: Routes = [
-  // {
-  //   path: 'auth/login',
-  //   canActivate: [LogoutActivateGuard],
-  //   component: LoginComponent
-  // },
+  {
+    path: 'admin/users',
+    canActivate: [LoginActivateGuard],
+    component: UsersComponent
+  },
 
 ];
 

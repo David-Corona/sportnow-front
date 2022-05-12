@@ -3,7 +3,7 @@ export interface User {
   name: string;
   email: string;
   password?: string;
-  avatar: string;
+  // avatar?: FormData;
   latitude: number;
   longitude: number;
   me?: boolean;

@@ -26,18 +26,19 @@ export class UserService {
     return resp;
   }
 
-  // saveProfile(name: string, email: string): Observable<void> {
-  //   return this.http.put<void>(`${this.userURL}/me`, {name: name, email: email});
-  // }
+  saveProfile(name: string, email: string): Observable<void> {
+    return this.http.put<void>(`${this.userURL}/me`, {name: name, email: email});
+  }
 
-  // savePhoto(avatar: string): Observable<string> {
-  //   return this.http.put<AvatarResponse>(`${this.userURL}/me/photo`, {avatar: avatar}).pipe
-  //     (map(resp => resp.avatar)
-  //   );
-  // }
+  savePhoto(data: any): Observable<any> {
+    return this.http.post<any>(`${this.userURL}/me/avatar?_method=PUT`, data); // _method: 'put/patch'
+    // .pipe
+    //   (map(resp => resp)
+    // );
+  }
 
-  // savePassword(password: string): Observable<void> {
-  //   return this.http.put<void>(`${this.userURL}/me/password`, {password: password});
-  // }
+  savePassword(password: string): Observable<void> {
+    return this.http.put<void>(`${this.userURL}/me/password`, {password: password});
+  }
 
 }

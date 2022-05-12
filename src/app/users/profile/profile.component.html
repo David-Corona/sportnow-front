@@ -1,32 +1,32 @@
 <p>profile works!</p>
 
-<!-- <div class="container">
+<div class="container">
   <div id="profile">
     <div class="row mt-4">
       <div class="col-3">
-        <img class="w-100" id="avatar" src="{{user.avatar}}" alt="" />
+        <img class="w-100" id="avatar" src="http://api.sportnow.local/{{user.avatar}}" alt="" />
       </div>
       <div class="col-9">
         <h4>{{user.name}}</h4>
         <h4 class="mb-4">
           <small class="text-muted">{{user.email}}</small>
         </h4>
-        <p *ngIf="user.me">
+        <p *ngIf="isMe">
           <a [routerLink]="['/users/edit']" class="btn btn-primary">Edit profile</a>
         </p>
-        <p>
+        <!-- <p>
           <a [routerLink]="['/events']" [queryParams]="{ creator: user.id }" class="btn btn-primary">Events created</a>
         </p>
         <p >
           <a [routerLink]="['/events']" [queryParams]="{ attending: user.id }" class="btn btn-primary">Events Attending</a>
-        </p>
+        </p> -->
       </div>
     </div>
   </div>
 
-  <div class="mt-4" id="map">
+  <!-- <div class="mt-4" id="map">
     <mgl-map class="mb-4" [style]="'mapbox://styles/mapbox/streets-v11'" [zoom]="[zoom]" [center]="[lng, lat]">
       <mgl-marker [lngLat]="[lng, lat]"></mgl-marker>
     </mgl-map>
-  </div>
-</div> -->
+  </div> -->
+</div>

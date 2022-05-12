@@ -130,7 +130,7 @@
         </div>
       </div>
     </div>
-    <div class="mb-3">
+    <!-- <div class="mb-3">
       <label for="image">Avatar</label>
       <div>
         <input
@@ -144,7 +144,7 @@
         />
       </div>
     </div>
-    <img src="{{newUser.avatar}}" alt="" #imgPreview class="img-thumbnail d-none" />
+    <img src="{{stringAvatar}}" alt="" #imgPreview class="img-thumbnail d-none" /> -->
     <p class="text-danger" id="errorInfo"></p>
     <a class="btn btn-secondary me-2" [routerLink]="['/auth/login']" role="button">Go back</a>
     <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Create account</button>

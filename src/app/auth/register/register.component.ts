@@ -16,11 +16,11 @@ import { AuthService } from '../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  newUser: User = {
+  newUser = {
     name: "",
     email: "",
     password: "",
-    avatar: "",
+    // avatar: new FormData(),
     latitude: 0,
     longitude: 0
   }
@@ -28,7 +28,8 @@ export class RegisterComponent implements OnInit {
   @ViewChild('lngModel') lngModel!: NgModel;
   @ViewChild('latModel') latModel!: NgModel;
   @ViewChild('imgPreview') imgPreview!: ElementRef;
-
+  // file:any;
+  // stringAvatar: string = "";
 
   constructor(
     private titleService: Title,
@@ -79,6 +80,9 @@ export class RegisterComponent implements OnInit {
 
   // if the form is valid, the button to create account will activate.
   createAccount() {
+    // const formData = new FormData();
+    // this.newUser.avatar.append("avatar", this.file, this.file.name);
+    // this.newUser.avatar =  this.file;
     this.authService.register(this.newUser).subscribe({
       next: (e) => {
         console.log(e);
@@ -93,32 +97,32 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  loadImage(event: any): void {
-    const file = event.target.files[0];
-    const reader = new FileReader();
+  // loadImage(event: any): void {
+  //   this.file = event.target.files[0];
+  //   const reader = new FileReader();
+  //   console.log(this.file);
+  //   if (this.file && this.file.type.startsWith("image")) { // checks there is a file and that it's an image.
+  //     reader.readAsDataURL(this.file);
+  //   } else {
+  //     // Swal.fire("Error!",
+  //     // "You must upload an image.",
+  //     // "error");
+  //   }
 
-    if (file && file.type.startsWith("image")) { // checks there is a file and that it's an image.
-      reader.readAsDataURL(file);
-    } else {
-      // Swal.fire("Error!",
-      // "You must upload an image.",
-      // "error");
-    }
+  //   reader.addEventListener("load", () => {
+  //     this.stringAvatar = reader.result as string;
 
-    reader.addEventListener("load", () => {
-      this.newUser.avatar = reader.result as string;
-
-      // remove class d-none to show preview
-      this.renderer.removeClass(this.imgPreview.nativeElement,"d-none");
-    });
-  }
+  //     // remove class d-none to show preview
+  //     this.renderer.removeClass(this.imgPreview.nativeElement,"d-none");
+  //   });
+  // }
 
   resetForm() {
     this.newUser = {
       name: "",
       email: "",
       password: "",
-      avatar: "",
+      // avatar: new FormData(),
       latitude: 0,
       longitude: 0
     };

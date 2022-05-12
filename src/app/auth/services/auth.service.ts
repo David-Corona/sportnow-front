@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse  } from '@angular/common/http';
 import { Observable, throwError, of, ReplaySubject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 import { TokenResponse, UserResponse } from "../interfaces/responses";
 import { User, UserLogin } from "../interfaces/user";
@@ -42,16 +42,14 @@ export class AuthService {
       },
       error: (error) => {
         console.error(error);
-        // Swal.fire("Login error",
-        // "Login details are incorrect.<br/>" + "Please check credentials and try again.",
-        // "error");
+        Swal.fire("¡Error!", error.error.message, "error");
       }
     });
   }
 
-  register(userInfo: User): Observable<User> {
-    return this.http.post<UserResponse>(`${this.authURL}/register`, userInfo).pipe(
-      map(resp => resp.user)
+  register(userInfo: any): Observable<any> {
+    return this.http.post<any>(`${this.authURL}/register`, userInfo).pipe(
+      map(resp => resp)
     )
   }
 
