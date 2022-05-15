@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { SportService } from '../services/sport.service';
 
 @Component({
   selector: 'app-sport-list',
@@ -7,9 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SportListComponent implements OnInit {
 
-  constructor() { }
+  eventos: any = [];
+
+  constructor(
+    private titleService: Title,
+    private sportService: SportService,
+  ) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("SportNow | Eventos Deportivos");
+
+    this.getEventos();
+
   }
+
+  getEventos(){
+      this.sportService.getEventos().subscribe({
+      next: (resp) => {
+        this.eventos = resp.data;
+        console.log(this.eventos);
+      },
+      error: e => {
+        console.error(e);
+      }
+    });
+  }
+
 
 }

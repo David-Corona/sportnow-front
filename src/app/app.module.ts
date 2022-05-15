@@ -7,13 +7,17 @@ import { MenuModule } from './menu/menu.module';
 import { UsersModule } from './users/users.module';
 import { AdminModule } from './admin/admin.module';
 import { SportsModule } from './sports/sports.module';
+import { InicioModule } from './inicio/inicio.module';
 import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+
+// import { InicioComponent } from './inicio/inicio/inicio.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    // InicioComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +27,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     UsersModule,
     AdminModule,
     SportsModule,
-
+    InicioModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

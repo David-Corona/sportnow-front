@@ -5,21 +5,20 @@ import {
   ActivatedRouteSnapshot
 } from '@angular/router';
 import { catchError, Observable, of, EMPTY } from 'rxjs';
-import { User } from '../interfaces/user';
-import { UserService } from '../services/user.service';
+import { SportService } from '../services/sport.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserResolver implements Resolve<User> {
+export class SportResolver implements Resolve<any> {
 
   constructor(
-    private usersService: UserService,
+    private sportService: SportService,
     private router: Router
     ) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User> {
-    return this.usersService.getUser(+route.params['id']).pipe(
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
+    return this.sportService.getEvento(+route.params['id']).pipe(
       catchError((error) => {
         this.router.navigate(['/inicio']);
         return EMPTY;
