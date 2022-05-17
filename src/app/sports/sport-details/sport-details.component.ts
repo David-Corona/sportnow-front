@@ -10,8 +10,9 @@ import { SportService } from '../services/sport.service';
 })
 export class SportDetailsComponent implements OnInit {
 
-  evento: number = 0;
+  evento: any = [];
   comentarios: any = [];
+  participantes: any = [];
 
 
 
@@ -26,9 +27,12 @@ export class SportDetailsComponent implements OnInit {
 
     console.log( this.route.snapshot);
     this.evento = this.route.snapshot.data["event"].data;
+    // this.participantes = this.route.snapshot.data["event"].data.participantes;
+    // this.comentarios = this.route.snapshot.data["event"].data.comentarios;
     console.log(this.evento);
 
-    // this.getEvento();
+
+    // this.getEvento(this.participantes);
   }
 
 

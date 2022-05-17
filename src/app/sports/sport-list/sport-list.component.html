@@ -10,9 +10,11 @@
       </div>
       <div class="col-md-9">
         <div class="card-body">
-          <h5 class="card-title">{{evento.deporte.nombre}}</h5>
+          <h5 class="card-title">{{evento.titulo}}</h5>
+          <p class="card-text">{{evento.deporte.nombre}}</p>
           <p class="card-text">{{evento.fecha | date:'dd/MM/y H:mm'}}</p>
           <p class="card-text">{{evento.direccion}}</p>
+          <!-- <p class="card-text">{{evento.descripcion}}</p> -->
           <p class="card-text">Mostrar nº participantes, o plazas si hay max? Pinchar en card->detalles</p>
           <a [routerLink]="['/sports', evento.id]" class="btn btn-primary">Go somewhere</a><!-- .stretched-link -->
         </div>
