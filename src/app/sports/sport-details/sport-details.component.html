@@ -1,29 +1,38 @@
 
-
 <div class="d-flex justify-content-center mt-4">
   <div style="width: 80%;">
+
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="detalles-tab" data-bs-toggle="tab" href="#detalles" role="tab" aria-controls="detalles" aria-selected="true">Detalles</a>
+        <a class="nav-link active" id="detalles-tab" data-bs-toggle="tab" href="#detalles" role="tab" aria-controls="detalles" aria-selected="true">
+          Detalles
+        </a>
       </li>
       <li class="nav-item" role="presentation">
-        <a class="nav-link" id="participantes-tab" data-bs-toggle="tab" href="#participantes" role="tab" aria-controls="participantes" aria-selected="false">Participantes</a>
+        <a class="nav-link" id="participantes-tab" data-bs-toggle="tab" href="#participantes" role="tab" aria-controls="participantes" aria-selected="false">
+          Participantes
+          <span class="badge bg-primary">{{evento.participantes.length}}</span>
+        </a>
       </li>
       <li class="nav-item" role="presentation">
-        <a class="nav-link" id="comentarios-tab" data-bs-toggle="tab" href="#comentarios" role="tab" aria-controls="comentarios" aria-selected="false">Comentarios</a>
+        <a class="nav-link" id="comentarios-tab" data-bs-toggle="tab" href="#comentarios" role="tab" aria-controls="comentarios" aria-selected="false">
+          Comentarios
+          <span class="badge bg-primary">{{evento.comentarios.length}}</span>
+        </a>
       </li>
     </ul>
 
 
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade " id="detalles" role="tabpanel" aria-labelledby="detalles-tab">
+      <div class="tab-pane fade show active" id="detalles" role="tabpanel" aria-labelledby="detalles-tab">
 
 
 
 
       </div>
-      <div class="tab-pane fade" id="participantes" role="tabpanel" aria-labelledby="participantes-tab">
 
+
+      <div class="tab-pane fade" id="participantes" role="tabpanel" aria-labelledby="participantes-tab">
         <li class="list-group-item active">
           Participantes ({{evento.participantes.length}}<span *ngIf="evento.deporte.max_participantes">/{{evento.deporte.max_participantes}}</span>)
         </li>
@@ -38,49 +47,42 @@
             </div>
           </div>
         </li>
-
       </div>
-      <div class="tab-pane fade show active" id="comentarios" role="tabpanel" aria-labelledby="comentarios-tab">...
 
 
-
-
-        <!-- <div>
-          <ul class="list-group mt-4 mb-4">
-            <li class="list-group-item active">User comments</li>
-            <li class="list-group-item" *ngFor="let comment of comments">
+      <div class="tab-pane fade" id="comentarios" role="tabpanel" aria-labelledby="comentarios-tab">
+          <ul class="list-group mb-4">
+            <li class="list-group-item active">Comentarios ({{evento.comentarios.length}})</li>
+            <li class="list-group-item" *ngFor="let comentario of evento.comentarios">
               <div class="row">
                 <div class="col-auto text-center user-info">
-                  <a [routerLink]="['/users', comment.user!.id]">
-                    <img class="avatar rounded-circle" src="{{comment.user!.avatar}}" />
+                  <a [routerLink]="['/users', comentario.user_id]">
+                    <img class="avatar rounded-circle" style="width: 60px;" src="{{comentario.autor.avatar}}" />
                   </a>
                   <div>
-                    <small><a [routerLink]="['/users', comment.user!.id]" class="text-decoration-none">{{comment.user!.name}}</a></small>
+                    <small><a [routerLink]="['/users', comentario.user_id]" class="text-decoration-none">{{comentario.autor.name}}</a></small>
                   </div>
-                  <div><small>{{comment.date | date:'dd/MM/y H:mm'}}</small></div>
+                  <div><small>{{comentario.created_at | date:'dd/MM/y H:mm'}}</small></div>
                 </div>
                 <div id="text" class="col"
-                [innerText]=comment.comment>
+                [innerText]=comentario.mensaje>
                 </div>
               </div>
             </li>
           </ul>
-          <form (ngSubmit)="postComment()" *ngIf="event.attend">
-            <span class="list-group-item active">Post a new Comment:</span>
+          <!-- TODO: hacer que solo puedan postear participantes? *ngIf="event.attend" -->
+          <!-- TODO: poner comentario propio a la izquierda? -->
+          <form (ngSubmit)="postComment()">
+            <span class="list-group-item active">Nuevo comentario:</span>
             <textarea
               class="form-control"
               name="comment"
-              [(ngModel)]="newComment.comment"
+              [(ngModel)]="nuevoComentario"
               required
               rows="4"
             ></textarea>
-            <button type="submit" class="btn btn-primary float-end mt-1">Post Comment</button>
+            <button type="submit" class="btn btn-primary float-end mt-1">Enviar</button>
           </form>
-        </div> -->
-
-
-
-
       </div>
 
     </div>

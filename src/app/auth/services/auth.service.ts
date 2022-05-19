@@ -4,6 +4,7 @@ import { Observable, throwError, of, ReplaySubject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 import { TokenResponse, UserResponse } from "../interfaces/responses";
 import { User, UserLogin } from "../interfaces/user";
@@ -21,24 +22,26 @@ export class AuthService {
 
   constructor(
     private readonly http: HttpClient,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService,
   ) { }
 
 
   login(userLogin: UserLogin): Observable<void> {
-    const token = this.http.post<TokenResponse>(`${this.authURL}/login`, userLogin);
-    this.saveToken(token);
+    const resp = this.http.post(`${this.authURL}/login`, userLogin);
+    this.saveToken(resp);
     return of(undefined);
   }
 
   // receives observable token => saves in localstorage, logged & loginChange as true and relocate to sports. If not, show error.
-  saveToken(token: Observable<TokenResponse>): void {
-    token.subscribe({
-      next: (t) => {
-        localStorage.setItem("token", t.access_token);
+  saveToken(resp: Observable<any>): void {
+    resp.subscribe({
+      next: (r) => {
+        localStorage.setItem("token", r.access_token);
         this.logged = true;
         this.loginChange$.next(true);
-        this.router.navigate(['/sports']);
+        this.router.navigate(['/inicio']);
+        this.toastr.success('¡Bienvenido ' + r.user.name + "!");
       },
       error: (error) => {
         console.error(error);

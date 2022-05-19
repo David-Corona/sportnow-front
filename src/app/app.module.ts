@@ -13,6 +13,9 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 // import { InicioComponent } from './inicio/inicio/inicio.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +31,11 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     AdminModule,
     SportsModule,
     InicioModule,
+
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass :'toast-top-right'
+    }),
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

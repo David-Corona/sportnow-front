@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { SportListComponent } from './sport-list/sport-list.component';
 import { SportsRoutingModule } from './sports-routing.module';
 import { SportDetailsComponent } from './sport-details/sport-details.component';
@@ -13,7 +14,7 @@ import { SportDetailsComponent } from './sport-details/sport-details.component';
   imports: [
     CommonModule,
     SportsRoutingModule,
-    // FormsModule,
+    FormsModule,
     // FontAwesomeModule,
     // SweetAlert2Module,
     // NgxMapboxGLModule,

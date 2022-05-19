@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+
+.toast-container {
+  font-size: 15px;
+}
+
+.toast-info, .toast-error, .toast-success, .toast-warning {
+  background-image: none !important;
+  padding: 15px 15px 15px 15px !important;
+  text-align: center !important;
+}

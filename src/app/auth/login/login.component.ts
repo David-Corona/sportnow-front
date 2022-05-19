@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   tryLogin() {
-    this.authService.login(this.user)
+    this.authService.login(this.user);
   }
 
   geolocate() {

@@ -22,4 +22,15 @@ export class SportService {
     // return resp.pipe(map(resp => resp.user));
   }
 
+
+
+
+  postComentario(evento: number,comentario: string): Observable<any> { // user: number, //"user_id": user,
+    return this.http.post(`${this.sportURL}`+"-comentarios", {"evento_id": evento, "mensaje": comentario})
+    // .pipe(
+    //   map(resp => resp.users))
+  }
+
+
+
 }
