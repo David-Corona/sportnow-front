@@ -1,0 +1,179 @@
+
+
+<div class="container">
+  <form #eventForm="ngForm" class="mt-4" novalidate>
+
+    <div class="mb-3">
+      <label for="titulo" class="form-label">Título</label>
+      <div>
+        <input
+          type="text"
+          class="form-control"
+          name="titulo"
+          #tituloModel="ngModel"
+          [(ngModel)]="actividad.titulo"
+          required
+          [ngClass]="validClasses(tituloModel, 'is-valid', 'is-invalid')"
+          placeholder="Introduce un título"
+        >
+        <!-- pattern="[A-Za-z][A-Za-z\s]*" -->
+        <div class="invalid-feedback">
+          El título es obligatorio.
+        </div>
+        <!-- *ngIf="tituloModel.errors?.['required']" -->
+        <!-- <div class="invalid-feedback" *ngIf="tituloModel.errors?.['pattern']">
+          Title must include letters and may include spaces.
+        </div> -->
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="deporte" class="form-label">Tipo de Actividad</label>
+      <div>
+        <!-- TODO: Cargar deportes API, o completar con más deportes -->
+        <select
+          name="deporte" id="deporte"
+          class="form-control"
+          required
+          #deporteModel="ngModel"
+          [(ngModel)]="actividad.deporte_id"
+          [ngClass]="validClasses(deporteModel, 'is-valid', 'is-invalid')"
+        >
+          <option value="1">Pádel</option>
+          <option value="2">Tenis</option>
+          <option value="3">Senderismo</option>
+        </select>
+        <div class="invalid-feedback">
+          El tipo de actividad es obligatorio.
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="fecha" class="form-label">Fecha</label>
+      <div>
+        <input
+          type="datetime-local"
+          class="form-control"
+          name="fecha"
+          [(ngModel)]="actividad.fecha"
+          required
+          #dateModel="ngModel"
+          svMinDate
+          [ngClass]="validClasses(dateModel, 'is-valid', 'is-invalid')"
+        >
+        <div class="invalid-feedback" *ngIf="dateModel.errors?.['required']">
+          La fecha es obligatoria.
+        </div>
+        <div class="invalid-feedback" *ngIf="dateModel.errors?.['minDate']">
+          La fecha no puede ser anterior a la fecha de hoy.
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripción</label>
+      <div>
+        <textarea
+          class="form-control"
+          name="descripcion"
+          required
+          #descModel="ngModel"
+          [(ngModel)]="actividad.descripcion"
+          rows="5"
+          [ngClass]="validClasses(descModel, 'is-valid', 'is-invalid')">
+        </textarea>
+        <div class="invalid-feedback">
+          La descripción es obligatoria.
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="mb-3">
+      <label for="price" class="form-label">Price (in €)</label>
+      <div>
+        <input
+          type="number"
+          class="form-control"
+          name="price"
+          [(ngModel)]="anEvent.price"
+          min="0.01"
+          step="0.01"
+          required
+          #priceModel="ngModel"
+          [ngClass]="validClasses(priceModel, 'is-valid', 'is-invalid')"
+        />
+        <div class="invalid-feedback">
+          Price must be a positive number.
+        </div>
+      </div>
+    </div> -->
+
+    <!-- <div class="mb-3">
+      <label for="image" class="form-label">Image</label>
+      <div>
+        <input
+          type="file"
+          class="form-control"
+          name="image"
+          [(ngModel)]="imageName"
+          #fileImage
+          (change)="changeImage(fileImage)"
+          [required]="isNewEvent"
+          #imageModel="ngModel"
+          [ngClass]="validClasses(imageModel, 'is-valid', 'is-invalid')"
+        >
+        <div class="invalid-feedback">
+          An image is required.</div>
+      </div>
+    </div>
+    <img class="img-thumbnail mb-3" [src]="anEvent.image" alt="" *ngIf="anEvent.image"> -->
+
+    <div class="mb-3">
+      <label for="direccion" class="form-label">Dirección</label>
+      <div>
+        <input
+        type="text"
+        class="form-control"
+        name="direccion"
+        [(ngModel)]="actividad.direccion"
+        readonly
+        required
+        placeholder="Selecciona la dirección en el mapa"
+        #direccionModel="ngModel"
+        [ngClass]="validClasses(direccionModel, 'is-valid', 'is-invalid')"
+        >
+        <div class="invalid-feedback">
+          La dirección es obligatoria.
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-3 mt-4">
+      <mgl-map [style]="'mapbox://styles/mapbox/streets-v11'" [zoom]="[zoom]" [center]="[actividad.longitud, actividad.latitud]">
+        <mgl-marker [lngLat]="[actividad.longitud, actividad.latitud]"></mgl-marker>
+        <mgl-control mglGeocoder (result)="cambiarPosicion($event.result)"></mgl-control>
+      </mgl-map>
+    </div>
+    <!-- (click)="mapClicked($event)" -->
+
+    <div>
+      <button
+        class="btn btn-primary px-5 mb-4"
+        (click)="crearActividad()"
+        [disabled]="eventForm.invalid"
+        >Crear
+      </button>
+      <!-- *ngIf="!actividad.id" -->
+      <!-- <button
+        *ngIf="anEvent.id"
+        class="btn btn-primary px-5 mb-4"
+        (click)="editEvent()"
+        [disabled]="eventForm.invalid || eventForm.pristine"
+        >Edit
+      </button> -->
+
+    </div>
+  </form>
+</div>
+

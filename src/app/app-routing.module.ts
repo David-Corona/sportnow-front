@@ -14,7 +14,7 @@ const routes: Routes = [
     loadChildren: () => import('./inicio/inicio.module').then((m) => m.InicioModule),
   },
   {
-    path: 'sports',
+    path: 'actividades',
     loadChildren: () => import('./sports/sports.module').then((m) => m.SportsModule),
   },
   {
@@ -22,7 +22,7 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule)
   },
   {
-    path: 'users',
+    path: 'usuarios',
     loadChildren: () => import('./users/users.module').then((m) => m.UsersModule)
   },
   {

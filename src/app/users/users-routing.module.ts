@@ -9,7 +9,7 @@ import { UserResolver } from './resolvers/user.resolver';
 
 const routes: Routes = [
   {
-    path: 'users/me',
+    path: 'usuarios/me',
     canActivate: [LoginActivateGuard],
     component: ProfileComponent,
     resolve: {
@@ -18,7 +18,7 @@ const routes: Routes = [
     // data: { animation: 3 }
   },
   {
-    path: 'users/edit',
+    path: 'usuarios/edit',
     canActivate: [LoginActivateGuard],
     component: EditComponent,
     resolve: {
@@ -26,7 +26,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'users/:id',
+    path: 'usuarios/:id',
     canActivate: [LoginActivateGuard],
     component: ProfileComponent,
     resolve: {

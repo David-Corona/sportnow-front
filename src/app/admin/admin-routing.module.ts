@@ -7,7 +7,7 @@ import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   {
-    path: 'admin/users',
+    path: 'admin/usuarios',
     canActivate: [LoginActivateGuard],
     component: UsersComponent
   },

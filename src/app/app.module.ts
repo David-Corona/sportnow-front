@@ -12,7 +12,8 @@ import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 // import { InicioComponent } from './inicio/inicio/inicio.component';
-
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+import { NgxMapboxGlGeocoderControlModule } from 'ngx-mapbox-gl-geocoder-control';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -32,6 +33,10 @@ import { ToastrModule } from 'ngx-toastr';
     SportsModule,
     InicioModule,
 
+    NgxMapboxGLModule.withConfig({
+      accessToken: 'pk.eyJ1IjoiY29yb25hMTIxIiwiYSI6ImNrdnY2aDJpYzE4ZmsycG05Mno5dG91bzkifQ.EEQR8Z-qXQfxkmFRTuKHOQ'
+    }),
+    NgxMapboxGlGeocoderControlModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass :'toast-top-right'

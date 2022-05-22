@@ -62,7 +62,7 @@ export class AuthService {
     } else if (this.logged && localStorage.getItem("token")){
       return of(true);
     } else if (!this.logged && localStorage.getItem("token")) {
-      if(this.http.get<void>((`${this.authURL}/validate`))) {
+      if(this.http.get<void>((`${this.authURL}/validate`))) { //TODO?
         this.logged = true;
         this.loginChange$.next(true);
         return of(true);

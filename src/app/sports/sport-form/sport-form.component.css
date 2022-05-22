@@ -1,0 +1,31 @@
+mgl-map {
+  height: 500px;
+  width: 100%;
+}
+
+.geocoder {
+  min-width: 500px !important;
+  width: 500px !important;
+}
+
+.mapboxgl-ctrl-geocoder {
+  min-width: 500px !important;
+  width: 500px !important;
+  }
+
+  .geocoder {
+    position: absolute;
+    z-index: 1;
+    width: 50%;
+    left: 50%;
+    margin-left: -25%;
+    top: 10px;
+    }
+
+  .mapboxgl-ctrl-geocoder {
+      width: 300px !important;
+  }
+
+  .mapboxgl-ctrl-geocoder--input {
+    width: 300px !important;
+ }

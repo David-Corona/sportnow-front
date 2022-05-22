@@ -27,6 +27,72 @@
       <div class="tab-pane fade show active" id="detalles" role="tabpanel" aria-labelledby="detalles-tab">
 
 
+        <div class="card shadow">
+          <!-- <a [routerLink]="['/events', event.id]">
+            <img class="card-img-top" src="{{event.image}}" />
+          </a> -->
+          <div class="card-body">
+            <h4 class="card-title text-primary">
+              {{evento.titulo}}
+            </h4>
+            <p class="card-text">{{evento.descripcion}}</p>
+            <div class="row">
+              <!-- <div class="col" *ngIf="event.mine">
+                <button
+                  class="btn btn-danger"
+                  [swal]="{
+                    title: 'Are you sure?',
+                    text: 'It will be deleted from the database.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'No'
+                  }"
+                  (confirm)="delete()">
+                  Delete
+                </button>
+                <a class="btn btn-primary ms-1 px-4 text-white" *ngIf="isDetails" [routerLink]="['/events', event.id, 'edit']">
+                  Edit
+                </a>
+              </div> -->
+              <!-- <div class="col-auto ms-auto">
+                <div class="text-end attend-users">
+                  <fa-icon [icon]="['fas', 'users']"></fa-icon> {{event.numAttend}}
+                </div>
+                <div class="text-success text-end m-0 btn attend-button" *ngIf="event.attend" (click)="attendance()">
+                  <fa-icon [icon]="['fas', 'thumbs-up']"></fa-icon> I'm going
+                </div>
+                <div class="text-danger text-end m-0 btn attend-button" *ngIf="!event.attend" (click)="attendance()">
+                  <fa-icon [icon]="['fas', 'thumbs-down']"></fa-icon> Not going
+                </div>
+              </div> -->
+            </div>
+          </div>
+          <!-- <div class="card-footer text-muted row m-0">
+            <div class="avatar col-auto pl-1 pr-1">
+              <a [routerLink]="['/users', event.creator!.id]">
+                <img src="{{event.creator!.avatar}}" class="rounded-circle" />
+               </a>
+            </div>
+            <div class="col">
+              <div class="name">
+                <a [routerLink]="['/users', event.creator!.id]" class="text-decoration-none">
+                  {{event.creator!.name}}
+                </a>
+                <div><small class="text-muted">{{event.date | date:'dd/MM/y H:mm'}}</small></div>
+              </div>
+            </div>
+            <div class="col-auto text-end text-muted">
+              <div><small>{{event.price | currency:'EUR':'symbol'}}</small></div>
+              <div><small>{{event.distance | number: '1.2-2'}} km</small></div>
+            </div>
+          </div> -->
+        </div>
+
+
+
+
+
 
 
       </div>
@@ -37,11 +103,11 @@
           Participantes ({{evento.participantes.length}}<span *ngIf="evento.deporte.max_participantes">/{{evento.deporte.max_participantes}}</span>)
         </li>
         <li class="list-group-item" *ngFor="let participante of evento.participantes">
-          <a [routerLink]="['/users', participante.user_id]">
+          <a [routerLink]="['/usuarios', participante.user_id]">
             <img class="rounded-circle float-start me-3" style="width: 40px;" src="{{participante.usuario.avatar}}" alt="" />
           </a>
           <div>
-            <div><a class="text-decoration-none" [routerLink]="['/users', participante.user_id]">{{participante.usuario.name}}</a></div>
+            <div><a class="text-decoration-none" [routerLink]="['/usuarios', participante.user_id]">{{participante.usuario.name}}</a></div>
             <div>
               <small>¿PASAR ESTO A DERECHA? Apuntado a las {{participante.created_at | date:'H:mm dd/MM/y'}}</small>
             </div>
@@ -56,11 +122,11 @@
             <li class="list-group-item" *ngFor="let comentario of evento.comentarios">
               <div class="row">
                 <div class="col-auto text-center user-info">
-                  <a [routerLink]="['/users', comentario.user_id]">
+                  <a [routerLink]="['/usuarios', comentario.user_id]">
                     <img class="avatar rounded-circle" style="width: 60px;" src="{{comentario.autor.avatar}}" />
                   </a>
                   <div>
-                    <small><a [routerLink]="['/users', comentario.user_id]" class="text-decoration-none">{{comentario.autor.name}}</a></small>
+                    <small><a [routerLink]="['/usuarios', comentario.user_id]" class="text-decoration-none">{{comentario.autor.name}}</a></small>
                   </div>
                   <div><small>{{comentario.created_at | date:'dd/MM/y H:mm'}}</small></div>
                 </div>

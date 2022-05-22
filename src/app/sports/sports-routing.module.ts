@@ -2,31 +2,33 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SportListComponent } from './sport-list/sport-list.component';
 import { SportDetailsComponent } from './sport-details/sport-details.component';
-// import { EventFormComponent } from './event-form/event-form.component';
-// import { EventDetailsComponent } from './event-details/event-details.component';
+import { SportFormComponent } from './sport-form/sport-form.component';
+
+
 // import { EventIdGuard } from './guards/event-id.guard';
 // import { LeavePageGuard } from './guards/leave-page.guard';
-// import { SportResolver } from '../resolver/sport.resolver';
+
 import { LoginActivateGuard } from '../auth/guards/login-activate.guard';
 import { SportResolver } from './resolvers/sport.resolver';
+
 
 // import { EditEventGuard } from './guards/edit-event.guard';
 
 const routes: Routes = [
 
   {
-    path: 'sports',
+    path: 'actividades',
     canActivate: [LoginActivateGuard],
     component: SportListComponent,
   },
-  // {
-  //   path: 'events/add',
-  //   canDeactivate: [LeavePageGuard],
-  //   canActivate: [LoginActivateGuard],
-  //   component: EventFormComponent,
-  // },
   {
-    path: 'sports/:id',
+    path: 'actividades/nuevo',
+    // canDeactivate: [LeavePageGuard],
+    canActivate: [LoginActivateGuard],
+    component: SportFormComponent,
+  },
+  {
+    path: 'actividades/:id',
     component: SportDetailsComponent,
     canActivate: [LoginActivateGuard], //EventIdGuard
     resolve: {

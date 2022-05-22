@@ -18,7 +18,7 @@ export class SportResolver implements Resolve<any> {
     ) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-    return this.sportService.getEvento(+route.params['id']).pipe(
+    return this.sportService.getActividad(+route.params['id']).pipe(
       catchError((error) => {
         this.router.navigate(['/inicio']);
         return EMPTY;

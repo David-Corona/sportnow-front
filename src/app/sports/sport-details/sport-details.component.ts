@@ -26,7 +26,7 @@ export class SportDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Detalles Evento Deportivo");
+    this.titleService.setTitle("SportNow | Detalles Actividad Deportiva");
     console.log( this.route.snapshot);
     this.evento = this.route.snapshot.data["event"].data;
     // this.participantes = this.route.snapshot.data["event"].data.participantes;
@@ -34,7 +34,7 @@ export class SportDetailsComponent implements OnInit {
     console.log(this.evento);
 
 
-    // this.getEvento(this.participantes);
+    // this.getActividad(this.participantes);
   }
 
 
@@ -52,8 +52,8 @@ export class SportDetailsComponent implements OnInit {
   }
 
 
-  // getEvento(){
-  //     this.sportService.getEvento().subscribe({
+  // getActividad(){
+  //     this.sportService.getActividad().subscribe({
   //     next: (resp) => {
   //       this.evento = resp.data;
   //       console.log(this.evento);

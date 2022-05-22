@@ -20,7 +20,7 @@ export class LogoutActivateGuard implements CanActivate {
     this.authService.isLogged().subscribe({
       next: resp => {
         if (resp) {
-          this.router.navigate(['/sports']);
+          this.router.navigate(['/inicio']);
         }
       },
       error: error => console.error(error)

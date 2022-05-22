@@ -23,15 +23,15 @@
       <li class="nav-item">
         <a
           class="nav-link"
-          [routerLink]="['/sports']"
+          [routerLink]="['/actividades']"
           [routerLinkActive]="['active']"
-          >Deportes
+          >Actividades
         </a>
       </li>
       <li class="nav-item">
         <a
           class="nav-link"
-          [routerLink]="['/users/me']"
+          [routerLink]="['/usuarios/me']"
           [routerLinkActive]="['active']"
           >Perfil
         </a>
@@ -46,7 +46,7 @@
       <li class="nav-item" *ngIf="isAdmin">
         <a
           class="nav-link"
-          [routerLink]="['/admin/users']"
+          [routerLink]="['/admin/usuarios']"
           [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{exact: true}"
           >Admin

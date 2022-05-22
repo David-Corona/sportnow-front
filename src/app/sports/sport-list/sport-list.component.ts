@@ -17,14 +17,14 @@ export class SportListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Eventos Deportivos");
+    this.titleService.setTitle("SportNow | Actividades Deportivas");
 
-    this.getEventos();
+    this.getActividades();
 
   }
 
-  getEventos(){
-      this.sportService.getEventos().subscribe({
+  getActividades(){
+      this.sportService.getActividades().subscribe({
       next: (resp) => {
         this.eventos = resp.data;
         console.log(this.eventos);

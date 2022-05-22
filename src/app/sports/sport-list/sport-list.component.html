@@ -2,6 +2,8 @@
 <div>Filtros</div>
 <!-- [routerLink]="['/sports', evento.id]" -->
 
+<a [routerLink]="['/actividades/nuevo']" class="btn btn-primary">Crear actividad</a>
+
 <div class="d-flex justify-content-center" *ngFor="let evento of eventos">
   <div class="card mb-2" style="width: 80%;">
     <div class="row">
@@ -16,7 +18,7 @@
           <p class="card-text">{{evento.direccion}}</p>
           <!-- <p class="card-text">{{evento.descripcion}}</p> -->
           <p class="card-text">Mostrar nº participantes, o plazas si hay max? Pinchar en card->detalles</p>
-          <a [routerLink]="['/sports', evento.id]" class="btn btn-primary">Go somewhere</a><!-- .stretched-link -->
+          <a [routerLink]="['/actividades', evento.id]" class="btn btn-primary">Detalles</a><!-- .stretched-link -->
         </div>
       </div>
     </div>
