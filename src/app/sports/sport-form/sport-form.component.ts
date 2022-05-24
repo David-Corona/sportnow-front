@@ -4,6 +4,7 @@ import { SportService } from '../services/sport.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgModel } from '@angular/forms';
 import { Result } from 'ngx-mapbox-gl-geocoder-control';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sport-form',
@@ -20,7 +21,8 @@ export class SportFormComponent implements OnInit {
     "fecha": "",
     "direccion": "",
     "latitud": 38.34796132403571,
-    "longitud": -0.4855421677761779
+    "longitud": -0.4855421677761779,
+    "participar": true
   }
   // "id": null,
   zoom = 16;
@@ -29,6 +31,7 @@ export class SportFormComponent implements OnInit {
     private titleService: Title,
     private sportService: SportService,
     private toastr: ToastrService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -43,6 +46,7 @@ export class SportFormComponent implements OnInit {
       next: resp => {
         console.log(resp);
         this.toastr.success('Actividad creada correctamente');
+        this.router.navigate(['/actividades']);
       },
       error: error => {
         console.error(error);

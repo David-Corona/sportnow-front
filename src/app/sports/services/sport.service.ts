@@ -26,7 +26,19 @@ export class SportService {
     return this.http.post(`${this.sportURL}`, actividad);
   }
 
+  apuntarActividad(evento_id: number, user_id?: number) {
+    return this.http.post(`${this.sportURL}-usuarios`, {'evento_id': evento_id, 'user_id': user_id})
+    // .pipe(
+    //   map(resp => resp.participantes));
+  }
 
+
+  desapuntarActividad(evento_id: number, user_id?: number) {
+    const user = user_id ? "${user_id}" : "";
+    return this.http.delete(`${this.sportURL}-usuarios/${evento_id}`+user)
+    // .pipe(
+    //     map(resp => resp.participantes));
+  }
 
 
   postComentario(evento: number,comentario: string): Observable<any> { // user: number, //"user_id": user,

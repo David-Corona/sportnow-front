@@ -19,8 +19,11 @@ export class LoginActivateGuard implements CanActivate {
 
     this.authService.isLogged().subscribe({
       next: resp => {
+        console.log("En login activate");
+        console.log(resp);
         if (!resp) {
           this.router.navigate(['/auth/login']);
+          // localStorage.removeItem("token");
         }
       },
       error: error => console.error(error)

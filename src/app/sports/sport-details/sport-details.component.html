@@ -55,6 +55,7 @@
                   Edit
                 </a>
               </div> -->
+
               <!-- <div class="col-auto ms-auto">
                 <div class="text-end attend-users">
                   <fa-icon [icon]="['fas', 'users']"></fa-icon> {{event.numAttend}}
@@ -66,6 +67,12 @@
                   <fa-icon [icon]="['fas', 'thumbs-down']"></fa-icon> Not going
                 </div>
               </div> -->
+              <button class="btn btn-success" *ngIf="!evento.participo" (click)="participacion()">
+                Apuntarme
+              </button>
+              <button class="btn btn-danger" *ngIf="evento.participo" (click)="participacion()">
+                Desapuntarme
+              </button>
             </div>
           </div>
           <!-- <div class="card-footer text-muted row m-0">

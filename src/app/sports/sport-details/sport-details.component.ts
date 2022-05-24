@@ -51,6 +51,31 @@ export class SportDetailsComponent implements OnInit {
     });
   }
 
+  participacion() {
+    if (this.evento.participo) {
+      this.evento.participo = false;
+      this.sportService.desapuntarActividad(this.evento.id).subscribe({
+        next: (resp: any) => {
+          this.evento.participantes = resp.data;
+          this.toastr.success('Desapuntado correctamente!');
+        },
+        error: error => console.error(error),
+      });
+
+    } else {
+      this.evento.participo = true;
+      this.sportService.apuntarActividad(this.evento.id).subscribe({
+        next: (resp: any) => {
+          this.evento.participantes.push(resp.data);
+          this.toastr.success('Apuntado correctamente!');
+        },
+        error: error => console.error(error)
+      });
+    }
+  }
+
+
+
 
   // getActividad(){
   //     this.sportService.getActividad().subscribe({

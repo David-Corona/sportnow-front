@@ -45,7 +45,7 @@ export class AuthService {
       },
       error: (error) => {
         console.error(error);
-        Swal.fire("¡Error!", error.error.message, "error");
+        this.toastr.error('Error al loguear');
       }
     });
   }
@@ -56,13 +56,44 @@ export class AuthService {
     )
   }
 
-  isLogged(): Observable<boolean> {
+  // TODO
+  // manejarIsLogged(resp: Observable<any>): void {
+  //   resp.subscribe({
+  //     next: (r) => {
+  //       console.log(r);
+  //       if (r) {
+  //         console.log("en if, true");
+  //         this.logged = true;
+  //         this.loginChange$.next(true);
+  //       } else {
+  //         console.log("en else, false");
+  //         localStorage.removeItem("token");
+  //       }
+
+  //     },
+  //     error: (error) => {
+  //       console.log("en error, false");
+  //       localStorage.removeItem("token");
+  //       console.error(error);
+  //     }
+  //   });
+  // }
+
+  // TODO
+  isLogged(): Observable<any> {
+    console.log(this.logged);
+    console.log(localStorage.getItem("token"));
+
     if (!this.logged && localStorage.getItem("token")===null) {
       return of(false);
-    } else if (this.logged && localStorage.getItem("token")){
+    } else if (this.logged && localStorage.getItem("token")) {
       return of(true);
-    } else if (!this.logged && localStorage.getItem("token")) {
-      if(this.http.get<void>((`${this.authURL}/validate`))) { //TODO?
+    } else if (!this.logged && localStorage.getItem("token")) { //TODO: problema cuando hay token caducado
+
+      const validated = this.http.get((`${this.authURL}/validate`)) //TODO, siempre devuelve true
+      console.log(validated);
+      if(validated) {
+        console.log("en true");
         this.logged = true;
         this.loginChange$.next(true);
         return of(true);
@@ -70,6 +101,13 @@ export class AuthService {
         localStorage.removeItem("token");
         return of(false);
       }
+
+      // const validated = this.http.get((`${this.authURL}/validate`))
+      // this.manejarIsLogged(validated);
+      // return validated;
+
+
+
     } else {
       return of(false);
     }
