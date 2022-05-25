@@ -1,32 +1,154 @@
-<p>profile works!</p>
 
-<div class="container">
-  <div id="profile">
-    <div class="row mt-4">
-      <div class="col-3">
-        <img class="w-100" id="avatar" src="{{user.avatar}}" alt="" />
+
+<div class="d-flex justify-content-center mt-4">
+  <div style="width: 80%;">
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="detalles-tab" data-bs-toggle="tab" href="#detalles" role="tab" aria-controls="detalles" aria-selected="true">
+          Detalles
+        </a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="participantes-tab" data-bs-toggle="tab" href="#actividades" role="tab" aria-controls="actividades" aria-selected="false">
+          Actividades
+          <span class="badge bg-primary">{{eventos.length}}</span>
+        </a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="comentarios-tab" data-bs-toggle="tab" href="#historial" role="tab" aria-controls="historial" aria-selected="false">
+          Historial
+          <span class="badge bg-primary">{{eventosPasados.length}}</span>
+          <!-- <span class="badge bg-primary">{{actividad.comentarios.length}}</span> -->
+        </a>
+      </li>
+    </ul>
+
+
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="detalles" role="tabpanel" aria-labelledby="detalles-tab">
+
+
+        <div class="card shadow">
+          <div class="card-body">
+
+            <!-- <div class="row">
+              <div class="col-md-3">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgUNaoFwOOa3sOnMoc8CVUJ65bhS822etxVQ&usqp=CAU" alt="Imagen evento">
+              </div>
+              <div class="col-md-9">
+                <div class="card-body">
+                  <h5 class="card-title">{{actividad.titulo}}</h5>
+                  <p class="card-text">{{actividad.deporte.nombre}}</p>
+                  <p class="card-text">{{actividad.fecha | date:'dd/MM/y H:mm'}}</p>
+                  <p class="card-text">{{actividad.direccion}} ({{actividad.distancia | number: '1.2-2'}} km)</p>
+                  <p class="card-text">{{actividad.descripcion}}</p>
+                  <p class="card-text">{{actividad.distancia | number: '1.2-2'}} km</p>
+                </div>
+              </div>
+            </div> -->
+
+            <div id="profile" class="mb-4">
+              <div class="row mt-4">
+                <div class="col-md-3">
+                  <img class="w-100" id="avatar" src="{{user.avatar}}" alt="Avatar Usuario" />
+                </div>
+                <div class="col-md-9">
+                  <h4>{{user.name}}</h4>
+                  <h4 class="mb-4">
+                    <small class="text-muted">{{user.email}}</small>
+                  </h4>
+                  <p *ngIf="isMe">
+                    <a [routerLink]="['/usuarios/edit']" class="btn btn-primary">Editar</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+
+          <!-- La que habia en users -->
+            <!-- <div class="mt-4" id="map">
+              <mgl-map class="mb-4" [style]="'mapbox://styles/mapbox/streets-v11'" [zoom]="[zoom]" [center]="[lng, lat]">
+                <mgl-marker [lngLat]="[lng, lat]"></mgl-marker>
+              </mgl-map>
+            </div> -->
+
+
+          <div class="card mt-2">
+            <mgl-map [style]="'mapbox://styles/mapbox/streets-v11'" [zoom]="[zoom]" [center]="[user.longitude, user.latitude]">
+              <mgl-marker [lngLat]="[user.longitude, user.latitude]"></mgl-marker>
+            </mgl-map>
+          </div>
+
+        </div>
+
+
       </div>
-      <div class="col-9">
-        <h4>{{user.name}}</h4>
-        <h4 class="mb-4">
-          <small class="text-muted">{{user.email}}</small>
-        </h4>
-        <p *ngIf="isMe">
-          <a [routerLink]="['/usuarios/edit']" class="btn btn-primary">Edit profile</a>
-        </p>
-        <!-- <p>
-          <a [routerLink]="['/events']" [queryParams]="{ creator: user.id }" class="btn btn-primary">Events created</a>
-        </p>
-        <p >
-          <a [routerLink]="['/events']" [queryParams]="{ attending: user.id }" class="btn btn-primary">Events Attending</a>
-        </p> -->
+
+
+      <div class="tab-pane fade" id="actividades" role="tabpanel" aria-labelledby="actividades-tab">
+        <!-- TODO: usar mismo card de sport-list -->
+        <!-- TODO: Collapse? Quizá con list-group-item active como en detalles pasticipantes evento -->
+        <div>
+          <div class="list-group-item active">Próximas Actividades ({{eventos.length}})</div>
+          <!-- <h4>Próximas Actividades ({{eventos.length}})</h4> -->
+          <div class="d-flex justify-content-center" *ngFor="let evento of eventos">
+            <div class="card mb-2" style="width: 100%;">
+              <div class="row">
+                <div class="col-md-3">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgUNaoFwOOa3sOnMoc8CVUJ65bhS822etxVQ&usqp=CAU" alt="Imagen evento">
+                </div>
+                <div class="col-md-9">
+                  <div class="card-body">
+                    <h5 class="card-title">{{evento.titulo}}</h5>
+                    <p class="card-text">{{evento.deporte.nombre}}</p>
+                    <p class="card-text">{{evento.fecha | date:'dd/MM/y H:mm'}}</p>
+                    <p class="card-text">{{evento.direccion}}</p>
+                    <p class="card-text">Mostrar nº participantes, o plazas si hay max? Pinchar en card->detalles</p>
+                    <a [routerLink]="['/actividades', evento.id]" class="btn btn-primary">Detalles</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+
+      <div class="tab-pane fade" id="historial" role="tabpanel" aria-labelledby="historial-tab">
+        <!-- TODO: usar mismo card de sport-list -->
+        <!-- TODO: Collapse? Quizá con list-group-item active como en detalles pasticipantes evento -->
+        <div>
+          <div class="list-group-item active">Historial Actividades ({{eventosPasados.length}})</div>
+          <!-- <h4>Próximas Actividades ({{eventos.length}})</h4> -->
+          <div class="d-flex justify-content-center" *ngFor="let evento of eventosPasados">
+            <div class="card mb-2" style="width: 100%;">
+              <div class="row">
+                <div class="col-md-3">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgUNaoFwOOa3sOnMoc8CVUJ65bhS822etxVQ&usqp=CAU" alt="Imagen evento">
+                </div>
+                <div class="col-md-9">
+                  <div class="card-body">
+                    <h5 class="card-title">{{evento.titulo}}</h5>
+                    <p class="card-text">{{evento.deporte.nombre}}</p>
+                    <p class="card-text">{{evento.fecha | date:'dd/MM/y H:mm'}}</p>
+                    <p class="card-text">{{evento.direccion}}</p>
+                    <p class="card-text">Mostrar nº participantes, o plazas si hay max? Pinchar en card->detalles</p>
+                    <a [routerLink]="['/actividades', evento.id]" class="btn btn-primary">Detalles</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-
-  <!-- <div class="mt-4" id="map">
-    <mgl-map class="mb-4" [style]="'mapbox://styles/mapbox/streets-v11'" [zoom]="[zoom]" [center]="[lng, lat]">
-      <mgl-marker [lngLat]="[lng, lat]"></mgl-marker>
-    </mgl-map>
-  </div> -->
 </div>
+
+
+

@@ -11,13 +11,13 @@
       <li class="nav-item" role="presentation">
         <a class="nav-link" id="participantes-tab" data-bs-toggle="tab" href="#participantes" role="tab" aria-controls="participantes" aria-selected="false">
           Participantes
-          <span class="badge bg-primary">{{evento.participantes.length}}</span>
+          <span class="badge bg-primary">{{actividad.participantes.length}}</span>
         </a>
       </li>
       <li class="nav-item" role="presentation">
         <a class="nav-link" id="comentarios-tab" data-bs-toggle="tab" href="#comentarios" role="tab" aria-controls="comentarios" aria-selected="false">
           Comentarios
-          <span class="badge bg-primary">{{evento.comentarios.length}}</span>
+          <span class="badge bg-primary">{{actividad.comentarios.length}}</span>
         </a>
       </li>
     </ul>
@@ -32,48 +32,40 @@
             <img class="card-img-top" src="{{event.image}}" />
           </a> -->
           <div class="card-body">
-            <h4 class="card-title text-primary">
-              {{evento.titulo}}
-            </h4>
-            <p class="card-text">{{evento.descripcion}}</p>
-            <div class="row">
-              <!-- <div class="col" *ngIf="event.mine">
-                <button
-                  class="btn btn-danger"
-                  [swal]="{
-                    title: 'Are you sure?',
-                    text: 'It will be deleted from the database.',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes',
-                    cancelButtonText: 'No'
-                  }"
-                  (confirm)="delete()">
-                  Delete
-                </button>
-                <a class="btn btn-primary ms-1 px-4 text-white" *ngIf="isDetails" [routerLink]="['/events', event.id, 'edit']">
-                  Edit
-                </a>
-              </div> -->
 
-              <!-- <div class="col-auto ms-auto">
-                <div class="text-end attend-users">
-                  <fa-icon [icon]="['fas', 'users']"></fa-icon> {{event.numAttend}}
+            <!-- <h4 class="card-title text-primary">
+              {{actividad.titulo}}
+            </h4>
+            <p class="card-text">{{actividad.descripcion}}</p> -->
+
+
+
+            <div class="row">
+              <div class="col-md-3">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgUNaoFwOOa3sOnMoc8CVUJ65bhS822etxVQ&usqp=CAU" alt="Imagen evento">
+              </div>
+              <div class="col-md-9">
+                <div class="card-body">
+                  <h5 class="card-title">{{actividad.titulo}}</h5>
+                  <p class="card-text">{{actividad.deporte.nombre}}</p>
+                  <p class="card-text">{{actividad.fecha | date:'dd/MM/y H:mm'}}</p>
+                  <p class="card-text">{{actividad.direccion}} ({{actividad.distancia | number: '1.2-2'}} km)</p>
+                  <p class="card-text">{{actividad.descripcion}}</p>
+                  <p class="card-text">{{actividad.distancia | number: '1.2-2'}} km</p>
                 </div>
-                <div class="text-success text-end m-0 btn attend-button" *ngIf="event.attend" (click)="attendance()">
-                  <fa-icon [icon]="['fas', 'thumbs-up']"></fa-icon> I'm going
-                </div>
-                <div class="text-danger text-end m-0 btn attend-button" *ngIf="!event.attend" (click)="attendance()">
-                  <fa-icon [icon]="['fas', 'thumbs-down']"></fa-icon> Not going
-                </div>
-              </div> -->
-              <button class="btn btn-success" *ngIf="!evento.participo" (click)="participacion()">
+              </div>
+            </div>
+
+
+            <div class="row">
+              <button class="btn btn-success" *ngIf="!actividad.participo" (click)="participacion()">
                 Apuntarme
               </button>
-              <button class="btn btn-danger" *ngIf="evento.participo" (click)="participacion()">
+              <button class="btn btn-danger" *ngIf="actividad.participo" (click)="participacion()">
                 Desapuntarme
               </button>
             </div>
+
           </div>
           <!-- <div class="card-footer text-muted row m-0">
             <div class="avatar col-auto pl-1 pr-1">
@@ -94,6 +86,13 @@
               <div><small>{{event.distance | number: '1.2-2'}} km</small></div>
             </div>
           </div> -->
+
+          <div class="card mt-2">
+            <mgl-map [style]="'mapbox://styles/mapbox/streets-v11'" [zoom]="[zoom]" [center]="[actividad.longitud, actividad.latitud]">
+              <mgl-marker [lngLat]="[actividad.longitud, actividad.latitud]"></mgl-marker>
+            </mgl-map>
+          </div>
+
         </div>
 
 
@@ -107,9 +106,9 @@
 
       <div class="tab-pane fade" id="participantes" role="tabpanel" aria-labelledby="participantes-tab">
         <li class="list-group-item active">
-          Participantes ({{evento.participantes.length}}<span *ngIf="evento.deporte.max_participantes">/{{evento.deporte.max_participantes}}</span>)
+          Participantes ({{actividad.participantes.length}}<span *ngIf="actividad.deporte.max_participantes">/{{actividad.deporte.max_participantes}}</span>)
         </li>
-        <li class="list-group-item" *ngFor="let participante of evento.participantes">
+        <li class="list-group-item" *ngFor="let participante of actividad.participantes">
           <a [routerLink]="['/usuarios', participante.user_id]">
             <img class="rounded-circle float-start me-3" style="width: 40px;" src="{{participante.usuario.avatar}}" alt="" />
           </a>
@@ -125,8 +124,8 @@
 
       <div class="tab-pane fade" id="comentarios" role="tabpanel" aria-labelledby="comentarios-tab">
           <ul class="list-group mb-4">
-            <li class="list-group-item active">Comentarios ({{evento.comentarios.length}})</li>
-            <li class="list-group-item" *ngFor="let comentario of evento.comentarios">
+            <li class="list-group-item active">Comentarios ({{actividad.comentarios.length}})</li>
+            <li class="list-group-item" *ngFor="let comentario of actividad.comentarios">
               <div class="row">
                 <div class="col-auto text-center user-info">
                   <a [routerLink]="['/usuarios', comentario.user_id]">

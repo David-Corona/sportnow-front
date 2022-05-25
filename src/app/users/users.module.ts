@@ -6,7 +6,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import { FormsModule } from '@angular/forms';
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-// import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     // FontAwesomeModule,
     // SweetAlert2Module,
-    // NgxMapboxGLModule
+    NgxMapboxGLModule
   ]
 })
 export class UsersModule { }

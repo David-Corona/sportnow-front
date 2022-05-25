@@ -16,7 +16,10 @@ import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { NgxMapboxGlGeocoderControlModule } from 'ngx-mapbox-gl-geocoder-control';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
+// import { MatTableModule } from '@angular/material';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { ToastrModule } from 'ngx-toastr';
     AdminModule,
     SportsModule,
     InicioModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
 
     NgxMapboxGLModule.withConfig({
       accessToken: 'pk.eyJ1IjoiY29yb25hMTIxIiwiYSI6ImNrdnY2aDJpYzE4ZmsycG05Mno5dG91bzkifQ.EEQR8Z-qXQfxkmFRTuKHOQ'
@@ -41,6 +47,7 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot({
       positionClass :'toast-top-right'
     }),
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

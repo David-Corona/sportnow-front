@@ -12,9 +12,17 @@ export class SportService {
 
   constructor(private readonly http: HttpClient) { }
 
-  getActividades(): Observable<any> {
-    return this.http.get<any>(this.sportURL);
+  getActividades(userId?: number): Observable<any> { //futuro?: boolean, pasado?: boolean
+    const user = userId ? `?user_id=${userId}` : "";
+    // const filtroFuturo = futuro ? `&futuro=${futuro}` : "";
+    // const filtroPasado = pasado ? `&pasado=${pasado}` : "";
+    return this.http.get<any>(this.sportURL+user); //+filtroFuturo+filtroPasado
     // return resp.pipe(map(resp => resp.users));
+  }
+
+  getHistorial(userId?: number): Observable<any> {
+      const user = userId ? `?user_id=${userId}` : "";
+      return this.http.get<any>(`${this.sportURL}-historial`+user);
   }
 
   getActividad(id?: number): Observable<any> {
@@ -28,16 +36,12 @@ export class SportService {
 
   apuntarActividad(evento_id: number, user_id?: number) {
     return this.http.post(`${this.sportURL}-usuarios`, {'evento_id': evento_id, 'user_id': user_id})
-    // .pipe(
-    //   map(resp => resp.participantes));
   }
 
 
   desapuntarActividad(evento_id: number, user_id?: number) {
     const user = user_id ? "${user_id}" : "";
     return this.http.delete(`${this.sportURL}-usuarios/${evento_id}`+user)
-    // .pipe(
-    //     map(resp => resp.participantes));
   }
 
 

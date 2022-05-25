@@ -1,1 +1,274 @@
-<p>users admim works!</p>
+<div class="container">
+  <!-- <div class="row"> -->
+      <h4>Usuarios</h4>
+      <hr>
+
+      <!-- <form class="mb-2" action="{{ path('producto_index_busqueda') }}" method="post">
+          <label>Por título:</label>
+          <input type="text" name="busqueda" id="busqueda" value="{{ titulo | default('') }}">
+          <br>
+          <label class="mt-2">Por Fechas: (Desde) </label>
+          <input type="date" name="fechaInicial" id="fechaInicial" value="{{ fechaInicial | default('') }}">
+          <span> (Hasta) </span>
+          <input type="date" name="fechaFinal" id="fechaFinal" value="{{ fechaFinal | default('')  }}">
+          <br>
+          <label class="mt-2">Categoría:</label>
+          <input type="text" name="categoria" id="categoria" value="{{ categoria | default('') }}">
+          <br>
+          <input class="btn btn-primary mt-2" type="submit" value="Buscar">
+      </form> -->
+
+      <!-- <table class="table mt-2" >
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Email</th>
+              </tr>
+          </thead>
+          <tbody *ngIf="users">
+
+              <tr *ngFor="let user of users" >
+                  <td>{{ user.id }}</td>
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.email }}</td>
+
+              </tr>
+          </tbody>
+          <tbody *ngIf="users.length==0">
+            <td colspan="7">No hay usuarios a listar.</td>
+          </tbody>
+      </table> -->
+      <!-- <div>
+          <a class="btn btn-primary" href="{{ path('producto_new') }}" role="button">Nuevo Producto</a>
+      </div> -->
+
+
+      <div class="card mb-4">
+        <div class="card-header text-white bg-primary">
+          Filtros
+          <!-- <div class="card-header-actions">
+            <div class="card-header-btn-minimize">
+              <i class="icon-arrow-up"></i>
+            </div>
+          </div> -->
+        </div>
+
+        <div class="card-body bg-white">
+          <div class="row">
+            <div class="col-md-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                name="nombre"
+                #tituloModel="ngModel"
+                [(ngModel)]="filtro.nombre"
+                placeholder="Introduce un nombre"
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer d-flex justify-content-end bg-white">
+          <button class="btn btn-primary px-4" (click)="reiniciar()">
+            Reiniciar
+          </button>
+          <button class="btn btn-primary px-4" (click)="filtrar()">
+            Filtrar
+          </button>
+        </div>
+      </div>
+
+
+      <div>
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 w-100">
+          <!-- matSortActive="id" matSortDirection="asc" -->
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Rol </th>
+            <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="avatar">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Avatar </th>
+            <td mat-cell *matCellDef="let element"> {{element.avatar}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="latitude">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Latitud </th>
+            <td mat-cell *matCellDef="let element"> {{element.latitude}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="longitude">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Longitud </th>
+            <td mat-cell *matCellDef="let element"> {{element.longitude}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="activated">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Activo </th>
+            <td mat-cell *matCellDef="let element"> {{element.activated}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+        </table>
+
+
+      <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        aria-label="Select page of periodic elements">
+      </mat-paginator> -->
+
+      <!-- https://stackoverflow.com/questions/45318164/how-to-use-paginator-from-material-angular -->
+      <!-- <mat-paginator #paginator
+        [pageSize]="5"
+        [pageSizeOptions]="[5, 10, 20]"
+        [showFirstLastButtons]="true"
+        [length]="totalSize"
+        [pageIndex]="currentPage"
+        (page)="pageEvent = handlePage($event)">
+      </mat-paginator> -->
+
+      <!-- Name Column -->
+      <!-- <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container> -->
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+<!-- </div> -->
+
+<!-- Con drag -->
+<!-- <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Activa</th>
+      <th scope="col">Título</th>
+      <th scope="col">Inscritos</th>
+      <th scope="col">Categoría</th>
+      <th scope="col">Contrato</th>
+      <th scope="col">Jornada</th>
+      <th scope="col">Fecha</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <draggable :list="items" tag="tbody" handle=".handle" @change="onEndEmitValue" ghost-class="ghost">
+    <tr v-for="item in items" :key="item.id">
+      <td>
+        <CSwitch
+          v-bind:id="'check_'+item.id"
+          :checked="Boolean(item.is_active)"
+          color="primary"
+          shape="pill"
+          @update:checked="() => setItemEnabled(item, item.is_active)"
+        />
+      </td>
+      <td v-on:click="irDetalles(item)" class="ir-detalles">
+        {{ item.title }}
+      </td>
+      <td>
+        <span v-if="item.register.length">
+          <router-link :to="'/gestion/candidatos/oferta/'+item.id">
+          {{ item.register.length }}
+          </router-link>
+        </span>
+        <span v-else>
+          0
+        </span>
+      </td>
+      <td v-on:click="irDetalles(item)" class="ir-detalles">
+        <span v-if="item.jobs_category">
+          {{ item.jobs_category.name }}
+        </span>
+      </td>
+      <td v-on:click="irDetalles(item)" class="ir-detalles">
+        <span v-if="item.contract_type">
+          {{ item.contract_type.name }}
+        </span>
+      </td>
+      <td v-on:click="irDetalles(item)" class="ir-detalles">
+        <span v-if="item.workday">
+          {{ item.workday.name }}
+        </span>
+      </td>
+      <td v-on:click="irDetalles(item)" class="ir-detalles">
+        {{ item.created_at | DateTimeDMYhms }}
+      </td>
+      <td>
+        <CInputCheckbox
+          :checked="item._selected"
+          @update:checked="() => check(item)"
+          custom
+        />
+      </td>
+      <td>
+        <i class="fa fa-arrows handle"></i>
+      </td>
+    </tr>
+  </draggable>
+</table>
+
+<div d-flex flex-row class="acciones-disponibles ms-3">
+  <div>
+    <CDropdown id="dropdown-acciones" toggler-text="Acciones disponibles" squared class="m-md-2" color="primary">
+      <CDropdownItem @click="selectAllItems">
+        <span v-if="allChecked"><i class="fa fa-square-o fa-lg mr-2"></i> Deseleccionar todos</span>
+        <span v-else><i class="fa fa-check-square-o fa-lg mr-2"></i> Seleccionar todos</span>
+      </CDropdownItem>
+      <CDropdownDivider></CDropdownDivider>
+
+      <CDropdownItem @click="activeItems(true)">
+        <span><i class="fa fa-eye fa-lg mr-2"></i>Activar seleccionados</span>
+      </CDropdownItem>
+      <CDropdownItem @click="activeItems(false)">
+        <span><i class="fa fa-eye-slash fa-lg mr-2"></i>Desactivar seleccionados</span>
+      </CDropdownItem>
+      <CDropdownDivider></CDropdownDivider>
+
+      <CDropdownItem @click="modalDelete">
+        <span><i class="fa fa-remove fa-lg mr-2" style="color: red;"></i> Eliminar seleccionados</span>
+      </CDropdownItem>
+    </CDropdown>
+  </div>
+</div>
+
+<nav>
+  <div class="overflow-auto">
+    <p class="text-muted text-center" v-if="items">
+      Se han encontrado {{items.length}} resultados
+    </p>
+  </div>
+</nav> -->
