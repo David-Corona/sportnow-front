@@ -18,14 +18,16 @@ export class AdminService {
   }
 
 
-  // const getAllOffers = (page = null, filtro = "") => {
-  //   let filter = filtro.length > 0 ? filtro : "";
 
-  //   if (page != null)
-  //     return httpClient.get(`${URL}?page=${page}${filter}`);
+  createUser(user: any): Observable<any>{
+    return this.http.post<any>(`${this.adminURL}/users`, user);
+  }
 
-  //   return httpClient.get(`${URL}?${filter}`);
-  // };
+  editUser(user: any): Observable<any>{
+    return this.http.put<any>(`${this.adminURL}/users/${user.id}`, user);
+  }
+
+
 
 
 }

@@ -1,16 +1,18 @@
 <div class="container">
-  <form class="mt-4" #registerForm="ngForm" (ngSubmit)="createAccount()">
-    <legend>Crea una nueva cuenta</legend>
+  <form class="mt-4" #userForm="ngForm">
+
+    <legend *ngIf="!user.id">Creación nuevo usuario</legend>
+    <legend *ngIf="user.id">Editar usuario {{user.name}}</legend>
 
     <div class="mb-3">
-      <label for="nombre">Nombre:</label>
+      <label for="nombre" class="form-label">Nombre:</label>
       <div>
         <input
           type="text"
           class="form-control"
-          name="nameUser"
+          name="nombre"
           placeholder="Nombre"
-          [(ngModel)]="newUser.name"
+          [(ngModel)]="user.name"
           #nameModel="ngModel"
           pattern="[A-Za-z][A-Za-z\s]*"
           [ngClass]="validClasses(nameModel, 'is-valid', 'is-invalid')"
@@ -25,14 +27,14 @@
       </div>
     </div>
     <div class="mb-3">
-      <label for="correo">Email:</label>
+      <label for="email" class="form-label">Email:</label>
       <div>
         <input
           type="email"
           class="form-control"
           name="email"
           placeholder="Email"
-          [(ngModel)]="newUser.email"
+          [(ngModel)]="user.email"
           #emailModel="ngModel"
           pattern="^\S+@\S+\.\S+$"
           [ngClass]="validClasses(emailModel, 'is-valid', 'is-invalid')"
@@ -47,18 +49,18 @@
       </div>
     </div>
     <div class="mb-3">
-      <label for="password">Contraseña:</label>
+      <label for="password" class="form-label">Contraseña:</label>
       <div>
         <input
           type="password"
           class="form-control"
           name="password"
           placeholder="Contraseña"
-          [(ngModel)]="newUser.password"
+          [(ngModel)]="user.password"
           #passwordModel="ngModel"
           minlength="6"
           [ngClass]="validClasses(passwordModel, 'is-valid', 'is-invalid')"
-          required
+          [required]="nuevoUsuario"
         />
         <div class="invalid-feedback" *ngIf="passwordModel.errors?.['required']">
           La contraseña es obligatoria.
@@ -69,7 +71,7 @@
       </div>
     </div>
     <div class="mb-3">
-      <label for="password">Repite Contraseña:</label>
+      <label for="password" class="form-label">Repite Contraseña:</label>
       <div>
         <input
           type="password"
@@ -80,7 +82,7 @@
           #pass2Model="ngModel"
           pattern="{{ passwordModel.value }}"
           [ngClass]="validClasses(pass2Model, 'is-valid', 'is-invalid')"
-          required
+          [required]="nuevoUsuario"
         />
         <div class="invalid-feedback" *ngIf="pass2Model.errors?.['required']">
           La contraseña es obligatoria.
@@ -92,42 +94,72 @@
     </div>
     <div class="form-row">
       <div class="mb-3 col">
-        <label for="lat">Latitud:</label>
+        <label for="lat" class="form-label">Latitud:</label>
         <div>
           <input
             type="number"
             class="form-control"
             name="lat"
-            placeholder="Geolocating..."
-            readonly
-            [(ngModel)]="newUser.latitude"
+            placeholder="Latitud"
+            [(ngModel)]="user.latitude"
             #latModel="ngModel"
             [ngClass]="validClasses(latModel, 'is-valid', 'is-invalid')"
             required
           />
           <div class="invalid-feedback" >
-            La latitud es obligatoria, activa la geolocalización.
+            La latitud es obligatoria.
           </div>
         </div>
       </div>
       <div class="mb-3 col">
-        <label for="lng">Longitud:</label>
+        <label for="lng" class="form-label">Longitud:</label>
         <div>
           <input
             type="number"
             class="form-control"
             name="lng"
-            placeholder="Geolocating..."
-            readonly
-            [(ngModel)]="newUser.longitude"
+            placeholder="Longitud"
+            [(ngModel)]="user.longitude"
             #lngModel="ngModel"
             [ngClass]="validClasses(lngModel, 'is-valid', 'is-invalid')"
             required
           />
           <div class="invalid-feedback">
-            La longitud es obligatoria, activa la geolocalización.
+            La longitud es obligatoria.
           </div>
         </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="role" class="form-label">Rol</label>
+      <div>
+        <select
+          name="role" id="role"
+          class="form-select"
+          #roleModel="ngModel"
+          [(ngModel)]="user.role"
+          [ngClass]="validClasses(roleModel, 'is-valid', 'is-invalid')"
+        >
+          <option value="undefined" disabled selected hidden>Selecciona un rol</option>
+          <option value="admin">Administrador</option>
+          <option value="user">Usuario</option>
+        </select>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="activated" class="form-label">Activado</label>
+      <div>
+        <select
+          name="activated" id="activated"
+          class="form-select"
+          #activatedModel="ngModel"
+          [(ngModel)]="user.activated"
+          [ngClass]="validClasses(activatedModel, 'is-valid', 'is-invalid')"
+        >
+          <option value="undefined" disabled selected hidden>¿Activado?</option>
+          <option value=1>Activado</option>
+          <option value=0>Desactivado</option>
+        </select>
       </div>
     </div>
     <!-- <div class="mb-3">
@@ -145,9 +177,32 @@
       </div>
     </div>
     <img src="{{stringAvatar}}" alt="" #imgPreview class="img-thumbnail d-none" /> -->
+
     <p class="text-danger" id="errorInfo"></p>
-    <a class="btn btn-secondary me-2" [routerLink]="['/auth/login']" role="button">Go back</a>
-    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Create account</button>
+
+    <!-- <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Create account</button> -->
+
+    <div>
+      <a class="btn btn-secondary me-2 px-5" [routerLink]="['/admin/usuarios']" role="button">
+        Volver
+      </a>
+      <button
+        *ngIf="!user.id"
+        class="btn btn-primary px-5"
+        (click)="setUser()"
+        [disabled]="userForm.invalid"
+        >Crear
+      </button>
+      <button
+        *ngIf="user.id"
+        class="btn btn-primary px-5"
+        (click)="editUser()"
+        [disabled]="userForm.invalid || userForm.pristine"
+        >Editar
+      </button>
+
+    </div>
+
   </form>
 </div>
 

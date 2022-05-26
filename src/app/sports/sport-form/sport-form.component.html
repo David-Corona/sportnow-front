@@ -33,7 +33,7 @@
         <!-- TODO: Cargar deportes API, o completar con más deportes -->
         <select
           name="deporte" id="deporte"
-          class="form-control"
+          class="form-select"
           required
           #deporteModel="ngModel"
           [(ngModel)]="actividad.deporte_id"
@@ -42,6 +42,10 @@
           <option value="1">Pádel</option>
           <option value="2">Tenis</option>
           <option value="3">Senderismo</option>
+          <!-- TODO -->
+          <!-- <option *ngFor="let xxx of xxxs" [value]="xxx.dep">
+            {{ xxx.dep }}
+          </option> -->
         </select>
         <div class="invalid-feedback">
           El tipo de actividad es obligatorio.
