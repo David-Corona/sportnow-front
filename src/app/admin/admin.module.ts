@@ -12,6 +12,9 @@ import { DeportesComponent } from './deportes/deportes.component';
 import { DeportesFormComponent } from './deportes-form/deportes-form.component';
 import { ActividadesComponent } from './actividades/actividades.component';
 import { ActividadesFormComponent } from './actividades-form/actividades-form.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { SidebarComponent } from './sidebar/sidebar.component';
+// import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 
@@ -22,7 +25,8 @@ import { ActividadesFormComponent } from './actividades-form/actividades-form.co
     DeportesComponent,
     DeportesFormComponent,
     ActividadesComponent,
-    ActividadesFormComponent
+    ActividadesFormComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +34,9 @@ import { ActividadesFormComponent } from './actividades-form/actividades-form.co
     FormsModule,
     MatTableModule,
     MatPaginatorModule,
+    // MatSidenavModule,
     MatSortModule,
+    SweetAlert2Module,
   ]
 })
 export class AdminModule { }

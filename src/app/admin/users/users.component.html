@@ -1,5 +1,18 @@
-<div class="container">
-  <!-- <div class="row"> -->
+
+
+
+
+
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2 mt-4" id="sticky-sidebar">
+
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="col mt-4" id="main">
       <h4>Usuarios</h4>
       <hr>
 
@@ -126,7 +139,7 @@
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="columnas"></tr>
-          <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnas;" (click)="irDetalles(row)"></tr>
         </table>
 
 
@@ -165,9 +178,9 @@
 
 
 
-
+    </div>
   </div>
-<!-- </div> -->
+</div>
 
 <!-- Con drag -->
 <!-- <table class="table table-hover">

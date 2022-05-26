@@ -8,3 +8,21 @@
   background-color: transparent;
   border-color: transparent;
 } */
+
+app-sidebar {
+  /* width: 200px !important;
+  float: left; */
+}
+
+
+.container {
+  /* width: 800px !important; */
+  /* margin-left: 140px; */
+}
+
+.mat-row:hover {
+  /* TODO: cambiar color */
+  background-color: rgb(204, 204, 204);
+  cursor: pointer;
+}
+

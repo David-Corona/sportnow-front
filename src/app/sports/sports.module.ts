@@ -7,6 +7,7 @@ import { SportDetailsComponent } from './sport-details/sport-details.component';
 import { SportFormComponent } from './sport-form/sport-form.component';
 import { NgxMapboxGlGeocoderControlModule } from 'ngx-mapbox-gl-geocoder-control';
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
     NgxMapboxGLModule,
     NgxMapboxGlGeocoderControlModule,
     // FontAwesomeModule,
-    // SweetAlert2Module,
+    SweetAlert2Module,
   ]
 })
 export class SportsModule { }

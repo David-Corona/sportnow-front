@@ -17,8 +17,6 @@ export class AdminService {
     return this.http.get<any>(`${this.adminURL}/users?${filter}`);
   }
 
-
-
   createUser(user: any): Observable<any>{
     return this.http.post<any>(`${this.adminURL}/users`, user);
   }
@@ -26,6 +24,25 @@ export class AdminService {
   editUser(user: any): Observable<any>{
     return this.http.put<any>(`${this.adminURL}/users/${user.id}`, user);
   }
+
+  deleteUser(userId: number): Observable<any>{
+    return this.http.delete<any>(`${this.adminURL}/users/${userId}`);
+  }
+
+
+  getActividades(): Observable<any> {
+    return this.http.get<any>(`${this.adminURL}/eventos`);
+  }
+
+  editActividad(actividad: any): Observable<any>{
+    return this.http.put<any>(`${this.adminURL}/eventos/${actividad.id}`, actividad);
+  }
+
+  deleteActividad(actividadId: number): Observable<any>{
+    return this.http.delete<any>(`${this.adminURL}/eventos/${actividadId}`);
+  }
+
+
 
 
 

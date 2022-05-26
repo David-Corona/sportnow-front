@@ -70,7 +70,7 @@
         </div>
       </div>
     </div>
-    <div class="mb-3">
+    <!-- <div class="mb-3">
       <label for="password" class="form-label">Repite Contraseña:</label>
       <div>
         <input
@@ -91,7 +91,7 @@
           Esta contraseña debe coincidir con la anterior.
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="form-row">
       <div class="mb-3 col">
         <label for="lat" class="form-label">Latitud:</label>
@@ -178,7 +178,23 @@
     </div>
     <img src="{{stringAvatar}}" alt="" #imgPreview class="img-thumbnail d-none" /> -->
 
-    <p class="text-danger" id="errorInfo"></p>
+    <!-- <div class="form-group" (change)="loadImage($event)">
+      <input type="file" class="form-control" name="image"  />
+    </div>
+    <div class="row">
+      <div class="col w-50">
+        <img class="w-100" id="photo" src="http://api.sportnow.local/{{user.avatar}}" alt="" />
+      </div>
+      <div class="col w-50">
+        <img class="d-none w-100" name="imgPreview" #imgPreview src="{{newAvatar}}" alt="" />
+      </div>
+    </div> -->
+    <!-- <p class="text-danger" id="errorInfo2"></p>
+    <p class="text-success" id="okInfo2"></p> -->
+
+
+
+    <!-- <p class="text-danger" id="errorInfo"></p> -->
 
     <!-- <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Create account</button> -->
 
@@ -200,7 +216,21 @@
         [disabled]="userForm.invalid || userForm.pristine"
         >Editar
       </button>
-
+      <button
+        *ngIf="user.id"
+        class="btn btn-danger px-5 ms-2"
+        [swal]="{
+          title: '¿Estás seguro?',
+          text: 'El usuario se eliminará de la base de datos.',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Sí',
+          cancelButtonText: 'No'
+        }"
+        (confirm)="deleteUser()"
+      >
+        Eliminar
+      </button>
     </div>
 
   </form>

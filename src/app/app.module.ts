@@ -16,10 +16,12 @@ import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { NgxMapboxGlGeocoderControlModule } from 'ngx-mapbox-gl-geocoder-control';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 // import { MatTableModule } from '@angular/material';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -35,10 +37,13 @@ import {MatSortModule} from '@angular/material/sort';
     AdminModule,
     SportsModule,
     InicioModule,
+
+    MatSidenavModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-
+    SweetAlert2Module,
+    SweetAlert2Module.forRoot(),
     NgxMapboxGLModule.withConfig({
       accessToken: 'pk.eyJ1IjoiY29yb25hMTIxIiwiYSI6ImNrdnY2aDJpYzE4ZmsycG05Mno5dG91bzkifQ.EEQR8Z-qXQfxkmFRTuKHOQ'
     }),

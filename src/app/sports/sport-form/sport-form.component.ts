@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { NgModel } from '@angular/forms';
 import { Result } from 'ngx-mapbox-gl-geocoder-control';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { AdminService } from 'src/app/admin/services/admin.service';
 
 @Component({
   selector: 'app-sport-form',
@@ -15,6 +17,7 @@ export class SportFormComponent implements OnInit {
 
 
   actividad = {
+    "id": null,
     "titulo": "",
     "descripcion": "",
     "deporte_id": null,
@@ -30,12 +33,30 @@ export class SportFormComponent implements OnInit {
   constructor(
     private titleService: Title,
     private sportService: SportService,
+    private adminService: AdminService,
     private toastr: ToastrService,
     private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
     this.titleService.setTitle("SportNow | Nueva Actividad");
+
+    console.log(this.route.snapshot);
+    if (this.route.snapshot.params["nuevo"]) {
+      this.actividad.participar = false;
+      console.log("en nuevo admin");
+
+    }
+
+    if (this.route.snapshot.data["event"]) {
+      this.actividad = this.route.snapshot.data["event"].data;
+      this.actividad.fecha = this.actividad.fecha.replace(" ", "T");
+      console.log(this.actividad);
+      console.log("en editar");
+
+    }
+
 
     // this.resetForm();
   }
@@ -54,6 +75,34 @@ export class SportFormComponent implements OnInit {
       }
     });
 
+  }
+
+  editActividad() {
+    this.adminService.editActividad(this.actividad).subscribe({
+      next: (resp) => {
+        console.log(resp);
+        // this.eventForm.form.markAsUntouched(); // mark all inputs as untouched when edited => cleaner
+        this.toastr.success('Actividad editada correctamente');
+      },
+      error: error => {
+        console.error(error);
+        this.toastr.error('Error al editar la actividad');
+      }
+    });
+  }
+
+  deleteActividad() {
+    this.adminService.deleteActividad(this.actividad.id!).subscribe({
+      next: (resp) => {
+        console.log(resp);
+        this.router.navigate(['/admin/actividades'])
+        this.toastr.success('Actividad eliminada correctamente');
+      },
+      error: error => {
+        console.error(error);
+        this.toastr.error('Error al eliminar la actividad');
+      }
+    });
   }
 
   validClasses(ngModel: NgModel, validClass: string, errorClass: string) {

@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AdminService } from '../services/admin.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgModel, NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+// import Swal from 'sweetalert2';
 
 
 @Component({
@@ -17,26 +18,16 @@ export class UsersFormComponent implements OnInit {
   user: any = {
     // title: "",
     // description: "",
-    // price: 0,
-    // image: "",
-    // date: "",
-    // lat: 0,
-    // lng: 0,
-    // role: null
   };
-
-  // newUser = {
-  //   name: "",
-  //   email: "",
-  //   password: "",
-  //   // avatar: new FormData(),
-  //   latitude: 0,
-  //   longitude: 0
-  // }
 
   @ViewChild('userForm') userForm!: NgForm;
   nuevoUsuario: boolean = true;
-  passRep: string = "";
+  // passRep: string = "";
+
+
+  @ViewChild('imgPreview') imgPreview!: ElementRef;
+  file:any;
+  newAvatar: string = "";
 
   constructor(
     private titleService: Title,
@@ -44,13 +35,14 @@ export class UsersFormComponent implements OnInit {
     private route: ActivatedRoute,
     private toastr: ToastrService,
     private router: Router,
+    private renderer: Renderer2,
   ) { }
 
   ngOnInit(): void {
     this.titleService.setTitle("SportNow | Admin Usuario");
     // this.resetForm();
 
-    // if we are editing, get the event to edit. If not, it will be null.
+
     if (this.route.snapshot.paramMap.get('id')) {
       this.getUserToEdit();
     }
@@ -59,39 +51,93 @@ export class UsersFormComponent implements OnInit {
 
   getUserToEdit(){
       this.nuevoUsuario = false;
-      // console.log(this.route.snapshot.data["user"].data);
       this.user = this.route.snapshot.data["user"].data;
       console.log(this.user);
+  }
 
-      // this.user.date = this.user.date.replace(" ", "T");
+  editUser() {
+    // const formData = new FormData();
+    // formData.append("avatar", this.file, this.file.name);
+    // console.log(formData);
+    this.adminService.editUser(this.user).subscribe({ //formdata
+      next: (resp) => {
+        console.log(resp);
+        // this.user.avatar = resp.data.avatar;
+        // this.newAvatar = "";
+        // this.createdOrEdited = true; // //changes boolean to true, so it doesn't ask for confirmation to leave page.
+        this.userForm.form.markAsUntouched(); // mark all inputs as untouched when edited => cleaner
+        this.toastr.success('Usuario editado correctamente');
+      },
+      error: error => {
+        console.error(error);
+        this.toastr.error('Error al editar el usuario');
+      }
+    });
+  }
+
+  // editPhoto() {
+  //   const formData = new FormData();
+  //   formData.append("avatar", this.file, this.file.name);
+  //   console.log(formData);
+  //   this.usersService.savePhoto(formData).subscribe({
+  //     next: resp => {
+  //       console.log(resp);
+  //       this.user.avatar = resp.data.avatar;
+  //       this.newAvatar = "";
+  //     },
+  //     error: error => {
+  //       console.error(error);
+  //       // Swal.fire("Error!", "The introduced input is invalid.", "error");
+  //     }
+  //   });
+  // }
+
+  deleteUser() {
+    this.adminService.deleteUser(this.user.id).subscribe({
+      next: (resp) => {
+        console.log(resp);
+        this.router.navigate(['/admin/usuarios'])
+        this.toastr.success('Usuario eliminado correctamente');
+      },
+      error: error => {
+        console.error(error);
+        this.toastr.error('Error al eliminar el usuario');
+      }
+    });
+  }
+
+  setUser() {
+    this.adminService.createUser(this.user).subscribe({
+      next: (resp) => {
+        console.log(resp);
+        // this.createdOrEdited = true; //changes boolean to true, so it doesn't ask for confirmation to leave page.
+        this.router.navigate(['/admin/usuarios'])
+        this.toastr.success('Usuario creado correctamente');
+      },
+      error: error => {
+        console.error(error);
+        this.toastr.error('Error al crear el usuario');
+      }
+    });
+  }
+
+  loadImage(event: any): void {
+    this.file = event.target.files[0];
+    const reader = new FileReader();
+    if (this.file && this.file.type.startsWith("image")) {
+      reader.readAsDataURL(this.file);
+    } else {
+      this.toastr.error('Debes subir una imagen');
     }
 
-    editUser() {
-      this.adminService.editUser(this.user).subscribe({
-        next: (resp) => {
-          console.log(resp);
+    reader.addEventListener("load", () => {
+      this.newAvatar = reader.result as string;
+      this.renderer.removeClass(this.imgPreview.nativeElement,"d-none");
+    });
 
-          // this.createdOrEdited = true; // //changes boolean to true, so it doesn't ask for confirmation to leave page.
-          this.userForm.form.markAsUntouched(); // mark all inputs as untouched when edited => cleaner
-          this.toastr.success('Usuario editado correctamente');
-        },
-        error: error => console.error(error)
-      });
-    }
+  }
 
-    setUser() {
-      this.adminService.createUser(this.user).subscribe({
-        next: (resp) => {
-          console.log(resp);
-          // this.createdOrEdited = true; //changes boolean to true, so it doesn't ask for confirmation to leave page.
-          this.router.navigate(['/admin/usuarios'])
-          this.toastr.success('Usuario creado correctamente');
-        },
-        error: error => console.error(error)
-      });
-    }
 
-      // checks validity of lng and lat without being touched.
   validClasses(ngModel: NgModel, validClass: string, errorClass: string) {
     return {
       [validClass]: ngModel.touched && ngModel.valid,

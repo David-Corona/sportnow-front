@@ -1,1 +1,71 @@
-<p>actividades works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2 mt-4" id="sticky-sidebar">
+
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="col mt-4" id="main">
+      <h4>Actividades</h4>
+      <hr>
+
+      <a class="btn btn-primary me-2 px-5" [routerLink]="['/admin/actividades/nuevo']" role="button">
+        Nuevo
+      </a>
+
+      <div>
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 w-100">
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="deporte.nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Deporte </th>
+            <td mat-cell *matCellDef="let element"> {{element.deporte.nombre}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="titulo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Título </th>
+            <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
+          </ng-container>
+
+          <!-- <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
+            <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+          </ng-container> -->
+
+          <!-- <ng-container matColumnDef="imagen">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagen </th>
+            <td mat-cell *matCellDef="let element"> {{element.imagen}} </td>
+          </ng-container> -->
+
+          <ng-container matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+            <td mat-cell *matCellDef="let element"> {{element.fecha | date:'dd/MM/y H:mm'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="direccion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </th>
+            <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="latitud">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Latitud </th>
+            <td mat-cell *matCellDef="let element"> {{element.latitud | number: '1.4-4'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="longitud">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Longitud </th>
+            <td mat-cell *matCellDef="let element"> {{element.longitud | number: '1.4-4'}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnas;" (click)="irDetalles(row)"></tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

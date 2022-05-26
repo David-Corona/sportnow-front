@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 
 import { Title } from '@angular/platform-browser';
 import { AdminService } from '../services/admin.service';
+import { Router } from '@angular/router';
 
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
@@ -35,6 +36,7 @@ export class UsersComponent implements OnInit, AfterViewInit  {
   constructor(
     private titleService: Title,
     private adminService: AdminService,
+    private router: Router,
   ) {
     this.dataSource = new MatTableDataSource();
   }
@@ -103,6 +105,9 @@ export class UsersComponent implements OnInit, AfterViewInit  {
     });
   }
 
+  irDetalles(row: any) {
+    this.router.navigate(['/admin/usuarios/'+row.id])
+  }
 
 }
 
