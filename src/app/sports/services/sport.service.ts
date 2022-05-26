@@ -12,11 +12,12 @@ export class SportService {
 
   constructor(private readonly http: HttpClient) { }
 
-  getActividades(userId?: number): Observable<any> { //futuro?: boolean, pasado?: boolean
-    const user = userId ? `?user_id=${userId}` : "";
-    // const filtroFuturo = futuro ? `&futuro=${futuro}` : "";
-    // const filtroPasado = pasado ? `&pasado=${pasado}` : "";
-    return this.http.get<any>(this.sportURL+user); //+filtroFuturo+filtroPasado
+  getActividades(userId?: number, filtro = ""): Observable<any> { //
+    const user = userId ? `user_id=${userId}` : "";
+    const filter = filtro.length > 0 ? filtro : "";
+    console.log(this.sportURL+'?'+user+filter);
+
+    return this.http.get<any>(this.sportURL+'?'+user+filter);  //?${filter}
     // return resp.pipe(map(resp => resp.users));
   }
 
