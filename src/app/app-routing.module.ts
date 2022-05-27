@@ -7,6 +7,7 @@ import { SportsRoutingModule } from './sports/sports-routing.module';
 import { UsersRoutingModule } from './users/users-routing.module';
 import { AdminRoutingModule } from './admin/admin-routing.module';
 import { InicioRoutingModule } from './inicio/inicio-routing.module';
+import { ContactoRoutingModule } from './contacto/contacto-routing.module';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'actividades',
     loadChildren: () => import('./sports/sports.module').then((m) => m.SportsModule),
+  },
+  {
+    path: 'contacto',
+    loadChildren: () => import('./contacto/contacto.module').then((m) => m.ContactoModule),
   },
   {
     path: 'auth',
@@ -35,7 +40,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, RouterModule.forRoot(routes), AuthRoutingModule, SportsRoutingModule, UsersRoutingModule, AdminRoutingModule, InicioRoutingModule ],
+  imports: [CommonModule, RouterModule.forRoot(routes), AuthRoutingModule, SportsRoutingModule, UsersRoutingModule, AdminRoutingModule, InicioRoutingModule, ContactoRoutingModule ],
   exports: [RouterModule]
 })
 

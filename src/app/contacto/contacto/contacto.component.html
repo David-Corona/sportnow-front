@@ -1,0 +1,136 @@
+
+<div class="container">
+
+  <!-- <div class="row mt-4"> -->
+      <h4 class="mt-4">Datos de la Empresa</h4>
+      <hr>
+
+  <!-- </div> -->
+  <div class="row mt-4">
+
+    <div class="col-md-6">
+      <mgl-map [style]="'mapbox://styles/mapbox/streets-v11'" [zoom]="[zoom]" [center]="[ubicacion.longitud, ubicacion.latitud]">
+        <mgl-marker [lngLat]="[ubicacion.longitud, ubicacion.latitud]"></mgl-marker>
+      </mgl-map>
+    </div>
+    <div class="col-md-6">
+
+      <h5>SportNow S.L.</h5>
+      <p>Teléfono: (+34) 677 543 815</p>
+      <p>Email: info@sportnow.es</p>
+      <p>Dirección: C/ Falsa 17, Benidorm (03501), Alicante</p>
+      <a href="#" class="fa fa-facebook"></a>
+      <a href="#" class="fa fa-twitter"></a>
+      <a href="#" class="fa fa-youtube"></a>
+      <a href="#" class="fa fa-instagram"></a>
+      <a href="#" class="fa fa-rss"></a>
+    </div>
+
+
+  </div>
+
+  <div class="row mt-4">
+    <!-- <div class="col-12"> -->
+      <h4>Formulario de Contacto</h4>
+
+      <form #contactForm="ngForm" class="mt-4" novalidate>
+
+        <div class="mb-3">
+          <label for="asunto" class="form-label">Asunto *</label>
+          <div>
+            <input
+              type="text"
+              class="form-control"
+              name="asunto" id="asunto"
+              #asuntoModel="ngModel"
+              [(ngModel)]="contacto.asunto"
+              required
+              [ngClass]="validClasses(asuntoModel, 'is-valid', 'is-invalid')"
+              placeholder="Introduce el asunto"
+            >
+            <div class="invalid-feedback">
+              El asunto es obligatorio.
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+        <div class="mb-3 col-md-6">
+          <label for="motivo" class="form-label">Motivo *</label>
+          <div>
+            <select
+              name="motivo" id="motivo"
+              class="form-select"
+              required
+              #motivoModel="ngModel"
+              [(ngModel)]="contacto.motivo"
+              [ngClass]="validClasses(motivoModel, 'is-valid', 'is-invalid')"
+            >
+              <option value="" disabled selected hidden> - Seleccionar -</option>
+              <option value="Actividades">Actividades</option>
+              <option value="Usuarios">Usuarios</option>
+              <option value="Quejas">Quejas</option>
+              <option value="Propuestas">Propuestas</option>
+              <option value="Otros">Otros</option>
+            </select>
+            <div class="invalid-feedback">
+              El motivo es obligatorio.
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3 col-md-6">
+          <label for="telefono" class="form-label">Teléfono</label>
+          <div>
+            <input
+              type="text"
+              class="form-control"
+              name="telefono" id="telefono"
+              #telefonoModel="ngModel"
+              [(ngModel)]="contacto.telefono"
+              [ngClass]="validClasses(telefonoModel, 'is-valid', 'is-invalid')"
+              placeholder="Introduce un telefono"
+            >
+          </div>
+        </div>
+      </div>
+        <div class="mb-3">
+          <label for="mensaje" class="form-label">Mensaje *</label>
+          <div>
+            <textarea
+              class="form-control"
+              name="mensaje"
+              required
+              #mensajeModel="ngModel"
+              [(ngModel)]="contacto.mensaje"
+              rows="5"
+              [ngClass]="validClasses(mensajeModel, 'is-valid', 'is-invalid')">
+            </textarea>
+            <div class="invalid-feedback">
+              El mensaje es obligatorio.
+            </div>
+          </div>
+        </div>
+
+
+
+        <div>
+          <button
+            class="btn btn-primary px-5"
+            (click)="contactar()"
+            [disabled]="contactForm.invalid"
+          >
+            Enviar
+          </button>
+
+
+        </div>
+      </form>
+
+
+
+
+    <!-- </div> -->
+  </div>
+
+</div>

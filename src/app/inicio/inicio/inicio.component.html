@@ -1,3 +1,23 @@
-<p>inicio works!</p>
+
+<div class="container">
 
 
+
+
+
+  <div class="row mt-4">
+    <h4>Próximas Actividades</h4>
+    <!-- <hr> -->
+  </div>
+  <div class="row">
+    <div class="card col bg-light me-1" *ngFor="let evento of eventos" [routerLink]="['/actividades', evento.id]">
+      <div class="card-body" >
+        <h5 class="card-title mt-2 mb-2">{{evento.deporte.nombre}}</h5>
+        <p class="card-text mb-2">{{evento.titulo}}</p>
+        <p class="card-text mb-2">{{evento.fecha | date:'H:mm dd/MM/y'}}</p>
+        <!-- <p class="card-text">Mostrar nº participantes, o plazas si hay max? Pinchar en card->detalles</p> -->
+      </div>
+    </div>
+  </div>
+
+</div>

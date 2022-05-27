@@ -8,6 +8,7 @@ import { UsersModule } from './users/users.module';
 import { AdminModule } from './admin/admin.module';
 import { SportsModule } from './sports/sports.module';
 import { InicioModule } from './inicio/inicio.module';
+import { ContactoModule } from './contacto/contacto.module';
 import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 
@@ -26,10 +27,11 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    // InicioComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,7 @@ import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
     AdminModule,
     SportsModule,
     InicioModule,
+    ContactoModule,
 
     MatSidenavModule,
     MatTableModule,
