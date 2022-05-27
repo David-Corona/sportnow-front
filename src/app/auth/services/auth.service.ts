@@ -10,6 +10,8 @@ import { TokenResponse, UserResponse } from "../interfaces/responses";
 import { User, UserLogin } from "../interfaces/user";
 
 
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +26,25 @@ export class AuthService {
     private readonly http: HttpClient,
     private router: Router,
     private toastr: ToastrService,
+
+    public jwtHelper: JwtHelperService,
   ) { }
 
+  public isAuthenticated(): boolean {
+    console.log("En auth service");
+
+    const token = localStorage.getItem('token');
+    console.log(token);
+
+    // token = token === null ? undefined : token;
+    if (token) {
+      console.log('¿Expirado? '+this.jwtHelper.isTokenExpired(token));
+
+      return !this.jwtHelper.isTokenExpired(token); // Check whether the token is expired and return true or false
+    } else {
+      return false;
+    }
+  }
 
   login(userLogin: UserLogin): Observable<void> {
     const resp = this.http.post(`${this.authURL}/login`, userLogin);
