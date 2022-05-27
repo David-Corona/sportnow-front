@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-
+import { Component, Input, OnInit} from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
@@ -11,18 +10,24 @@ export class MenuTopComponent implements OnInit {
 
   @Input() title!: string;
   logged: boolean = false;
-  isAdmin: boolean = true; //TODO
+  isAdmin: boolean = false;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.authService.loginChange$.subscribe({
-      next: resp => this.logged = resp,
+      next: resp => {
+        this.logged = resp;
+        this.isAdmin = this.authService.getRole()=="admin" ? true : false;
+      },
       error: error => console.error(error)
-    })
+    });
+
+    // TODO: Get Usuario para cargar su avatar
   }
 
   logout(){
+    this.isAdmin = false;
     this.authService.logout();
   }
 

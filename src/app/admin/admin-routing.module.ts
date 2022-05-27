@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginActivateGuard } from '../auth/guards/login-activate.guard';
+import { RolesGuard } from '../auth/guards/roles.guard';
 import { SportResolver } from '../sports/resolvers/sport.resolver';
 import { SportFormComponent } from '../sports/sport-form/sport-form.component';
 import { UserResolver } from '../users/resolvers/user.resolver';
@@ -16,39 +17,63 @@ const routes: Routes = [
 
   {
     path: 'admin/usuarios',
-    canActivate: [LoginActivateGuard],
-    component: UsersComponent
+    // canActivate: [LoginActivateGuard],
+    component: UsersComponent,
+    canActivate: [RolesGuard],
+    data: {
+      expectedRole: 'admin'
+    }
   },
   {
     path: 'admin/usuarios/nuevo',
-    canActivate: [LoginActivateGuard],
-    component: UsersFormComponent
+    // canActivate: [LoginActivateGuard],
+    component: UsersFormComponent,
+    canActivate: [RolesGuard],
+    data: {
+      expectedRole: 'admin'
+    }
   },
   {
     path: 'admin/usuarios/:id',
-    canActivate: [LoginActivateGuard],
+    // canActivate: [LoginActivateGuard],
     component: UsersFormComponent,
     resolve: {
       user: UserResolver
     },
+    canActivate: [RolesGuard],
+    data: {
+      expectedRole: 'admin'
+    }
   },
 
   {
     path: 'admin/actividades',
-    canActivate: [LoginActivateGuard],
-    component: ActividadesComponent
+    // canActivate: [LoginActivateGuard],
+    component: ActividadesComponent,
+    canActivate: [RolesGuard],
+    data: {
+      expectedRole: 'admin'
+    }
   },
   {
     path: 'admin/actividades/:nuevo',
-    canActivate: [LoginActivateGuard],
-    component: SportFormComponent
+    // canActivate: [LoginActivateGuard],
+    component: SportFormComponent,
+    canActivate: [RolesGuard],
+    data: {
+      expectedRole: 'admin'
+    }
   },
   {
     path: 'admin/actividades/editar/:id',
-    canActivate: [LoginActivateGuard],
+    // canActivate: [LoginActivateGuard],
     component: SportFormComponent,
     resolve: {
       event: SportResolver
+    },
+    canActivate: [RolesGuard],
+    data: {
+      expectedRole: 'admin'
     }
   },
 

@@ -19,6 +19,7 @@ export class LoginActivateGuard implements CanActivate {
         this.router.navigate(['/auth/login']);
         return false;
       }
+      this.authService.loginChange$.next(true);
       console.log("LoginGuard: Sí autentif");
       return true;
     }

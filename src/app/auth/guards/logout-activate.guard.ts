@@ -16,7 +16,7 @@ export class LogoutActivateGuard implements CanActivate {
   canActivate(): boolean {
     if (this.authService.isAuthenticated()) {
       console.log("LogoutGuard: Sí autentif");
-
+      this.authService.loginChange$.next(false);
       this.router.navigate(['/inicio']);
       return false;
     }

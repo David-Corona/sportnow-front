@@ -1,8 +1,11 @@
-
+<!-- TODO: style="background-color: #e3f2fd;" -->
 <nav class="navbar navbar-expand navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="['/inicio']">{{ title }}</a>
-    <ul class="navbar-nav me-auto mb-lg-0" *ngIf="logged">
+
+    <a class="navbar-brand" [routerLink]="['/inicio']">SportNow</a>
+
+
+    <ul class="navbar-nav me-auto mb-lg-0 h5" *ngIf="logged">
       <li class="nav-item">
         <a
           class="nav-link"
@@ -12,14 +15,6 @@
           >Inicio
       </a>
       </li>
-      <!-- <li class="nav-item">
-        <a
-          class="nav-link"
-          [routerLink]="['/sports/add']"
-          [routerLinkActive]="['active']"
-          >Create sport
-        </a>
-      </li> -->
       <li class="nav-item">
         <a
           class="nav-link"
@@ -29,6 +24,15 @@
         </a>
       </li>
       <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/contacto']"
+          [routerLinkActive]="['active']"
+          >Contacto
+        </a>
+      </li>
+    </ul>
+      <!-- <li class="nav-item">
         <a
           class="nav-link"
           [routerLink]="['/usuarios/me']"
@@ -42,8 +46,9 @@
           (click)="logout()"
           >Logout
         </button>
-      </li>
-      <li class="nav-item" *ngIf="isAdmin">
+      </li> -->
+
+      <!-- <li class="nav-item" *ngIf="isAdmin">
         <a
           class="nav-link"
           [routerLink]="['/admin/usuarios']"
@@ -51,9 +56,44 @@
           [routerLinkActiveOptions]="{exact: true}"
           >Admin
       </a>
-      </li>
-    </ul>
-    <ul class="navbar-nav me-auto mb-lg-0" *ngIf="!logged">
+      </li> -->
+
+    <button *ngIf="isAdmin" [routerLink]="['/admin/usuarios']" type="button" class="btn btn-light me-5">
+      Panel Administración
+    </button>
+
+    <div class="nav-item dropdown me-4" *ngIf="logged">
+      <!-- <span class="navbar-text">
+        Hola, User
+      </span> -->
+      <a
+        class="nav-link dropdown-toggle d-flex align-items-center"
+        href="#"
+        id="navbarDropdownMenuLink"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <img
+          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
+          class="rounded-circle"
+          height="50"
+          alt="Portrait of a Woman"
+          loading="lazy"
+        />
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <li>
+          <a class="dropdown-item" [routerLink]="['/usuarios/me']">Mi Perfil</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+
+
+    <ul class="navbar-nav me-auto mb-lg-0 h5" *ngIf="!logged">
       <li class="nav-item">
         <a
           class="nav-link"
@@ -71,6 +111,7 @@
         </a>
       </li>
     </ul>
+
   </div>
 </nav>
 

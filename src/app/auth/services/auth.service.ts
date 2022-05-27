@@ -20,7 +20,8 @@ export class AuthService {
 
   private authURL = 'auth';
   private logged: boolean = false;
-  loginChange$ = new ReplaySubject<boolean>(1)
+  loginChange$ = new ReplaySubject<boolean>(1);
+  role: string = "";
 
   constructor(
     private readonly http: HttpClient,
@@ -39,8 +40,7 @@ export class AuthService {
     // token = token === null ? undefined : token;
     if (token) {
       console.log('¿Expirado? '+this.jwtHelper.isTokenExpired(token));
-
-      return !this.jwtHelper.isTokenExpired(token); // Check whether the token is expired and return true or false
+      return !this.jwtHelper.isTokenExpired(token); // Comprueba si el token ha expirado, devuelve true/false
     } else {
       return false;
     }
@@ -57,6 +57,11 @@ export class AuthService {
     resp.subscribe({
       next: (r) => {
         localStorage.setItem("token", r.access_token);
+
+        console.log("Guardando rol: " + r.user.role);
+        localStorage.setItem('role', r.user.role);
+        this.role = r.user.role;
+
         this.logged = true;
         this.loginChange$.next(true);
         this.router.navigate(['/inicio']);
@@ -67,6 +72,11 @@ export class AuthService {
         this.toastr.error('Error al loguear');
       }
     });
+  }
+
+  getRole(){
+    this.role = localStorage.getItem('role')!;
+    return this.role;
   }
 
   register(userInfo: any): Observable<any> {
@@ -99,43 +109,43 @@ export class AuthService {
   // }
 
   // TODO
-  isLogged(): Observable<any> {
-    console.log(this.logged);
-    console.log(localStorage.getItem("token"));
+  // isLogged(): Observable<any> {
+  //   console.log(this.logged);
+  //   console.log(localStorage.getItem("token"));
 
-    if (!this.logged && localStorage.getItem("token")===null) {
-      return of(false);
-    } else if (this.logged && localStorage.getItem("token")) {
-      return of(true);
-    } else if (!this.logged && localStorage.getItem("token")) { //TODO: problema cuando hay token caducado
+  //   if (!this.logged && localStorage.getItem("token")===null) {
+  //     return of(false);
+  //   } else if (this.logged && localStorage.getItem("token")) {
+  //     return of(true);
+  //   } else if (!this.logged && localStorage.getItem("token")) { //TODO: problema cuando hay token caducado
 
-      const validated = this.http.get((`${this.authURL}/validate`)) //TODO, siempre devuelve true
-      console.log(validated);
-      if(validated) {
-        console.log("en true");
-        this.logged = true;
-        this.loginChange$.next(true);
-        return of(true);
-      } else {
-        localStorage.removeItem("token");
-        return of(false);
-      }
+  //     const validated = this.http.get((`${this.authURL}/validate`)) //TODO, siempre devuelve true
+  //     console.log(validated);
+  //     if(validated) {
+  //       console.log("en true");
+  //       this.logged = true;
+  //       this.loginChange$.next(true);
+  //       return of(true);
+  //     } else {
+  //       localStorage.removeItem("token");
+  //       return of(false);
+  //     }
 
-      // const validated = this.http.get((`${this.authURL}/validate`))
-      // this.manejarIsLogged(validated);
-      // return validated;
+  //     // const validated = this.http.get((`${this.authURL}/validate`))
+  //     // this.manejarIsLogged(validated);
+  //     // return validated;
 
-
-
-    } else {
-      return of(false);
-    }
-  }
+  //   } else {
+  //     return of(false);
+  //   }
+  // }
 
   logout(): void {
     localStorage.removeItem("token");
+    localStorage.removeItem('role');
     this.logged = false;
     this.loginChange$.next(false);
+    this.role = '';
     this.router.navigate(['/auth/login']);
   }
 
