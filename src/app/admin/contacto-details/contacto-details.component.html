@@ -1,0 +1,116 @@
+<div class="container">
+  <form class="mt-4" #contactoForm="ngForm">
+
+    <legend>Detalles mensaje contacto</legend>
+
+
+    <div class="row mt-4">
+      <div class="mb-3 col-md-6">
+        <label for="usuario" class="form-label">Usuario</label>
+        <div>
+          <input
+            type="text"
+            class="form-control"
+            name="usuario" id="usuario"
+            [(ngModel)]="contacto.autor.name"
+            readonly
+          />
+        </div>
+      </div>
+      <div class="mb-3 col-md-6">
+        <label for="fecha" class="form-label">Fecha</label>
+        <div>
+          <input
+            type="text"
+            class="form-control"
+            name="fecha" id="fecha"
+            [(ngModel)]="contacto.fecha"
+            readonly
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="email" class="form-label">Email</label>
+        <div>
+          <input
+            type="text"
+            class="form-control"
+            name="email" id="email"
+            [(ngModel)]="contacto.autor.email"
+            readonly
+          />
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="telefono" class="form-label">Teléfono</label>
+        <div>
+          <input
+            type="text"
+            class="form-control"
+            name="telefono" id="telefono"
+            [(ngModel)]="contacto.telefono"
+            readonly
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="asunto" class="form-label">Asunto</label>
+        <div>
+          <input
+            type="text"
+            class="form-control"
+            name="asunto" id="asunto"
+            [(ngModel)]="contacto.asunto"
+            readonly
+          />
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="motivo" class="form-label">Motivo</label>
+        <div>
+          <input
+            type="text"
+            class="form-control"
+            name="motivo" id="motivo"
+            [(ngModel)]="contacto.motivo"
+            readonly
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="mensaje" class="form-label">Mensaje</label>
+      <div>
+        <textarea
+          class="form-control"
+          name="mensaje" id="mensaje"
+          [(ngModel)]="contacto.mensaje"
+          rows="5"
+          readonly
+        >
+        </textarea>
+
+      </div>
+    </div>
+
+
+
+
+
+    <div>
+      <a class="btn btn-secondary me-2 px-5" [routerLink]="['/admin/contacto']" role="button">
+        Volver
+      </a>
+
+    </div>
+
+  </form>
+</div>
+

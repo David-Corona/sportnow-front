@@ -7,6 +7,9 @@ import { SportFormComponent } from '../sports/sport-form/sport-form.component';
 import { UserResolver } from '../users/resolvers/user.resolver';
 import { ActividadesFormComponent } from './actividades-form/actividades-form.component';
 import { ActividadesComponent } from './actividades/actividades.component';
+import { ContactoDetailsComponent } from './contacto-details/contacto-details.component';
+import { ContactoComponent } from './contacto/contacto.component';
+import { ContactoResolver } from './resolvers/contacto.resolver';
 import { UsersFormComponent } from './users-form/users-form.component';
 import { UsersComponent } from './users/users.component';
 
@@ -66,7 +69,6 @@ const routes: Routes = [
   },
   {
     path: 'admin/actividades/editar/:id',
-    // canActivate: [LoginActivateGuard],
     component: SportFormComponent,
     resolve: {
       event: SportResolver
@@ -77,6 +79,27 @@ const routes: Routes = [
     }
   },
 
+
+
+  {
+    path: 'admin/contacto',
+    component: ContactoComponent,
+    canActivate: [RolesGuard],
+    data: {
+      expectedRole: 'admin'
+    }
+  },
+  {
+    path: 'admin/contacto/:id',
+    component: ContactoDetailsComponent,
+    resolve: {
+      contacto: ContactoResolver
+    },
+    canActivate: [RolesGuard],
+    data: {
+      expectedRole: 'admin'
+    }
+  },
 
 
 

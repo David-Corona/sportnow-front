@@ -43,7 +43,13 @@ export class AdminService {
   }
 
 
+  getContactos(): Observable<any> {
+    return this.http.get(`${this.adminURL}/contacto`);
+  }
 
+  getContacto(id: number): Observable<any> {
+    return this.http.get(`${this.adminURL}/contacto/${id}`);
+  }
 
 
 

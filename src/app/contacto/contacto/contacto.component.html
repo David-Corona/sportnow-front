@@ -94,23 +94,24 @@
           </div>
         </div>
       </div>
-        <div class="mb-3">
-          <label for="mensaje" class="form-label">Mensaje *</label>
-          <div>
-            <textarea
-              class="form-control"
-              name="mensaje"
-              required
-              #mensajeModel="ngModel"
-              [(ngModel)]="contacto.mensaje"
-              rows="5"
-              [ngClass]="validClasses(mensajeModel, 'is-valid', 'is-invalid')">
-            </textarea>
-            <div class="invalid-feedback">
-              El mensaje es obligatorio.
-            </div>
+
+      <div class="mb-3">
+        <label for="mensaje" class="form-label">Mensaje *</label>
+        <div>
+          <textarea
+            class="form-control"
+            name="mensaje"
+            required
+            #mensajeModel="ngModel"
+            [(ngModel)]="contacto.mensaje"
+            rows="5"
+            [ngClass]="validClasses(mensajeModel, 'is-valid', 'is-invalid')">
+          </textarea>
+          <div class="invalid-feedback">
+            El mensaje es obligatorio.
           </div>
         </div>
+      </div>
 
 
 
