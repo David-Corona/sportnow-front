@@ -20,7 +20,7 @@ export class LogoutActivateGuard implements CanActivate {
       this.router.navigate(['/inicio']);
       return false;
     }
-    this.authService.loginChange$.next(false); // ESTO???????????????????????????????
+    this.authService.loginChange$.next(false);
     console.log("LogoutGuard: No autentif");
     return true;
   }

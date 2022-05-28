@@ -26,8 +26,9 @@ export class SportService {
       return this.http.get<any>(`${this.sportURL}-historial`+user);
   }
 
-  getProximasActividades(): Observable<any>  {
-    return this.http.get(`${this.sportURL}-proximas`);
+  getProximasActividades(limite?: number): Observable<any> {
+    const limite2 = limite ? `limite=${limite}` : "";
+    return this.http.get(`${this.sportURL}-proximas`+'?'+limite2);
   }
 
   getActividad(id?: number): Observable<any> {

@@ -1,5 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.mat-header-cell {
+  /* TODO: cambiar color header tablas */
+  background: rgb(197, 197, 197);
+}
+
+.mat-row:hover {
+  /* TODO: cambiar color */
+  background: rgb(204, 204, 204);
+  cursor: pointer;
+}
+
+
+/* TODO: mejorar estilo toastr */
 .toast-container {
   font-size: 15px;
 }
@@ -9,6 +27,8 @@
   padding: 15px 15px 15px 15px !important;
   text-align: center !important;
 }
+
+
 
 
 .mapboxgl-ctrl-geocoder {
@@ -33,6 +53,3 @@
   .mapboxgl-ctrl-geocoder--input {
     width: 300px !important;
  } */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

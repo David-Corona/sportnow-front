@@ -1,0 +1,107 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2 mt-4" id="sticky-sidebar">
+
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="col mt-4" id="main">
+      <h4>Dashboard</h4>
+      <hr>
+
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <h5>Deportes con más actividades:</h5>
+          <table mat-table [dataSource]="dataSourceDeportes" matSort class="mat-elevation-z8 w-100">
+
+            <ng-container matColumnDef="deporte.nombre">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Deporte </th>
+              <td mat-cell *matCellDef="let element"> {{element.deporte.nombre}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="total">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Actividades </th>
+              <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnasDeportes"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnasDeportes;"></tr>
+            <!-- (click)="irDetallesDeporte(row)" -->
+          </table>
+        </div>
+
+        <div class="col-md-6">
+          <h5>Usuarios más activos:</h5>
+          <table mat-table [dataSource]="dataSourceUsuarios" matSort class="mat-elevation-z8 w-100">
+
+            <ng-container matColumnDef="usuario.name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
+              <td mat-cell *matCellDef="let element"> {{element.usuario.name }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="total">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
+              <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnasUsuarios"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnasUsuarios;"></tr>
+            <!-- (click)="irDetallesActividades(row)" -->
+          </table>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <h5>Últimos mensajes recibidos:</h5>
+          <table mat-table [dataSource]="dataSourceContactos" matSort class="mat-elevation-z8 w-100">
+
+            <ng-container matColumnDef="created_at">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+              <td mat-cell *matCellDef="let element"> {{element.created_at | date:'dd/MM/y H:mm'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="asunto">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Asunto </th>
+              <td mat-cell *matCellDef="let element"> {{element.asunto}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="autor.name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
+              <td mat-cell *matCellDef="let element"> {{element.autor.name}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnasContactos"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnasContactos;"></tr>
+            <!-- (click)="irDetallesDeporte(row)" -->
+          </table>
+        </div>
+
+        <div class="col-md-6">
+          <h5>Últimas actividades creadas:</h5>
+          <table mat-table [dataSource]="dataSourceActividades" matSort class="mat-elevation-z8 w-100">
+
+            <ng-container matColumnDef="created_at">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+              <td mat-cell *matCellDef="let element"> {{element.created_at | date:'dd/MM/y H:mm'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="titulo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Título </th>
+              <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="deporte.nombre">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Deporte </th>
+              <td mat-cell *matCellDef="let element"> {{element.deporte.nombre}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnasActividades"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnasActividades;"></tr>
+            <!-- (click)="irDetallesActividades(row)" -->
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

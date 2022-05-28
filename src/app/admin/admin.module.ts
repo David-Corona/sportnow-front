@@ -18,6 +18,7 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { ContactoDetailsComponent } from './contacto-details/contacto-details.component';
 import { ParticipantesComponent } from './participantes/participantes.component';
 import { MensajesComponent } from './mensajes/mensajes.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 // import {MatSidenavModule} from '@angular/material/sidenav';
 
 
@@ -34,7 +35,8 @@ import { MensajesComponent } from './mensajes/mensajes.component';
     ContactoComponent,
     ContactoDetailsComponent,
     ParticipantesComponent,
-    MensajesComponent
+    MensajesComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,

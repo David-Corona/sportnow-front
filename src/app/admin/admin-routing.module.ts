@@ -9,6 +9,7 @@ import { ActividadesFormComponent } from './actividades-form/actividades-form.co
 import { ActividadesComponent } from './actividades/actividades.component';
 import { ContactoDetailsComponent } from './contacto-details/contacto-details.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { DeportesComponent } from './deportes/deportes.component';
 import { MensajesComponent } from './mensajes/mensajes.component';
 import { ParticipantesComponent } from './participantes/participantes.component';
@@ -20,7 +21,14 @@ import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
 
-
+  {
+    path: 'admin',
+    component: DashboardComponent,
+    canActivate: [RolesGuard],
+    data: {
+      expectedRole: 'admin'
+    }
+  },
   {
     path: 'admin/usuarios',
     // canActivate: [LoginActivateGuard],

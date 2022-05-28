@@ -44,15 +44,27 @@ export class AdminService {
     return this.http.delete<any>(`${this.adminURL}/eventos/${actividadId}`);
   }
 
+  getUltimasActividades(): Observable<any> {
+    return this.http.get(`${this.adminURL}/eventos-ultimos`);
+  }
+
 
   // Deportes
   getDeportes(): Observable<any> {
     return this.http.get(`${this.adminURL}/deportes`);
   }
 
+  getDeportesPopulares(): Observable<any> {
+    return this.http.get(`${this.adminURL}/deportes-populares`);
+  }
+
   // Participantes
   getParticipantes(): Observable<any> {
     return this.http.get(`${this.adminURL}/eventos-usuarios`);
+  }
+
+  getUsuariosActivos(): Observable<any> {
+    return this.http.get(`${this.adminURL}/eventos-usuarios-activos`);
   }
 
   // Mensajes
@@ -70,5 +82,8 @@ export class AdminService {
     return this.http.get(`${this.adminURL}/contacto/${id}`);
   }
 
+  getUltimosContactos(): Observable<any> {
+    return this.http.get<any>(`${this.adminURL}/contacto-ultimos`);
+  }
 
 }

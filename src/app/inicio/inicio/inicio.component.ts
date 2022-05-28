@@ -26,7 +26,7 @@ export class InicioComponent implements OnInit {
 
 
   getProximasActividades(){
-    this.sportService.getProximasActividades().subscribe({
+    this.sportService.getProximasActividades(5).subscribe({
     next: (resp) => {
       this.eventos = resp.data;
       console.log(this.eventos);
