@@ -9,6 +9,9 @@ import { ActividadesFormComponent } from './actividades-form/actividades-form.co
 import { ActividadesComponent } from './actividades/actividades.component';
 import { ContactoDetailsComponent } from './contacto-details/contacto-details.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { DeportesComponent } from './deportes/deportes.component';
+import { MensajesComponent } from './mensajes/mensajes.component';
+import { ParticipantesComponent } from './participantes/participantes.component';
 import { ContactoResolver } from './resolvers/contacto.resolver';
 import { UsersFormComponent } from './users-form/users-form.component';
 import { UsersComponent } from './users/users.component';
@@ -79,7 +82,32 @@ const routes: Routes = [
     }
   },
 
+  {
+    path: 'admin/deportes',
+    component: DeportesComponent,
+    canActivate: [RolesGuard],
+    data: {
+      expectedRole: 'admin'
+    }
+  },
 
+  {
+    path: 'admin/participantes',
+    component: ParticipantesComponent,
+    canActivate: [RolesGuard],
+    data: {
+      expectedRole: 'admin'
+    }
+  },
+
+  {
+    path: 'admin/mensajes',
+    component: MensajesComponent,
+    canActivate: [RolesGuard],
+    data: {
+      expectedRole: 'admin'
+    }
+  },
 
   {
     path: 'admin/contacto',

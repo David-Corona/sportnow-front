@@ -20,7 +20,6 @@ export class ContactoDetailsComponent implements OnInit {
     this.titleService.setTitle("SportNow | Admin Contacto");
 
     this.contacto = this.route.snapshot.data["contacto"].data;
-    this.contacto.created_at = this.contacto.created_at.replace(" ", "T");
     console.log(this.contacto);
   }
 

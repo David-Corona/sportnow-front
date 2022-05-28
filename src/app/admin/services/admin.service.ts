@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ export class AdminService {
   constructor(private readonly http: HttpClient) { }
 
 
+  // Usuarios
   getUsers(filtro = ""): Observable<any> {
     let filter = filtro.length > 0 ? filtro : "";
     return this.http.get<any>(`${this.adminURL}/users?${filter}`);
@@ -30,6 +31,7 @@ export class AdminService {
   }
 
 
+  // Actividades
   getActividades(): Observable<any> {
     return this.http.get<any>(`${this.adminURL}/eventos`);
   }
@@ -43,6 +45,23 @@ export class AdminService {
   }
 
 
+  // Deportes
+  getDeportes(): Observable<any> {
+    return this.http.get(`${this.adminURL}/deportes`);
+  }
+
+  // Participantes
+  getParticipantes(): Observable<any> {
+    return this.http.get(`${this.adminURL}/eventos-usuarios`);
+  }
+
+  // Mensajes
+  getMensajes(): Observable<any> {
+    return this.http.get(`${this.adminURL}/eventos-comentarios`);
+  }
+
+
+  // Contactos
   getContactos(): Observable<any> {
     return this.http.get(`${this.adminURL}/contacto`);
   }
@@ -50,7 +69,6 @@ export class AdminService {
   getContacto(id: number): Observable<any> {
     return this.http.get(`${this.adminURL}/contacto/${id}`);
   }
-
 
 
 }

@@ -16,6 +16,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { ContactoDetailsComponent } from './contacto-details/contacto-details.component';
+import { ParticipantesComponent } from './participantes/participantes.component';
+import { MensajesComponent } from './mensajes/mensajes.component';
 // import {MatSidenavModule} from '@angular/material/sidenav';
 
 
@@ -30,7 +32,9 @@ import { ContactoDetailsComponent } from './contacto-details/contacto-details.co
     ActividadesFormComponent,
     SidebarComponent,
     ContactoComponent,
-    ContactoDetailsComponent
+    ContactoDetailsComponent,
+    ParticipantesComponent,
+    MensajesComponent
   ],
   imports: [
     CommonModule,

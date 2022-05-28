@@ -7,16 +7,15 @@ import { Router } from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 
-
 @Component({
-  selector: 'app-deportes',
-  templateUrl: './deportes.component.html',
-  styleUrls: ['./deportes.component.css']
+  selector: 'app-participantes',
+  templateUrl: './participantes.component.html',
+  styleUrls: ['./participantes.component.css']
 })
-export class DeportesComponent implements OnInit {
+export class ParticipantesComponent implements OnInit {
 
-  columnas = ['id','nombre', 'max_participantes', 'imagen'];
-  deportes: any[] = [];
+  columnas = ['evento_id','evento.titulo', 'evento.fecha', 'user_id', 'usuario.name', 'created_at'];
+  participantes: any[] = [];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -29,17 +28,17 @@ export class DeportesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Admin Contacto");
-    this.getDeportes();
+    this.titleService.setTitle("SportNow | Admin Participantes");
+    this.getParticipantes();
   }
 
-  getDeportes(){
-    this.adminService.getDeportes().subscribe({
+  getParticipantes(){
+    this.adminService.getParticipantes().subscribe({
       next: (resp) => {
         console.log(resp);
-        this.deportes=resp.data;
-        console.log(this.deportes);
-        this.dataSource = new MatTableDataSource(this.deportes);
+        this.participantes=resp.data;
+        console.log(this.participantes);
+        this.dataSource = new MatTableDataSource(this.participantes);
         this.dataSource.sort = this.sort;
       },
       error: error => {
@@ -49,7 +48,8 @@ export class DeportesComponent implements OnInit {
   }
 
   irDetalles(row: any) {
-    this.router.navigate(['/admin/deportes/'+row.id])
+    this.router.navigate(['/admin/participantes/'+row.id])
   }
+
 
 }
