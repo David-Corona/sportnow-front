@@ -41,7 +41,6 @@ export class ContactoComponent implements OnInit {
     this.contactoService.postContacto(this.contacto).subscribe({
       next: (resp) => {
         console.log(resp);
-        this.contactForm.form.markAsUntouched();
         this.resetForm();
         this.toastr.success('Mensaje enviado correctamente');
       },
@@ -56,6 +55,7 @@ export class ContactoComponent implements OnInit {
       motivo: "",
       telefono: "",
     }
+    this.contactForm.form.markAsUntouched();
   }
 
   validClasses(ngModel: NgModel, validClass: string, errorClass: string) {

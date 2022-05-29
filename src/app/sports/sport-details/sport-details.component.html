@@ -59,7 +59,7 @@
 
 
             <div class="row">
-              <button class="btn btn-success" *ngIf="!actividad.participo" (click)="participacion()">
+              <button class="btn btn-success" *ngIf="!actividad.participo" [disabled]="actividad.lleno" (click)="participacion()">
                 Apuntarme
               </button>
               <button class="btn btn-danger" *ngIf="actividad.participo" (click)="participacion()">
