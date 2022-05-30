@@ -1,0 +1,26 @@
+<div class="card mb-2">
+  <div class="row">
+    <div class="col-md-2" >
+      <img [routerLink]="['/actividades', evento.id]" src="https://i.ibb.co/0m9yTJn/sil-removebg-preview.jpg" alt="Imagen evento">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h5 [routerLink]="['/actividades', evento.id]" class="card-title">{{evento.deporte.nombre}} ({{evento.participantes.length}}<span *ngIf="evento.deporte.max_participantes">/{{evento.deporte.max_participantes}}</span>)</h5>
+          <p class="card-text me-4">{{evento.fecha | date:'H:mm dd/MM/y'}}</p>
+        </div>
+        <hr class="mt-0">
+        <div class="d-flex justify-content-between mb-2">
+          <div>
+            <p class="card-text"><b>Título:</b> {{evento.titulo}}</p>
+            <p class="card-text"><b>Descripción:</b> {{evento.descripcion}}</p>
+            <p class="card-text"><b>Dirección:</b> {{evento.direccion}} (Distancia: {{evento.distancia | number: '1.2-2'}} km)</p>
+          </div>
+          <div class="mt-auto">
+            <a [routerLink]="['/actividades', evento.id]" class="btn btn-primary me-3">Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

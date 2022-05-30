@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   baseUrl: 'https://back-sport-now.herokuapp.com/api'
+  // baseUrl: 'http://api.sportnow.local/api'
 };
 
 /*

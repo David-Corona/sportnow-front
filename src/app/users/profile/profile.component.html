@@ -51,7 +51,7 @@
             <div id="profile" class="mb-4">
               <div class="row mt-4">
                 <div class="col-md-3">
-                  <img class="w-100" id="avatar" src="{{user.avatar}}" alt="Avatar Usuario" />
+                  <img class="w-100" id="avatar" src="https://back-sport-now.herokuapp.com/{{user.avatar}}" alt="Avatar Usuario" />
                 </div>
                 <div class="col-md-9">
                   <h4>{{user.name}}</h4>
@@ -94,27 +94,12 @@
         <!-- TODO: Collapse? Quizá con list-group-item active como en detalles pasticipantes evento -->
         <div>
           <div class="list-group-item active">Próximas Actividades ({{eventos.length}})</div>
-          <!-- <h4>Próximas Actividades ({{eventos.length}})</h4> -->
-          <div class="d-flex justify-content-center" *ngFor="let evento of eventos">
-            <div class="card mb-2" style="width: 100%;">
-              <div class="row">
-                <div class="col-md-3">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgUNaoFwOOa3sOnMoc8CVUJ65bhS822etxVQ&usqp=CAU" alt="Imagen evento">
-                </div>
-                <div class="col-md-9">
-                  <div class="card-body">
-                    <h5 class="card-title">{{evento.titulo}}</h5>
-                    <p class="card-text">{{evento.deporte.nombre}}</p>
-                    <p class="card-text">{{evento.fecha | date:'dd/MM/y H:mm'}}</p>
-                    <p class="card-text">{{evento.direccion}}</p>
-                    <p class="card-text">Mostrar nº participantes, o plazas si hay max? Pinchar en card->detalles</p>
-                    <a [routerLink]="['/actividades', evento.id]" class="btn btn-primary">Detalles</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div *ngIf="eventos.length">
+            <app-sport-card *ngFor="let evento of eventos" [evento]="evento"></app-sport-card>
           </div>
+          <!-- <h4>Próximas Actividades ({{eventos.length}})</h4> -->
         </div>
+
       </div>
 
 
@@ -123,25 +108,8 @@
         <!-- TODO: Collapse? Quizá con list-group-item active como en detalles pasticipantes evento -->
         <div>
           <div class="list-group-item active">Historial Actividades ({{eventosPasados.length}})</div>
-          <!-- <h4>Próximas Actividades ({{eventos.length}})</h4> -->
-          <div class="d-flex justify-content-center" *ngFor="let evento of eventosPasados">
-            <div class="card mb-2" style="width: 100%;">
-              <div class="row">
-                <div class="col-md-3">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgUNaoFwOOa3sOnMoc8CVUJ65bhS822etxVQ&usqp=CAU" alt="Imagen evento">
-                </div>
-                <div class="col-md-9">
-                  <div class="card-body">
-                    <h5 class="card-title">{{evento.titulo}}</h5>
-                    <p class="card-text">{{evento.deporte.nombre}}</p>
-                    <p class="card-text">{{evento.fecha | date:'dd/MM/y H:mm'}}</p>
-                    <p class="card-text">{{evento.direccion}}</p>
-                    <p class="card-text">Mostrar nº participantes, o plazas si hay max? Pinchar en card->detalles</p>
-                    <a [routerLink]="['/actividades', evento.id]" class="btn btn-primary">Detalles</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div *ngIf="eventosPasados.length">
+            <app-sport-card *ngFor="let evento of eventosPasados" [evento]="evento"></app-sport-card>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { UserService } from 'src/app/users/services/user.service';
 
 @Component({
   selector: 'app-menu-top',
@@ -11,8 +12,12 @@ export class MenuTopComponent implements OnInit {
   @Input() title!: string;
   logged: boolean = false;
   isAdmin: boolean = false;
+  user: any = [];
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private userService: UserService,
+    ) { }
 
   ngOnInit(): void {
     this.authService.loginChange$.subscribe({
@@ -23,7 +28,18 @@ export class MenuTopComponent implements OnInit {
       error: error => console.error(error)
     });
 
-    // TODO: Get Usuario para cargar su avatar
+    this.getUser();
+  }
+
+  getUser(){
+    this.userService.getUser().subscribe({
+      next: (resp) => {
+        this.user = resp.data
+      },
+      error: e => {
+        console.error(e);
+      }
+    });
   }
 
   logout(){

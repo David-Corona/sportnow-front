@@ -1,8 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+  font-size: 1em;
+  background-color: #EBEDF2; /*TODO cambiar a otro color clarito*/
+}
+
+body {
+  margin: 0;
+  /* font-family: Roboto, "Helvetica Neue", sans-serif; */
+
+}
+
+/* p {
+  font-size: 1rem;
+ }
+
+ h1 {
+  font-size: 2.5rem;
+ }
+
+ h2 {
+  font-size: 2rem;
+ }
+
+ h3 {
+  font-size: 1.5rem;
+ } */
 
 
 /* Panel Admin */

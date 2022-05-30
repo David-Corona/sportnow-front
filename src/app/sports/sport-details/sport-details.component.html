@@ -1,5 +1,5 @@
 
-<div class="d-flex justify-content-center mt-4">
+<div class="d-flex justify-content-center mt-4 pb-3">
   <div style="width: 80%;">
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -42,8 +42,8 @@
 
 
             <div class="row">
-              <div class="col-md-3">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgUNaoFwOOa3sOnMoc8CVUJ65bhS822etxVQ&usqp=CAU" alt="Imagen evento">
+              <!-- <div class="col-md-3">
+                <img src="https://i.ibb.co/0m9yTJn/sil-removebg-preview.jpg" height=200 width=200 alt="Imagen evento">
               </div>
               <div class="col-md-9">
                 <div class="card-body">
@@ -54,18 +54,49 @@
                   <p class="card-text">{{actividad.descripcion}}</p>
                   <p class="card-text">{{actividad.distancia | number: '1.2-2'}} km</p>
                 </div>
+              </div> -->
+
+              <div class="col-md-3 mb-2" >
+                <img src="https://i.ibb.co/0m9yTJn/sil-removebg-preview.jpg" alt="Imagen evento">
+              </div>
+              <div class="col-md-9 d-flex flex-column">
+                <div class="card-body">
+                  <!-- <div class="d-flex justify-content-between mb-3">
+                    <h4 class="card-title">{{actividad.deporte.nombre}}
+                      ({{actividad.participantes.length}}<span *ngIf="actividad.deporte.max_participantes">/{{actividad.deporte.max_participantes}}</span>)
+                    </h4>
+                    <p class="card-text me-4">{{actividad.fecha | date:'H:mm dd/MM/y'}}</p>
+                  </div> -->
+                    <h4 class="card-title mb-3">{{actividad.deporte.nombre}}
+                      ({{actividad.participantes.length}}<span *ngIf="actividad.deporte.max_participantes">/{{actividad.deporte.max_participantes}}</span>)
+                    </h4>
+                    <hr>
+                    <p class="card-text"><b>Fecha:</b> {{actividad.fecha | date:'H:mm dd/MM/y'}}</p>
+                    <p class="card-text"><b>Título:</b> {{actividad.titulo}}</p>
+                    <p class="card-text"><b>Descripción:</b> {{actividad.descripcion}}</p>
+                    <p class="card-text"><b>Dirección:</b> {{actividad.direccion}} (Distancia: {{actividad.distancia | number: '1.2-2'}} km)</p>
+                </div>
+                <div class="row btn-apuntar mt-auto mb-2">
+                  <button class="btn btn-success" *ngIf="!actividad.participo" [disabled]="actividad.lleno" (click)="participacion()">
+                    Apuntarme
+                  </button>
+                  <button class="btn btn-danger" *ngIf="actividad.participo" (click)="participacion()">
+                    Desapuntarme
+                  </button>
+                </div>
               </div>
             </div>
 
-
-            <div class="row">
+            <!-- <div class="row btn-apuntar">
               <button class="btn btn-success" *ngIf="!actividad.participo" [disabled]="actividad.lleno" (click)="participacion()">
                 Apuntarme
               </button>
               <button class="btn btn-danger" *ngIf="actividad.participo" (click)="participacion()">
                 Desapuntarme
               </button>
-            </div>
+            </div> -->
+
+
 
           </div>
           <!-- <div class="card-footer text-muted row m-0">
@@ -88,7 +119,7 @@
             </div>
           </div> -->
 
-          <div class="card mt-2">
+          <div class="card">
             <mgl-map [style]="'mapbox://styles/mapbox/streets-v11'" [zoom]="[zoom]" [center]="[actividad.longitud, actividad.latitud]">
               <mgl-marker [lngLat]="[actividad.longitud, actividad.latitud]"></mgl-marker>
             </mgl-map>

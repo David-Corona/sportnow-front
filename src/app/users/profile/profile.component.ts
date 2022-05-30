@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { User } from '../interfaces/user';
 import { ActivatedRoute } from '@angular/router';
 import { SportService } from 'src/app/sports/services/sport.service';
-// import { UserService } from '../services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile',
@@ -12,8 +12,6 @@ import { SportService } from 'src/app/sports/services/sport.service';
 })
 export class ProfileComponent implements OnInit {
 
-  // lat: number = 0;
-  // lng: number = 0;
   zoom = 16;
   user: User = {
     name: "",
@@ -30,49 +28,30 @@ export class ProfileComponent implements OnInit {
     private titleService: Title,
     private route: ActivatedRoute,
     private sportService: SportService,
-    // private userService: UserService,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
     this.titleService.setTitle("SportNow | Perfil");
 
-    // get the user from the router's data
+    // Carga router data el usuario y booleano si es el perfil del usuario logueado
     console.log( this.route.snapshot.data["user"]);
     this.user = this.route.snapshot.data["user"].data;
     this.isMe =  this.route.snapshot.data["user"].me;
-    // console.log(this.user);
-
-    // this.userService.getUser().subscribe({
-    //   next: (resp) => {
-    //     console.log(resp);
-    //   },
-    //   error: e => {
-    //     console.error(e);
-    //   }
-    // });
-
-
-    // lat & lng to load user's location on map.
-    // this.lat = this.user.latitude;
-    // this.lng = this.user.longitude;
 
     this.getMisActividades();
     this.getMiHistorial();
   }
 
 
-
-
   getMisActividades(){
     this.sportService.getActividades(this.user.id).subscribe({
       next: (resp) => {
-        // this.eventos = resp.data;
-        console.log(resp);
         this.eventos = resp.data;
-        console.log(this.eventos);
       },
-      error: e => {
-        console.error(e);
+      error: error => {
+        console.error(error);
+        this.toastr.error('Error al cargar las actividades');
       }
     });
   }
@@ -80,16 +59,13 @@ export class ProfileComponent implements OnInit {
   getMiHistorial(){
     this.sportService.getHistorial(this.user.id).subscribe({
       next: (resp) => {
-        // this.eventos = resp.data;
-        console.log(resp);
         this.eventosPasados = resp.data;
-        console.log(this.eventosPasados);
       },
-      error: e => {
-        console.error(e);
+      error: error => {
+        console.error(error);
+        this.toastr.error('Error al cargar el historial');
       }
     });
-
   }
 }
 

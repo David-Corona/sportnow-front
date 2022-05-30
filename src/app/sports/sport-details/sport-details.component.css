@@ -2,3 +2,27 @@ mgl-map {
   height: 400px;
   width: 100%;
 }
+
+.card {
+  width: 100%;
+  /* height: 100%; */
+  /* min-height: 300px; */
+}
+
+.card img {
+  width: 100%;
+  /* max-width: 200px; */
+  max-width: 350px;
+
+}
+
+.btn-apuntar {
+  padding: 0 12px;
+  /* margin-top: auto !important; */
+}
+
+/* .card .btn {
+  width: 140px !important;
+} */
+
+

@@ -93,27 +93,42 @@
   </div>
 
   <!-- list-group-item -->
-  <div class="d-flex justify-content-center" *ngFor="let evento of eventos">
-    <div class="card mb-2" style="width: 100%;">
-      <div class="row">
-        <div class="col-md-3">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgUNaoFwOOa3sOnMoc8CVUJ65bhS822etxVQ&usqp=CAU" alt="Imagen evento">
-        </div>
-        <div class="col-md-9">
-          <div class="card-body">
-            <h5 class="card-title">{{evento.titulo}}</h5>
-            <p class="card-text">{{evento.deporte.nombre}}</p>
-            <p class="card-text">{{evento.fecha | date:'dd/MM/y H:mm'}}</p>
-            <p class="card-text">{{evento.direccion}}</p>
-            <!-- <p class="card-text">{{evento.descripcion}}</p> -->
-            <p class="card-text">Mostrar nº participantes, o plazas si hay max? Pinchar en card->detalles</p>
-            <a [routerLink]="['/actividades', evento.id]" class="btn btn-primary">Detalles</a><!-- .stretched-link -->
+  <!-- class="d-flex justify-content-center" -->
+  <div class="pb-2">
+
+    <!-- class="mb-4 mt-4 row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4" -->
+    <div *ngIf="eventos.length">
+      <app-sport-card *ngFor="let evento of eventos" [evento]="evento"></app-sport-card>
+    </div>
+
+    <!-- <div *ngFor="let evento of eventos">
+      <div class="card mb-2">
+        <div class="row">
+          <div class="col-md-2" >
+            <img [routerLink]="['/actividades', evento.id]" src="https://i.ibb.co/0m9yTJn/sil-removebg-preview.jpg" alt="Imagen evento">
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <div class="d-flex justify-content-between mb-3">
+                <h5 [routerLink]="['/actividades', evento.id]" class="card-title">{{evento.deporte.nombre}} ({{evento.participantes.length}}<span *ngIf="evento.deporte.max_participantes">/{{evento.deporte.max_participantes}}</span>)</h5>
+                <p class="card-text me-4">{{evento.fecha | date:'H:mm dd/MM/y'}}</p>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <div>
+                  <p class="card-text"><b>Título:</b> {{evento.titulo}}</p>
+                  <p class="card-text"><b>Descripción:</b> {{evento.descripcion}}</p>
+                  <p class="card-text"><b>Dirección:</b> {{evento.direccion}} (Distancia: {{evento.distancia | number: '1.2-2'}} km)</p>
+                </div>
+                <div class="mt-auto">
+                  <a [routerLink]="['/actividades', evento.id]" class="btn btn-primary me-3">Detalles</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
-
 </div>
 
 <!-- <div class="mb-4 mt-4 row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4" *ngIf="events.length" @animatedList>

@@ -8,6 +8,7 @@ import { UsersRoutingModule } from './users/users-routing.module';
 import { AdminRoutingModule } from './admin/admin-routing.module';
 import { InicioRoutingModule } from './inicio/inicio-routing.module';
 import { ContactoRoutingModule } from './contacto/contacto-routing.module';
+import { SportCardRoutingModule } from './sport-card/sport-card-routing.module';
 
 const routes: Routes = [
   {
@@ -40,7 +41,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, RouterModule.forRoot(routes), AuthRoutingModule, SportsRoutingModule, UsersRoutingModule, AdminRoutingModule, InicioRoutingModule, ContactoRoutingModule ],
+  imports: [CommonModule, RouterModule.forRoot(routes), AuthRoutingModule, SportsRoutingModule, UsersRoutingModule, AdminRoutingModule, InicioRoutingModule, ContactoRoutingModule, SportCardRoutingModule ],
   exports: [RouterModule]
 })
 

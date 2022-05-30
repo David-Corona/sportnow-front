@@ -1,124 +1,132 @@
-<div class="container">
+<div class="container pb-4">
 
-  <form class="mt-4" #editProfileForm="ngForm" (ngSubmit)="editProfile()">
-    <legend>Edit profile</legend>
-    <div class="form-group">
-      <label for="correo">Email:</label>
-      <div>
-        <input
-          type="email"
-          class="form-control mb-2"
-          name="email"
-          placeholder="Email"
-          [(ngModel)]="user.email"
-          required
-          #emailModel="ngModel"
-          pattern="^\S+@\S+\.\S+$"
-          [ngClass]="validClasses(emailModel, 'is-valid', 'is-invalid')"
-        />
-        <div class="invalid-feedback" *ngIf="emailModel.errors?.['required']">
-          Email is required.
+  <div class="formulario p-4 mt-4">
+    <form #editProfileForm="ngForm" (ngSubmit)="editProfile()">
+      <!-- <legend>Editar datos</legend> -->
+      <h4 class="">Editar datos</h4>
+      <hr class="mt-0">
+      <div class="form-group">
+        <label for="correo">Email:</label>
+        <div>
+          <input
+            type="email"
+            class="form-control mb-2"
+            name="email"
+            placeholder="Email"
+            [(ngModel)]="user.email"
+            required
+            #emailModel="ngModel"
+            pattern="^\S+@\S+\.\S+$"
+            [ngClass]="validClasses(emailModel, 'is-valid', 'is-invalid')"
+          />
+          <div class="invalid-feedback" *ngIf="emailModel.errors?.['required']">
+            Email is required.
+          </div>
+          <div class="invalid-feedback" *ngIf="emailModel.errors?.['pattern']">
+            Must be a correct email address.
+          </div>
         </div>
-        <div class="invalid-feedback" *ngIf="emailModel.errors?.['pattern']">
-          Must be a correct email address.
+        <label for="name">Name:</label>
+        <div>
+          <input
+            type="text"
+            class="form-control"
+            name="nameUser"
+            placeholder="Name"
+            [(ngModel)]="user.name"
+            required
+            #nameModel="ngModel"
+            pattern="[A-Za-z][A-Za-z\s]*"
+            [ngClass]="validClasses(nameModel, 'is-valid', 'is-invalid')"
+          />
+          <div class="invalid-feedback" *ngIf="nameModel.errors?.['required']">
+            Name is required.
+          </div>
+          <div class="invalid-feedback" *ngIf="nameModel.errors?.['pattern']">
+            Name must include letters and may include spaces.
+          </div>
         </div>
       </div>
-      <label for="name">Name:</label>
-      <div>
-        <input
-          type="text"
-          class="form-control"
-          name="nameUser"
-          placeholder="Name"
-          [(ngModel)]="user.name"
-          required
-          #nameModel="ngModel"
-          pattern="[A-Za-z][A-Za-z\s]*"
-          [ngClass]="validClasses(nameModel, 'is-valid', 'is-invalid')"
-        />
-        <div class="invalid-feedback" *ngIf="nameModel.errors?.['required']">
-          Name is required.
-        </div>
-        <div class="invalid-feedback" *ngIf="nameModel.errors?.['pattern']">
-          Name must include letters and may include spaces.
-        </div>
-      </div>
-    </div>
-    <p class="text-danger" id="errorInfo1"></p>
-    <p class="text-success" id="okInfo1"></p>
-    <button
-      type="submit"
-      class="btn btn-primary"
-      >Edit profile
-  </button>
-  </form>
+      <p class="text-danger" id="errorInfo1"></p>
+      <p class="text-success" id="okInfo1"></p>
+      <button type="submit" class="btn btn-primary">Editar datos</button>
+    </form>
+  </div>
 
-  <form class="mt-4" role="form" id="form-photo" (ngSubmit)="editPhoto()" (change)="loadImage($event)">
-    <legend>Edit photo</legend>
-    <div class="form-group">
-      <input type="file" class="form-control" name="image"  />
-    </div>
-    <div class="row">
-      <div class="col w-50">
-        <img class="w-100" id="photo" src="http://api.sportnow.local/{{user.avatar}}" alt="" />
+  <div class="formulario p-4 mt-4">
+    <form class="" role="form" id="form-photo" (ngSubmit)="editPhoto()" (change)="loadImage($event)">
+      <!-- <legend>Editar avatar</legend> -->
+      <h4 class="">Editar avatar</h4>
+      <hr class="mt-0">
+      <div class="form-group">
+        <input type="file" class="form-control" name="image"  />
       </div>
-      <div class="col w-50">
-        <img class="d-none w-100" name="imgPreview" #imgPreview src="{{newAvatar}}" alt="" />
+      <div class="row">
+        <div class="col w-50">
+          <img class="w-100" id="photo" src="https://back-sport-now.herokuapp.com/{{user.avatar}}" alt="" />
+        </div>
+        <div class="col w-50">
+          <img class="d-none w-100" name="imgPreview" #imgPreview src="{{newAvatar}}" alt="" />
+        </div>
       </div>
-    </div>
-    <p class="text-danger" id="errorInfo2"></p>
-    <p class="text-success" id="okInfo2"></p>
-    <button type="submit" class="btn btn-primary">Edit photo</button>
-  </form>
+      <p class="text-danger" id="errorInfo2"></p>
+      <p class="text-success" id="okInfo2"></p>
+      <button type="submit" class="btn btn-primary">Editar avatar</button>
+    </form>
+  </div>
 
-  <form class="mt-4" role="form" #editPasswordForm="ngForm" (ngSubmit)="editPassword()">
-    <legend>Edit password</legend>
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <div>
-        <input
-          type="password"
-          class="form-control mb-2"
-          name="password"
-          placeholder="Password"
-          [(ngModel)]="user.password"
-          #passwordModel="ngModel"
-          minlength="4"
-          [ngClass]="validClasses(passwordModel, 'is-valid', 'is-invalid')"
-          required
-        />
-        <div class="invalid-feedback" *ngIf="passwordModel.errors?.['required']">
-          Password is required.
+  <div class="formulario p-4 mt-4">
+    <form class="" role="form" #editPasswordForm="ngForm" (ngSubmit)="editPassword()">
+      <!-- <legend>Editar contraseña</legend> -->
+      <h4 class="">Editar contraseña</h4>
+      <hr class="mt-0">
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <div>
+          <input
+            type="password"
+            class="form-control mb-2"
+            name="password"
+            placeholder="Password"
+            [(ngModel)]="user.password"
+            #passwordModel="ngModel"
+            minlength="4"
+            [ngClass]="validClasses(passwordModel, 'is-valid', 'is-invalid')"
+            required
+          />
+          <div class="invalid-feedback" *ngIf="passwordModel.errors?.['required']">
+            Password is required.
+          </div>
+          <div class="invalid-feedback" *ngIf="passwordModel.errors?.['minlength']">
+            Password must have at least 4 characters.
+          </div>
         </div>
-        <div class="invalid-feedback" *ngIf="passwordModel.errors?.['minlength']">
-          Password must have at least 4 characters.
+        <label for="password2">Repeat password:</label>
+        <div>
+          <input
+            type="password"
+            class="form-control"
+            name="password2"
+            placeholder="Repeat password"
+            [(ngModel)]="passwpordRep"
+            #password2Model="ngModel"
+            minlength="4"
+            [ngClass]="validClasses(password2Model, 'is-valid', 'is-invalid')"
+            pattern="{{ passwordModel.value }}"
+            required
+          />
+          <div class="invalid-feedback" *ngIf="password2Model.errors?.['required']">
+            Password is required.
+          </div>
+          <div class="invalid-feedback" *ngIf="password2Model.errors?.['pattern']">
+            This password must coincide with previous input.
+          </div>
         </div>
       </div>
-      <label for="password2">Repeat password:</label>
-      <div>
-        <input
-          type="password"
-          class="form-control"
-          name="password2"
-          placeholder="Repeat password"
-          [(ngModel)]="passwpordRep"
-          #password2Model="ngModel"
-          minlength="4"
-          [ngClass]="validClasses(password2Model, 'is-valid', 'is-invalid')"
-          pattern="{{ passwordModel.value }}"
-          required
-        />
-        <div class="invalid-feedback" *ngIf="password2Model.errors?.['required']">
-          Password is required.
-        </div>
-        <div class="invalid-feedback" *ngIf="password2Model.errors?.['pattern']">
-          This password must coincide with previous input.
-        </div>
-      </div>
-    </div>
-    <p class="text-danger" id="errorInfo3"></p>
-    <p class="text-success" id="okInfo3"></p>
-    <button type="submit" class="btn btn-primary mb-2">Edit password</button>
-  </form>
+      <p class="text-danger" id="errorInfo3"></p>
+      <p class="text-success" id="okInfo3"></p>
+      <button type="submit" class="btn btn-primary">Editar contraseña</button>
+    </form>
+  </div>
 
 </div>
