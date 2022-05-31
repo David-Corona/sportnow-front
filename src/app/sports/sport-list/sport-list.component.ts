@@ -24,10 +24,9 @@ export class SportListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Actividades Deportivas");
+    this.titleService.setTitle("SportNow | Actividades");
 
     this.getActividades();
-
   }
 
   getActividades(query?: string){
@@ -71,7 +70,6 @@ export class SportListComponent implements OnInit {
     });
     console.log(query);
     this.getActividades(query);
-
   }
 
   reiniciar(){

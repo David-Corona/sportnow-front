@@ -12,7 +12,6 @@
         <a class="nav-link" id="participantes-tab" data-bs-toggle="tab" href="#participantes" role="tab" aria-controls="participantes" aria-selected="false">
           Participantes
           <span class="badge bg-primary">{{actividad.participantes.length}}</span>
-
         </a>
       </li>
       <li class="nav-item" role="presentation">
@@ -25,48 +24,17 @@
 
 
     <div class="tab-content" id="myTabContent">
+
       <div class="tab-pane fade show active" id="detalles" role="tabpanel" aria-labelledby="detalles-tab">
-
-
         <div class="card shadow">
-          <!-- <a [routerLink]="['/events', event.id]">
-            <img class="card-img-top" src="{{event.image}}" />
-          </a> -->
+
           <div class="card-body">
-
-            <!-- <h4 class="card-title text-primary">
-              {{actividad.titulo}}
-            </h4>
-            <p class="card-text">{{actividad.descripcion}}</p> -->
-
-
-
             <div class="row">
-              <!-- <div class="col-md-3">
-                <img src="https://i.ibb.co/0m9yTJn/sil-removebg-preview.jpg" height=200 width=200 alt="Imagen evento">
-              </div>
-              <div class="col-md-9">
-                <div class="card-body">
-                  <h5 class="card-title">{{actividad.titulo}}</h5>
-                  <p class="card-text">{{actividad.deporte.nombre}}</p>
-                  <p class="card-text">{{actividad.fecha | date:'dd/MM/y H:mm'}}</p>
-                  <p class="card-text">{{actividad.direccion}} ({{actividad.distancia | number: '1.2-2'}} km)</p>
-                  <p class="card-text">{{actividad.descripcion}}</p>
-                  <p class="card-text">{{actividad.distancia | number: '1.2-2'}} km</p>
-                </div>
-              </div> -->
-
               <div class="col-md-3 mb-2" >
-                <img src="https://i.ibb.co/0m9yTJn/sil-removebg-preview.jpg" alt="Imagen evento">
+                <img src="https://i.ibb.co/0m9yTJn/sil-removebg-preview.jpg" alt="Imagen Deporte">
               </div>
               <div class="col-md-9 d-flex flex-column">
                 <div class="card-body">
-                  <!-- <div class="d-flex justify-content-between mb-3">
-                    <h4 class="card-title">{{actividad.deporte.nombre}}
-                      ({{actividad.participantes.length}}<span *ngIf="actividad.deporte.max_participantes">/{{actividad.deporte.max_participantes}}</span>)
-                    </h4>
-                    <p class="card-text me-4">{{actividad.fecha | date:'H:mm dd/MM/y'}}</p>
-                  </div> -->
                     <h4 class="card-title mb-3">{{actividad.deporte.nombre}}
                       ({{actividad.participantes.length}}<span *ngIf="actividad.deporte.max_participantes">/{{actividad.deporte.max_participantes}}</span>)
                     </h4>
@@ -86,38 +54,7 @@
                 </div>
               </div>
             </div>
-
-            <!-- <div class="row btn-apuntar">
-              <button class="btn btn-success" *ngIf="!actividad.participo" [disabled]="actividad.lleno" (click)="participacion()">
-                Apuntarme
-              </button>
-              <button class="btn btn-danger" *ngIf="actividad.participo" (click)="participacion()">
-                Desapuntarme
-              </button>
-            </div> -->
-
-
-
           </div>
-          <!-- <div class="card-footer text-muted row m-0">
-            <div class="avatar col-auto pl-1 pr-1">
-              <a [routerLink]="['/users', event.creator!.id]">
-                <img src="{{event.creator!.avatar}}" class="rounded-circle" />
-               </a>
-            </div>
-            <div class="col">
-              <div class="name">
-                <a [routerLink]="['/users', event.creator!.id]" class="text-decoration-none">
-                  {{event.creator!.name}}
-                </a>
-                <div><small class="text-muted">{{event.date | date:'dd/MM/y H:mm'}}</small></div>
-              </div>
-            </div>
-            <div class="col-auto text-end text-muted">
-              <div><small>{{event.price | currency:'EUR':'symbol'}}</small></div>
-              <div><small>{{event.distance | number: '1.2-2'}} km</small></div>
-            </div>
-          </div> -->
 
           <div class="card">
             <mgl-map [style]="'mapbox://styles/mapbox/streets-v11'" [zoom]="[zoom]" [center]="[actividad.longitud, actividad.latitud]">
@@ -126,13 +63,6 @@
           </div>
 
         </div>
-
-
-
-
-
-
-
       </div>
 
 
