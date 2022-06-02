@@ -1,16 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse  } from '@angular/common/http';
-import { Observable, throwError, of, ReplaySubject } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { HttpClient  } from '@angular/common/http';
+import { Observable, of, ReplaySubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
-
 import { TokenResponse, UserResponse } from "../interfaces/responses";
 import { User, UserLogin } from "../interfaces/user";
-
-
-import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @Injectable({
@@ -27,24 +23,8 @@ export class AuthService {
     private readonly http: HttpClient,
     private router: Router,
     private toastr: ToastrService,
-
     public jwtHelper: JwtHelperService,
   ) { }
-
-  public isAuthenticated(): boolean {
-    console.log("En auth service");
-
-    const token = localStorage.getItem('token');
-    console.log(token);
-
-    // token = token === null ? undefined : token;
-    if (token) {
-      console.log('¿Expirado? '+this.jwtHelper.isTokenExpired(token));
-      return !this.jwtHelper.isTokenExpired(token); // Comprueba si el token ha expirado, devuelve true/false
-    } else {
-      return false;
-    }
-  }
 
   login(userLogin: UserLogin): Observable<void> {
     const resp = this.http.post(`${this.authURL}/login`, userLogin);
@@ -52,16 +32,12 @@ export class AuthService {
     return of(undefined);
   }
 
-  // receives observable token => saves in localstorage, logged & loginChange as true and relocate to sports. If not, show error.
   saveToken(resp: Observable<any>): void {
     resp.subscribe({
       next: (r) => {
         localStorage.setItem("token", r.access_token);
-
-        console.log("Guardando rol: " + r.user.role);
         localStorage.setItem('role', r.user.role);
         this.role = r.user.role;
-
         this.logged = true;
         this.loginChange$.next(true);
         this.router.navigate(['/inicio']);
@@ -74,6 +50,15 @@ export class AuthService {
     });
   }
 
+  public isAuthenticated(): boolean {
+    const token = localStorage.getItem('token');
+    if (token) {
+      return !this.jwtHelper.isTokenExpired(token); // Comprueba si el token ha expirado, devuelve true/false
+    } else {
+      return false;
+    }
+  }
+
   getRole(){
     this.role = localStorage.getItem('role')!;
     return this.role;
@@ -84,61 +69,6 @@ export class AuthService {
       map(resp => resp)
     )
   }
-
-  // TODO
-  // manejarIsLogged(resp: Observable<any>): void {
-  //   resp.subscribe({
-  //     next: (r) => {
-  //       console.log(r);
-  //       if (r) {
-  //         console.log("en if, true");
-  //         this.logged = true;
-  //         this.loginChange$.next(true);
-  //       } else {
-  //         console.log("en else, false");
-  //         localStorage.removeItem("token");
-  //       }
-
-  //     },
-  //     error: (error) => {
-  //       console.log("en error, false");
-  //       localStorage.removeItem("token");
-  //       console.error(error);
-  //     }
-  //   });
-  // }
-
-  // TODO
-  // isLogged(): Observable<any> {
-  //   console.log(this.logged);
-  //   console.log(localStorage.getItem("token"));
-
-  //   if (!this.logged && localStorage.getItem("token")===null) {
-  //     return of(false);
-  //   } else if (this.logged && localStorage.getItem("token")) {
-  //     return of(true);
-  //   } else if (!this.logged && localStorage.getItem("token")) { //TODO: problema cuando hay token caducado
-
-  //     const validated = this.http.get((`${this.authURL}/validate`)) //TODO, siempre devuelve true
-  //     console.log(validated);
-  //     if(validated) {
-  //       console.log("en true");
-  //       this.logged = true;
-  //       this.loginChange$.next(true);
-  //       return of(true);
-  //     } else {
-  //       localStorage.removeItem("token");
-  //       return of(false);
-  //     }
-
-  //     // const validated = this.http.get((`${this.authURL}/validate`))
-  //     // this.manejarIsLogged(validated);
-  //     // return validated;
-
-  //   } else {
-  //     return of(false);
-  //   }
-  // }
 
   logout(): void {
     localStorage.removeItem("token");
@@ -160,7 +90,5 @@ export class AuthService {
       map(resp => resp)
     )
   }
-
-
 
 }

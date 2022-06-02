@@ -1,8 +1,9 @@
 <div class="container">
-  <form class="mt-4" #userForm="ngForm">
+  <form class="mt-4 p-4" #userForm="ngForm">
 
-    <legend *ngIf="!user.id">Creación nuevo usuario</legend>
-    <legend *ngIf="user.id">Editar usuario {{user.name}}</legend>
+    <h4 *ngIf="!user.id">Nuevo Usuario</h4>
+    <h4 *ngIf="user.id">Editar Usuario ({{user.name}})</h4>
+    <hr class="mt-0">
 
     <div class="mb-3">
       <label for="nombre" class="form-label">Nombre:</label>
@@ -92,8 +93,8 @@
         </div>
       </div>
     </div> -->
-    <div class="form-row">
-      <div class="mb-3 col">
+    <div class="row mb-3">
+      <div class="col-md-6">
         <label for="lat" class="form-label">Latitud:</label>
         <div>
           <input
@@ -111,7 +112,7 @@
           </div>
         </div>
       </div>
-      <div class="mb-3 col">
+      <div class="col-md-6">
         <label for="lng" class="form-label">Longitud:</label>
         <div>
           <input
@@ -130,36 +131,38 @@
         </div>
       </div>
     </div>
-    <div class="mb-3">
-      <label for="role" class="form-label">Rol</label>
-      <div>
-        <select
-          name="role" id="role"
-          class="form-select"
-          #roleModel="ngModel"
-          [(ngModel)]="user.role"
-          [ngClass]="validClasses(roleModel, 'is-valid', 'is-invalid')"
-        >
-          <option value="undefined" disabled selected hidden>Selecciona un rol</option>
-          <option value="admin">Administrador</option>
-          <option value="user">Usuario</option>
-        </select>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="role" class="form-label">Rol</label>
+        <div>
+          <select
+            name="role" id="role"
+            class="form-select"
+            #roleModel="ngModel"
+            [(ngModel)]="user.role"
+            [ngClass]="validClasses(roleModel, 'is-valid', 'is-invalid')"
+          >
+            <option value="undefined" disabled selected hidden>- Seleccionar -</option>
+            <option value="admin">Administrador</option>
+            <option value="user">Usuario</option>
+          </select>
+        </div>
       </div>
-    </div>
-    <div class="mb-3">
-      <label for="activated" class="form-label">Activado</label>
-      <div>
-        <select
-          name="activated" id="activated"
-          class="form-select"
-          #activatedModel="ngModel"
-          [(ngModel)]="user.activated"
-          [ngClass]="validClasses(activatedModel, 'is-valid', 'is-invalid')"
-        >
-          <option value="undefined" disabled selected hidden>¿Activado?</option>
-          <option value=1>Activado</option>
-          <option value=0>Desactivado</option>
-        </select>
+      <div class="col-md-6">
+        <label for="activated" class="form-label">Estado</label>
+        <div>
+          <select
+            name="activated" id="activated"
+            class="form-select"
+            #activatedModel="ngModel"
+            [(ngModel)]="user.activated"
+            [ngClass]="validClasses(activatedModel, 'is-valid', 'is-invalid')"
+          >
+            <option value="undefined" disabled selected hidden>- Seleccionar -</option>
+            <option value=true>Activado</option>
+            <option value=false>Desactivado</option>
+          </select>
+        </div>
       </div>
     </div>
     <!-- <div class="mb-3">
@@ -194,31 +197,18 @@
 
 
 
-    <!-- <p class="text-danger" id="errorInfo"></p> -->
 
-    <!-- <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Create account</button> -->
-
-    <div>
-      <a class="btn btn-secondary me-2 px-5" [routerLink]="['/admin/usuarios']" role="button">
+    <div class="d-flex">
+      <!-- <a class="btn btn-secondary me-2 px-5" [routerLink]="['/admin/usuarios']" role="button">
         Volver
-      </a>
-      <button
-        *ngIf="!user.id"
-        class="btn btn-primary px-5"
-        (click)="setUser()"
-        [disabled]="userForm.invalid"
-        >Crear
+      </a> -->
+      <button *ngIf="!user.id" class="btn btn-primary px-5" (click)="setUser()" [disabled]="userForm.invalid">
+        Crear
       </button>
-      <button
-        *ngIf="user.id"
-        class="btn btn-primary px-5"
-        (click)="editUser()"
-        [disabled]="userForm.invalid || userForm.pristine"
-        >Editar
+      <button *ngIf="user.id" class="btn btn-primary px-5" (click)="editUser()" [disabled]="userForm.invalid || userForm.pristine">
+        Editar
       </button>
-      <button
-        *ngIf="user.id"
-        class="btn btn-danger px-5 ms-2"
+      <button *ngIf="user.id" class="btn btn-danger px-5 ms-auto" (confirm)="deleteUser()"
         [swal]="{
           title: '¿Estás seguro?',
           text: 'El usuario se eliminará de la base de datos.',
@@ -226,9 +216,7 @@
           showCancelButton: true,
           confirmButtonText: 'Sí',
           cancelButtonText: 'No'
-        }"
-        (confirm)="deleteUser()"
-      >
+        }">
         Eliminar
       </button>
     </div>

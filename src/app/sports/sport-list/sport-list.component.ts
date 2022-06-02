@@ -78,9 +78,9 @@ export class SportListComponent implements OnInit {
 
   reiniciar(){
     this.filtro = {
-      // titulo: null,
+      titulo: null,
       deporte: null,
-      distancia: null,
+      // distancia: null,
       fecha_inicio: null,
       fecha_fin: null,
     };

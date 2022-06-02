@@ -33,17 +33,32 @@ body {
   font-size: 1.5rem;
  } */
 
+ .btn-filtros {
+  width: 150px !important;
+  margin-left: 5px;
+}
+
+
 
 /* Panel Admin */
 .mat-header-cell {
   /* TODO: cambiar color header tablas */
-  background: rgb(197, 197, 197);
+  /* background: rgb(197, 197, 197); */
+  font-size: 16px;
+}
+
+.mat-cell {
+  font-size: 15px;
 }
 
 .mat-row:hover {
   /* TODO: cambiar color */
-  background: rgb(204, 204, 204);
+  background: rgb(255, 219, 151);
   cursor: pointer;
+}
+
+.btn-nuevo {
+  width: 300px !important;
 }
 
 

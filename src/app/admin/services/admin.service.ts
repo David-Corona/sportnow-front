@@ -32,8 +32,9 @@ export class AdminService {
 
 
   // Actividades
-  getActividades(): Observable<any> {
-    return this.http.get<any>(`${this.adminURL}/eventos`);
+  getActividades(filtro = ""): Observable<any> {
+    let filter = filtro.length > 0 ? filtro : "";
+    return this.http.get<any>(`${this.adminURL}/eventos?${filter}`);
   }
 
   editActividad(actividad: any): Observable<any>{
@@ -50,8 +51,9 @@ export class AdminService {
 
 
   // Deportes
-  getDeportes(): Observable<any> {
-    return this.http.get(`${this.adminURL}/deportes`);
+  getDeportes(filtro = ""): Observable<any> {
+    let filter = filtro.length > 0 ? filtro : "";
+    return this.http.get(`${this.adminURL}/deportes?${filter}`);
   }
 
   getDeportesPopulares(): Observable<any> {
@@ -59,8 +61,9 @@ export class AdminService {
   }
 
   // Participantes
-  getParticipantes(): Observable<any> {
-    return this.http.get(`${this.adminURL}/eventos-usuarios`);
+  getParticipantes(filtro = ""): Observable<any> {
+    let filter = filtro.length > 0 ? filtro : "";
+    return this.http.get(`${this.adminURL}/eventos-usuarios?${filter}`);
   }
 
   getUsuariosActivos(): Observable<any> {
@@ -68,14 +71,16 @@ export class AdminService {
   }
 
   // Mensajes
-  getMensajes(): Observable<any> {
-    return this.http.get(`${this.adminURL}/eventos-comentarios`);
+  getMensajes(filtro = ""): Observable<any> {
+    let filter = filtro.length > 0 ? filtro : "";
+    return this.http.get(`${this.adminURL}/eventos-comentarios?${filter}`);
   }
 
 
   // Contactos
-  getContactos(): Observable<any> {
-    return this.http.get(`${this.adminURL}/contacto`);
+  getContactos(filtro = ""): Observable<any> {
+    let filter = filtro.length > 0 ? filtro : "";
+    return this.http.get(`${this.adminURL}/contacto?${filter}`);
   }
 
   getContacto(id: number): Observable<any> {

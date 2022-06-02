@@ -54,22 +54,22 @@
 
   <div class="formulario p-4 mt-4">
     <form class="" role="form" id="form-photo" (ngSubmit)="editPhoto()" (change)="loadImage($event)">
-      <h4 class="">Editar avatar</h4>
+      <h4 class="">Editar avatar (Deshabilitado)</h4>
       <hr class="mt-0">
       <div class="form-group">
         <input type="file" class="form-control" name="image"  />
       </div>
       <div class="row">
-        <div class="col w-50">
-          <img class="w-100" id="photo" src="https://back-sport-now.herokuapp.com/{{user.avatar}}" alt="" />
-        </div>
-        <div class="col w-50">
-          <img class="d-none w-100" name="imgPreview" #imgPreview src="{{newAvatar}}" alt="" />
+        <div class="">
+          <img class="" id="photo" src="{{user.avatar}}" width=400 alt="Avatar" />
+        <!-- </div> -->
+        <!-- <div class=""> -->
+          <img class="d-none ms-4" name="imgPreview" #imgPreview width=400 src="{{newAvatar}}" alt="Nueva imagen" />
         </div>
       </div>
       <p class="text-danger" id="errorInfo2"></p>
       <p class="text-success" id="okInfo2"></p>
-      <button type="submit" class="btn btn-primary">Editar avatar</button>
+      <button type="submit" disabled class="btn btn-primary">Editar avatar</button>
     </form>
   </div>
 

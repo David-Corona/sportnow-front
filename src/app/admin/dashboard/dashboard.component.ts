@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
 import { Title } from '@angular/platform-browser';
 import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { SportService } from 'src/app/sports/services/sport.service';
@@ -58,9 +56,7 @@ export class DashboardComponent implements OnInit {
   getDeportesPopulares(){
     this.adminService.getDeportesPopulares().subscribe({
       next: (resp) => {
-        console.log(resp);
         this.deportes=resp.data;
-        console.log(this.deportes);
         this.dataSourceDeportes = new MatTableDataSource(this.deportes);
         this.dataSourceDeportes.sort = this.sortDeportes;
       },
@@ -74,9 +70,7 @@ export class DashboardComponent implements OnInit {
   getUltimasActividades(){
     this.adminService.getUltimasActividades().subscribe({
       next: (resp) => {
-        console.log(resp);
         this.actividades=resp.data;
-        console.log(this.actividades);
         this.dataSourceActividades = new MatTableDataSource(this.actividades);
         this.dataSourceActividades.sort = this.sortActividades;
       },
@@ -90,9 +84,7 @@ export class DashboardComponent implements OnInit {
   getUltimosContactos(){
     this.adminService.getUltimosContactos().subscribe({
       next: (resp) => {
-        console.log(resp);
         this.contactos=resp.data;
-        console.log(this.contactos);
         this.dataSourceContactos = new MatTableDataSource(this.contactos);
         this.dataSourceContactos.sort = this.sortContactos;
       },
@@ -106,9 +98,7 @@ export class DashboardComponent implements OnInit {
   getUsuariosActivos(){
     this.adminService.getUsuariosActivos().subscribe({
       next: (resp) => {
-        console.log(resp);
         this.usuarios=resp.data;
-        console.log(this.usuarios);
         this.dataSourceUsuarios = new MatTableDataSource(this.usuarios);
         this.dataSourceUsuarios.sort = this.sortUsuarios;
       },
@@ -119,12 +109,17 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  // irDetallesdeportes(row: any) {
+  // TODO
+
+  // irDetallesDeporte(row: any) {
   //   this.router.navigate(['/admin/deportes/'+row.id])
   // }
 
-  // irDetallesActividades(row: any) {
+  // irDetallesActividad(row: any) {
   //   this.router.navigate(['/admin/actividades/'+row.id])
   // }
 
+  //irDetallesContacto
+
+  //irDetallesUsuario
 }

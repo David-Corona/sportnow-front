@@ -110,7 +110,7 @@ export class UsersFormComponent implements OnInit {
     this.adminService.createUser(this.user).subscribe({
       next: (resp) => {
         console.log(resp);
-        // this.createdOrEdited = true; //changes boolean to true, so it doesn't ask for confirmation to leave page.
+        // this.createdOrEdited = true; //TODO changes boolean to true, so it doesn't ask for confirmation to leave page.
         this.router.navigate(['/admin/usuarios'])
         this.toastr.success('Usuario creado correctamente');
       },
@@ -121,21 +121,21 @@ export class UsersFormComponent implements OnInit {
     });
   }
 
-  loadImage(event: any): void {
-    this.file = event.target.files[0];
-    const reader = new FileReader();
-    if (this.file && this.file.type.startsWith("image")) {
-      reader.readAsDataURL(this.file);
-    } else {
-      this.toastr.error('Debes subir una imagen');
-    }
+  // loadImage(event: any): void {
+  //   this.file = event.target.files[0];
+  //   const reader = new FileReader();
+  //   if (this.file && this.file.type.startsWith("image")) {
+  //     reader.readAsDataURL(this.file);
+  //   } else {
+  //     this.toastr.error('Debes subir una imagen');
+  //   }
 
-    reader.addEventListener("load", () => {
-      this.newAvatar = reader.result as string;
-      this.renderer.removeClass(this.imgPreview.nativeElement,"d-none");
-    });
+  //   reader.addEventListener("load", () => {
+  //     this.newAvatar = reader.result as string;
+  //     this.renderer.removeClass(this.imgPreview.nativeElement,"d-none");
+  //   });
 
-  }
+  // }
 
 
   validClasses(ngModel: NgModel, validClass: string, errorClass: string) {

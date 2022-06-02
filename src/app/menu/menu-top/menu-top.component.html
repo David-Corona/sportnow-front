@@ -1,12 +1,10 @@
-<!-- TODO: style="background-color: #e3f2fd;" -->
+
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="logged">
   <div class="container-fluid">
 
-    <!-- <a class="navbar-brand" [routerLink]="['/inicio']">SportNow</a> -->
     <div class="navbar-brand ms-2" style="align-content: center;text-align: center;">
       <img src="assets/logo.png" [routerLink]="['/inicio']" height="90" alt="Logo SportNow">
     </div>
-
 
     <ul class="navbar-nav ms-4 me-auto mb-lg-0 h4">
       <li class="nav-item">
@@ -35,31 +33,6 @@
         </a>
       </li>
     </ul>
-      <!-- <li class="nav-item">
-        <a
-          class="nav-link"
-          [routerLink]="['/usuarios/me']"
-          [routerLinkActive]="['active']"
-          >Perfil
-        </a>
-      </li>
-      <li class="nav-item">
-        <button
-          class="nav-link bg-transparent btn shadow-none border-0"
-          (click)="logout()"
-          >Logout
-        </button>
-      </li> -->
-
-      <!-- <li class="nav-item" *ngIf="isAdmin">
-        <a
-          class="nav-link"
-          [routerLink]="['/admin/usuarios']"
-          [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{exact: true}"
-          >Admin
-      </a>
-      </li> -->
 
     <button *ngIf="isAdmin" [routerLink]="['/admin']" type="button" class="btn btn-light me-5">
       Panel Administración
@@ -77,7 +50,7 @@
         <img
           src="{{user.avatar}}"
           class="rounded-circle"
-          height="50"
+          height="80"
           alt="Avatar Usuario"
         />
       </a>
@@ -90,26 +63,6 @@
         </li>
       </ul>
     </div>
-
-
-    <!-- <ul class="navbar-nav me-auto mb-lg-0 h5" *ngIf="!logged">
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          [routerLink]="['/auth/login']"
-          [routerLinkActive]="['active']"
-          >Login
-        </a>
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          [routerLink]="['/auth/register']"
-          [routerLinkActive]="['active']"
-          >Registro
-        </a>
-      </li>
-    </ul> -->
 
   </div>
 </nav>

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, Router} from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
@@ -15,30 +14,11 @@ export class LogoutActivateGuard implements CanActivate {
 
   canActivate(): boolean {
     if (this.authService.isAuthenticated()) {
-      console.log("LogoutGuard: Sí autentif");
-      // this.authService.loginChange$.next(true);
       this.router.navigate(['/inicio']);
       return false;
     }
     this.authService.loginChange$.next(false);
-    console.log("LogoutGuard: No autentif");
     return true;
   }
-
-  // canActivate(
-  //   route: ActivatedRouteSnapshot,
-  //   state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-  //   this.authService.isLogged().subscribe({
-  //     next: resp => {
-  //       if (resp) {
-  //         this.router.navigate(['/inicio']);
-  //       }
-  //     },
-  //     error: error => console.error(error)
-  //   });
-  //   return true;
-
-  // }
 
 }

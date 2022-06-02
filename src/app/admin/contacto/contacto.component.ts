@@ -1,10 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
 import { Title } from '@angular/platform-browser';
 import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
-
-// import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 
@@ -36,9 +33,7 @@ export class ContactoComponent implements OnInit {
   getContactos(){
     this.adminService.getContactos().subscribe({
       next: (resp) => {
-        console.log(resp);
         this.contactos=resp.data;
-        console.log(this.contactos);
         this.dataSource = new MatTableDataSource(this.contactos);
         this.dataSource.sort = this.sort;
       },
@@ -49,7 +44,7 @@ export class ContactoComponent implements OnInit {
   }
 
   irDetalles(row: any) {
-    this.router.navigate(['/admin/contacto/'+row.id])
+    // this.router.navigate(['/admin/contacto/'+row.id])
   }
 
 }

@@ -1,10 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
-
 import { Title } from '@angular/platform-browser';
 import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
-
-// import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 
@@ -20,6 +17,13 @@ export class ActividadesComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatSort) sort!: MatSort;
 
+  filtro: any = {
+    titulo: null,
+    deporte: null,
+    fecha_inicio: null,
+    fecha_fin: null,
+  };
+
   constructor(
     private titleService: Title,
     private adminService: AdminService,
@@ -30,16 +34,13 @@ export class ActividadesComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle("SportNow | Admin Actividades");
-
     this.getActividades();
   }
 
-  getActividades(){
-    this.adminService.getActividades().subscribe({
+  getActividades(query?: string){
+    this.adminService.getActividades(query).subscribe({
       next: (resp) => {
-        console.log(resp);
         this.actividades=resp.data;
-        console.log(this.actividades);
         this.dataSource = new MatTableDataSource(this.actividades);
         this.dataSource.sort = this.sort;
       },
@@ -47,6 +48,37 @@ export class ActividadesComponent implements OnInit {
         console.error(error);
       }
     });
+  }
+
+  filtrar(){
+    let query = '';
+    Object.keys(this.filtro).forEach((key) => {
+      if (this.filtro[key]) {
+        if (key == 'titulo') {
+          query += `&${key}=${this.filtro[key]}`;
+        }
+        if (key == 'deporte') {
+          query += `&deporte_id=${this.filtro[key]}`;
+        }
+        if (key == 'fecha_inicio') {
+          query += `&${key}=${this.filtro[key]}`;
+        }
+        if (key == 'fecha_fin') {
+          query += `&${key}=${this.filtro[key]}`;
+        }
+      }
+    });
+    this.getActividades(query);
+  }
+
+  reiniciar(){
+    this.filtro = {
+      titulo: null,
+      deporte: null,
+      fecha_inicio: null,
+      fecha_fin: null,
+    };
+    this.getActividades();
   }
 
   irDetalles(row: any) {

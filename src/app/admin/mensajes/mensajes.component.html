@@ -1,16 +1,16 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-2 mt-4" id="sticky-sidebar">
-
       <app-sidebar></app-sidebar>
     </div>
 
-    <div class="col mt-4" id="main">
-      <h4>Mensajes</h4>
-      <hr>
+    <div class="col mt-4">
 
-      <div>
-        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 w-100">
+      <div class="mat-elevation-z8">
+        <div class="d-flex justify-content-between align-items-center list-group-item bg-primary">
+          <h5 class="text-white mb-0">Listado de Mensajes</h5>
+        </div>
+        <table mat-table [dataSource]="dataSource" matSort class="w-100">
 
           <!-- <ng-container matColumnDef="evento_id">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> ID Evento </th>
