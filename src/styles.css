@@ -4,7 +4,7 @@
 html, body {
   height: 100%;
   font-size: 1em;
-  background-color: #EBEDF2; /*TODO cambiar a otro color clarito*/
+  background: #EBEDF2; /*TODO cambiar a otro color clarito*/
 }
 
 body {
@@ -12,6 +12,10 @@ body {
   /* font-family: Roboto, "Helvetica Neue", sans-serif; */
 
 }
+
+/* button {
+    background: #1885c7 !important;
+} */
 
 /* p {
   font-size: 1rem;

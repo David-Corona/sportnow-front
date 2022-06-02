@@ -14,6 +14,7 @@ export class SportListComponent implements OnInit {
   filtro: any = {
     titulo: null,
     deporte: null,
+    // distancia: null,
     fecha_inicio: null,
     fecha_fin: null,
   };
@@ -56,6 +57,9 @@ export class SportListComponent implements OnInit {
         if (key == 'deporte') {
           query += `&deporte_id=${this.filtro[key]}`;
         }
+        // if (key == 'distancia') {
+        //   query += `&${key}=${this.filtro[key]}`;
+        // }
         if (key == 'fecha_inicio') {
           query += `&${key}=${this.filtro[key]}`;
         }
@@ -74,8 +78,9 @@ export class SportListComponent implements OnInit {
 
   reiniciar(){
     this.filtro = {
-      titulo: null,
+      // titulo: null,
       deporte: null,
+      distancia: null,
       fecha_inicio: null,
       fecha_fin: null,
     };

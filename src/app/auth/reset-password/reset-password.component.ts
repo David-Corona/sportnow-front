@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class ResetPasswordComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -36,17 +38,16 @@ export class ResetPasswordComponent implements OnInit {
     this.authService.resetPassword(this.password, this.token).subscribe({
       next: (resp) => {
         console.log(resp);
-        Swal.fire("¡Éxito!", "Contraseña actualizada correctamente.", "success");
+        // Swal.fire("¡Éxito!", "Contraseña actualizada correctamente.", "success");
+        this.toastr.success('Contraseña restablecida correctamente');
         this.router.navigate(['/login']);
       },
       error: error => {
         console.error(error);
-        Swal.fire("Error", "Error al actualizar la contraseña.", "error");
+        // Swal.fire("Error", "Error al actualizar la contraseña.", "error");
+        this.toastr.error('Error al actualizar la contraseña');
       }
     });
-
-
-
   }
 
   validClasses(ngModel: NgModel, validClass: string, errorClass: string) {

@@ -1,46 +1,54 @@
 
-<div class="container">
-  <form class="mt-4" (ngSubmit)="tryLogin()">
-    <legend>Bienvenido a SportsNow!</legend>
+<div class="d-flex align-items-center h-100">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card p-4">
+          <div class="card-body">
 
-    <div class="mb-3">
-      <label for="correo">Email:</label>
-      <input
-        type="email"
-        class="form-control"
-        name="email"
-        placeholder="Email"
-        [(ngModel)]="user.email"
-        required
-      />
+            <form class="mt-4" (ngSubmit)="tryLogin()">
+              <div class="mb-4" style="align-content: center;text-align: center;">
+                <img src="assets/logo1.png" height="60" alt="Logo SportNow">
+              </div>
+              <h3>Iniciar Sesión</h3>
+              <p class="text-muted">Introduzca sus credenciales para acceder a su cuenta. Si no tiene cuenta, regístrese
+                <a [routerLink]="['/auth/register']">aquí</a>.
+              </p>
+              <div class="mb-3">
+                <!-- <label for="correo">Email:</label> -->
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  placeholder="Email"
+                  [(ngModel)]="user.email"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <!-- <label for="password">Contraseña:</label> -->
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  id="password"
+                  placeholder="Contraseña"
+                  [(ngModel)]="user.password"
+                  required
+                />
+              </div>
+              <p class="text-danger" id="errorInfo"></p>
+              <div class="d-flex">
+                <button type="submit" class="btn btn-primary me-2">Login</button>
+                <!-- <a class="btn btn-secondary" [routerLink]="['/auth/register']" role="button">Crear cuenta</a> -->
+                <a class="ms-auto" [routerLink]="['/auth/forgot-password']">¿Ha olvidado su contraseña?</a>
+              </div>
+            </form>
+
+
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="mb-3">
-      <label for="password">Contraseña:</label>
-      <input
-        type="password"
-        class="form-control"
-        name="password"
-        id="password"
-        placeholder="Contraseña"
-        [(ngModel)]="user.password"
-        required
-      />
-    </div>
-    <p class="text-danger" id="errorInfo"></p>
-    <div class="d-flex">
-      <button type="submit" class="btn btn-primary me-2">Login</button>
-      <a class="btn btn-secondary" [routerLink]="['/auth/register']" role="button">Crear cuenta</a>
-      <a class="ms-auto" [routerLink]="['/auth/forgot-password']">¿Has olvidado tu contraseña?</a>
-    </div>
-  </form>
-  <!-- <button svGoogleLogin type="button" class="btn btn-info mt-4" (loginOk)="loggedGoogle($event)">
-    <fa-icon [icon]="['fab', 'google']"></fa-icon>
-    Login with Google
-  </button>
-  <button svFbLogin [scopes]="['email', 'public_profile']" class="btn btn-info mt-4 ms-2"
-  (loginOk)="loggedFacebook($event)" (loginError)="showError($event)">
-    <fa-icon [icon]="['fab', 'facebook']"></fa-icon>
-    Login with Facebook
-  </button> -->
+  </div>
 </div>
-

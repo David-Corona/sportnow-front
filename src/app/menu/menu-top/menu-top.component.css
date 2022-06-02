@@ -1,3 +1,12 @@
 .navbar {
-  min-height: 100px;
+  min-height: 110px;
+}
+
+img:hover {
+  cursor: pointer;
+}
+
+.navbar {
+  background-color: #1b4d89 !important;
+  /* #5d6c90 */
 }

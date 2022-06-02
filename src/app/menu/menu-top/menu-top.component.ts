@@ -24,11 +24,13 @@ export class MenuTopComponent implements OnInit {
       next: resp => {
         this.logged = resp;
         this.isAdmin = this.authService.getRole()=="admin" ? true : false;
+        if (this.logged) {
+          this.getUser();
+        }
       },
       error: error => console.error(error)
     });
 
-    this.getUser();
   }
 
   getUser(){

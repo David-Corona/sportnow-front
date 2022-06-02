@@ -3,8 +3,9 @@ import { Router } from '@angular/router';
 import { NgModel } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
-import { User } from '../interfaces/user';
+// import { User } from '../interfaces/user';
 import { AuthService } from '../services/auth.service';
 
 
@@ -35,7 +36,8 @@ export class RegisterComponent implements OnInit {
     private titleService: Title,
     private authService: AuthService,
     private router: Router,
-    private renderer: Renderer2
+    // private renderer: Renderer2,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -63,14 +65,13 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  // checks validity of lng and lat without being touched.
   validClasses(ngModel: NgModel, validClass: string, errorClass: string) {
     if (ngModel === this.lngModel || ngModel === this.latModel){
-      return {
+      return { // valida sin ser "tocado"
         [validClass]: ngModel.valid,
         [errorClass]: ngModel.invalid,
       };
-    } else { //only validates when it has been touched
+    } else { // sólo valida al ser "tocado"
       return {
         [validClass]: ngModel.touched && ngModel.valid,
         [errorClass]: ngModel.touched && ngModel.invalid,
@@ -87,9 +88,11 @@ export class RegisterComponent implements OnInit {
       next: (e) => {
         console.log(e);
         this.router.navigate(['/login']);
+        this.toastr.success('Cuenta creada correctamente');
       },
       error: error => {
         console.error(error);
+        this.toastr.success('Error al crear la cuenta');
         // Swal.fire("Error",
         // "There was an error creating the account.<br/>" + "Check that the email isn't already in use.",
         // "error");

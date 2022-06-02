@@ -1,13 +1,18 @@
 
+
+
+#miCarousel {
+  width: 80% !important;
+}
+
+.card {
+  text-align: center;
+}
+
 .card:hover {
   /* TODO: cambiar color */
   background-color: rgb(204, 204, 204) !important;
   cursor: pointer;
-}
-
-
-.card {
-  text-align: center;
 }
 
 a {
