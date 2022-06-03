@@ -25,7 +25,7 @@ export class SportListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Actividades");
+    this.titleService.setTitle("Actividades | SportNow");
 
     this.getActividades();
   }

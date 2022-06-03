@@ -103,7 +103,7 @@
     <!-- <hr> -->
   </div>
   <div class="row">
-    <div class="card col bg-light me-1" *ngFor="let evento of eventos" [routerLink]="['/actividades', evento.id]">
+    <div class="card col me-1" *ngFor="let evento of eventos" [routerLink]="['/actividades', evento.id]">
       <div class="card-body" >
         <h5 class="card-title mt-2 mb-2">{{evento.deporte.nombre}}</h5>
         <p class="card-text mb-2">{{evento.titulo}}</p>

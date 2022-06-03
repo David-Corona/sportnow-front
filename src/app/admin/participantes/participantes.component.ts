@@ -26,7 +26,7 @@ export class ParticipantesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Admin Participantes");
+    this.titleService.setTitle("Admin Participantes | SportNow");
     this.getParticipantes();
   }
 

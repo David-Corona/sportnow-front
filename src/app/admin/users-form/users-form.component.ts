@@ -39,7 +39,7 @@ export class UsersFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Admin Usuario");
+    this.titleService.setTitle("Admin Usuario | SportNow");
     // this.resetForm();
 
 

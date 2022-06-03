@@ -4,11 +4,24 @@
 
 .filtros{
   width: 150px !important;
+  /* background-color: #ffd82a !important;
+  border: #ecc14b;
+  color: #1b4d89 !important; */
 }
 
+.filtros:hover {
+  /* background-color: #ffd82a !important;
+  border: #ecc14b;
+  color: #1b4d89 !important; */
+}
 
 .nuevo{
   width: 300px !important;
+}
+
+.list-group-item, .card-header {
+  /* background-color: #1b4d89 !important; */
+  background-color: #2975d1 !important;
 }
 
 /* .card {

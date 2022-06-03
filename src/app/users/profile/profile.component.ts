@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Perfil");
+    this.titleService.setTitle("Perfil | SportNow");
 
     // Carga router data el usuario y booleano si es el perfil del usuario logueado
     console.log( this.route.snapshot.data["user"]);

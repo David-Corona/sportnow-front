@@ -20,7 +20,7 @@ export class ForgotPasswordComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Contraseña Olvidada");
+    this.titleService.setTitle("Contraseña Olvidada | SportNow");
     this.email = "";
   }
 

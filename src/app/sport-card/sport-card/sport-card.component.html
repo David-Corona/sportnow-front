@@ -14,7 +14,7 @@
           <div>
             <p class="card-text"><b>Título:</b> {{evento.titulo}}</p>
             <p class="card-text"><b>Descripción:</b> {{evento.descripcion}}</p>
-            <p class="card-text"><b>Dirección:</b> {{evento.direccion}} (Distancia: {{evento.distancia | number: '1.2-2'}} km)</p>
+            <p class="card-text"><b>Dirección:</b> {{evento.direccion}} <span *ngIf="evento.distancia">(Distancia: {{evento.distancia | number: '1.2-2'}} km)</span></p>
           </div>
           <div class="mt-auto">
             <a [routerLink]="['/actividades', evento.id]" class="btn btn-primary me-3">Detalles</a>

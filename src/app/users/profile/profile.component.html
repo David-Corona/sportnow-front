@@ -53,7 +53,7 @@
 
       <div class="tab-pane fade" id="actividades" role="tabpanel" aria-labelledby="actividades-tab">
         <div>
-          <div class="list-group-item active">Próximas Actividades ({{eventos.length}})</div>
+          <div class="list-group-item active h5 mb-0">Próximas Actividades ({{eventos.length}})</div>
           <div *ngIf="eventos.length">
             <app-sport-card *ngFor="let evento of eventos" [evento]="evento"></app-sport-card>
           </div>
@@ -62,7 +62,7 @@
 
       <div class="tab-pane fade" id="historial" role="tabpanel" aria-labelledby="historial-tab">
         <div>
-          <div class="list-group-item active">Historial Actividades ({{eventosPasados.length}})</div>
+          <div class="list-group-item active h5 mb-0">Historial Actividades ({{eventosPasados.length}})</div>
           <div *ngIf="eventosPasados.length">
             <app-sport-card *ngFor="let evento of eventosPasados" [evento]="evento"></app-sport-card>
           </div>

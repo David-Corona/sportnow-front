@@ -27,7 +27,7 @@ export class DeportesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Admin Contacto");
+    this.titleService.setTitle("Admin Contacto | SportNow");
     this.getDeportes();
   }
 

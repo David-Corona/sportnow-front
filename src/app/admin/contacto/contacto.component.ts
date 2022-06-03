@@ -26,7 +26,7 @@ export class ContactoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Admin Contacto");
+    this.titleService.setTitle("Admin Contacto | SportNow");
     this.getContactos();
   }
 
@@ -44,7 +44,7 @@ export class ContactoComponent implements OnInit {
   }
 
   irDetalles(row: any) {
-    // this.router.navigate(['/admin/contacto/'+row.id])
+    this.router.navigate(['/admin/contacto/'+row.id])
   }
 
 }

@@ -4,8 +4,7 @@ import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
-import { SportService } from 'src/app/sports/services/sport.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -26,15 +25,10 @@ export class DashboardComponent implements OnInit {
   dataSourceActividades: MatTableDataSource<any>;
   dataSourceContactos: MatTableDataSource<any>;
   dataSourceUsuarios: MatTableDataSource<any>;
-  @ViewChild(MatSort) sortDeportes!: MatSort;
-  @ViewChild(MatSort) sortActividades!: MatSort;
-  @ViewChild(MatSort) sortContactos!: MatSort;
-  @ViewChild(MatSort) sortUsuarios!: MatSort;
 
   constructor(
     private titleService: Title,
     private adminService: AdminService,
-    private sportService: SportService,
     private router: Router,
     private toastr: ToastrService,
   ) {
@@ -45,7 +39,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Admin Dashboard");
+    this.titleService.setTitle("Admin Dashboard | SportNow");
 
     this.getDeportesPopulares();
     this.getUltimasActividades();
@@ -58,7 +52,6 @@ export class DashboardComponent implements OnInit {
       next: (resp) => {
         this.deportes=resp.data;
         this.dataSourceDeportes = new MatTableDataSource(this.deportes);
-        this.dataSourceDeportes.sort = this.sortDeportes;
       },
       error: error => {
         console.error(error);
@@ -72,7 +65,6 @@ export class DashboardComponent implements OnInit {
       next: (resp) => {
         this.actividades=resp.data;
         this.dataSourceActividades = new MatTableDataSource(this.actividades);
-        this.dataSourceActividades.sort = this.sortActividades;
       },
       error: error => {
         console.error(error);
@@ -86,7 +78,6 @@ export class DashboardComponent implements OnInit {
       next: (resp) => {
         this.contactos=resp.data;
         this.dataSourceContactos = new MatTableDataSource(this.contactos);
-        this.dataSourceContactos.sort = this.sortContactos;
       },
       error: error => {
         console.error(error);
@@ -100,7 +91,6 @@ export class DashboardComponent implements OnInit {
       next: (resp) => {
         this.usuarios=resp.data;
         this.dataSourceUsuarios = new MatTableDataSource(this.usuarios);
-        this.dataSourceUsuarios.sort = this.sortUsuarios;
       },
       error: error => {
         console.error(error);

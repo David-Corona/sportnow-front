@@ -17,7 +17,7 @@ export class ContactoDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Admin Contacto");
+    this.titleService.setTitle("Admin Contacto | SportNow");
 
     this.contacto = this.route.snapshot.data["contacto"].data;
     console.log(this.contacto);

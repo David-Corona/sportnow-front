@@ -33,7 +33,7 @@ export class ActividadesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Admin Actividades");
+    this.titleService.setTitle("Admin Actividades | SportNow");
     this.getActividades();
   }
 

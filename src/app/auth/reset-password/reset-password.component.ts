@@ -28,7 +28,7 @@ export class ResetPasswordComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Nueva Contraseña");
+    this.titleService.setTitle("Nueva Contraseña | SportNow");
     this.resetForm();
     this.token = this.route.snapshot.paramMap.get('token')!;
     console.log(this.token);

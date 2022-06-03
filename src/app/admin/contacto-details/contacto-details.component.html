@@ -1,8 +1,8 @@
 <div class="container">
-  <form class="mt-4" #contactoForm="ngForm">
+  <form class="mt-4 p-4" #contactoForm="ngForm">
 
-    <legend>Detalles mensaje contacto</legend>
-
+    <h4>Detalles Contacto</h4>
+    <hr class="mt-0">
 
     <div class="row mt-4">
       <div class="mb-3 col-md-6">
@@ -100,15 +100,10 @@
       </div>
     </div>
 
-
-
-
-
     <div>
-      <a class="btn btn-secondary me-2 px-5" [routerLink]="['/admin/contacto']" role="button">
+      <a class="btn btn-primary me-2 px-5" [routerLink]="['/admin/contacto']" role="button">
         Volver
       </a>
-
     </div>
 
   </form>

@@ -44,14 +44,14 @@ export class SportFormComponent implements OnInit {
 
     console.log(this.route.snapshot);
     if (this.route.snapshot.params["nuevo"]) {
-      this.titleService.setTitle("SportNow | Nueva Actividad");
+      this.titleService.setTitle("Nueva Actividad | SportNow");
       this.actividad.participar = false;
       console.log("en nuevo admin");
 
     }
 
     if (this.route.snapshot.data["event"]) {
-      this.titleService.setTitle("SportNow | Editar Actividad");
+      this.titleService.setTitle("Editar Actividad | SportNow");
       this.actividad = this.route.snapshot.data["event"].data;
       this.actividad.fecha = this.actividad.fecha.replace(" ", "T");
       console.log(this.actividad);

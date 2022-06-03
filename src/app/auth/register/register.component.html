@@ -7,7 +7,7 @@
 
             <form class="mt-4" #registerForm="ngForm" (ngSubmit)="createAccount()">
               <div class="mb-4" style="align-content: center;text-align: center;">
-                <img src="assets/logo1.png" [routerLink]="['/auth/login']" height="60" alt="Logo SportNow">
+                <img src="assets/logo2.png" [routerLink]="['/auth/login']" height="60" alt="Logo SportNow">
               </div>
               <h3>Registro</h3>
               <p class="text-muted">Introduzca sus datos para crear la cuenta. Active geolocalización para registrar sus coordenadas aproximadas.</p>
@@ -140,21 +140,6 @@
                   </div>
                 </div>
               </div>
-              <!-- <div class="mb-3">
-                <label for="image">Avatar</label>
-                <div>
-                  <input
-                    type="file"
-                    (change)="loadImage($event)"
-                    class="form-control"
-                    name="avatar"
-                    (ngModel)="newUser.avatar"
-                    #avatarModel="ngModel"
-                    [ngClass]="validClasses(avatarModel, 'is-valid', 'is-invalid')"
-                  />
-                </div>
-              </div>
-              <img src="{{stringAvatar}}" alt="" #imgPreview class="img-thumbnail d-none" /> -->
               <p class="text-danger" id="errorInfo"></p>
               <!-- <a class="btn btn-secondary me-2" [routerLink]="['/auth/login']" role="button">Go back</a> -->
               <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Registrar</button>

@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Login");
+    this.titleService.setTitle("Login | SportNow");
     this.resetForm();
     this.geolocate();
   }

@@ -21,8 +21,23 @@ mgl-map {
   /* margin-top: auto !important; */
 }
 
+.btn {
+  font-size: 18px !important;
+}
+
 /* .card .btn {
   width: 140px !important;
 } */
 
+#detalles p {
+  font-size: 18px;
+}
+
+#comentarios .btn {
+  width: 150px !important;
+}
+
+.white {
+  background-color: white !important;
+}
 

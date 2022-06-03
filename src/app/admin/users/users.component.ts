@@ -34,7 +34,7 @@ export class UsersComponent implements OnInit  {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Admin Usuarios");
+    this.titleService.setTitle("Admin Usuarios | SportNow");
     this.getUsuarios();
   }
 

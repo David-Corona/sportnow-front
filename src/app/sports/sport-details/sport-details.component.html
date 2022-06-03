@@ -14,7 +14,7 @@
           <span class="badge bg-primary">{{actividad.participantes.length}}</span>
         </a>
       </li>
-      <li class="nav-item" role="presentation">
+      <li class="nav-item" role="presentation" *ngIf="actividad.participo">
         <a class="nav-link" id="comentarios-tab" data-bs-toggle="tab" href="#comentarios" role="tab" aria-controls="comentarios" aria-selected="false">
           Comentarios
           <span class="badge bg-primary">{{actividad.comentarios.length}}</span>
@@ -45,10 +45,10 @@
                     <p class="card-text"><b>Dirección:</b> {{actividad.direccion}} (Distancia: {{actividad.distancia | number: '1.2-2'}} km)</p>
                 </div>
                 <div class="row btn-apuntar mt-auto mb-2">
-                  <button class="btn btn-success" *ngIf="!actividad.participo" [disabled]="actividad.lleno" (click)="participacion()">
+                  <button class="btn btn-success" *ngIf="!actividad.participo" [disabled]="actividad.lleno || actividad.pasado" (click)="participacion()">
                     Apuntarme
                   </button>
-                  <button class="btn btn-danger" *ngIf="actividad.participo" (click)="participacion()">
+                  <button class="btn btn-danger" *ngIf="actividad.participo" [disabled]="actividad.pasado" (click)="participacion()">
                     Desapuntarme
                   </button>
                 </div>
@@ -67,34 +67,34 @@
 
 
       <div class="tab-pane fade" id="participantes" role="tabpanel" aria-labelledby="participantes-tab">
-        <li class="list-group-item active">
-          Participantes ({{actividad.participantes.length}}<span *ngIf="actividad.deporte.max_participantes">/{{actividad.deporte.max_participantes}}</span>)
+        <li class="list-group-item active ">
+          <h5 class="mb-0">Participantes ({{actividad.participantes.length}}<span *ngIf="actividad.deporte.max_participantes">/{{actividad.deporte.max_participantes}}</span>)</h5>
         </li>
-        <li class="list-group-item" *ngFor="let participante of actividad.participantes">
+        <li class="list-group-item white d-flex align-items-center" *ngFor="let participante of actividad.participantes" style="height: 100px;">
           <a [routerLink]="['/usuarios', participante.user_id]">
-            <img class="rounded-circle float-start me-3" style="width: 40px;" src="{{participante.usuario.avatar}}" alt="" />
+            <img class="rounded-circle float-start me-4" style="width: 80px;" src="{{participante.usuario.avatar}}" alt="" />
           </a>
           <div>
-            <div><a class="text-decoration-none" [routerLink]="['/usuarios', participante.user_id]">{{participante.usuario.name}}</a></div>
+            <div><a class="text-decoration-none h5" [routerLink]="['/usuarios', participante.user_id]">{{participante.usuario.name}}</a></div>
             <div>
-              <small>¿PASAR ESTO A DERECHA? Apuntado a las {{participante.created_at | date:'H:mm dd/MM/y'}}</small>
+              <small>Apuntado a las {{participante.created_at | date:'H:mm dd/MM/y'}}</small>
             </div>
           </div>
         </li>
       </div>
 
 
-      <div class="tab-pane fade" id="comentarios" role="tabpanel" aria-labelledby="comentarios-tab">
+      <div class="tab-pane fade" id="comentarios" role="tabpanel" aria-labelledby="comentarios-tab" *ngIf="actividad.participo">
           <ul class="list-group mb-4">
-            <li class="list-group-item active">Comentarios ({{actividad.comentarios.length}})</li>
-            <li class="list-group-item" *ngFor="let comentario of actividad.comentarios">
+            <li class="list-group-item active h5 mb-0">Comentarios ({{actividad.comentarios.length}})</li>
+            <li class="list-group-item white" *ngFor="let comentario of actividad.comentarios">
               <div class="row">
                 <div class="col-auto text-center user-info">
                   <a [routerLink]="['/usuarios', comentario.user_id]">
-                    <img class="avatar rounded-circle" style="width: 60px;" src="{{comentario.autor.avatar}}" />
+                    <img class="avatar rounded-circle" style="width: 80px;" src="{{comentario.autor.avatar}}" />
                   </a>
                   <div>
-                    <small><a [routerLink]="['/usuarios', comentario.user_id]" class="text-decoration-none">{{comentario.autor.name}}</a></small>
+                    <a [routerLink]="['/usuarios', comentario.user_id]" class="text-decoration-none">{{comentario.autor.name}}</a>
                   </div>
                   <div><small>{{comentario.created_at | date:'dd/MM/y H:mm'}}</small></div>
                 </div>
@@ -106,8 +106,8 @@
           </ul>
           <!-- TODO: hacer que solo puedan postear participantes? *ngIf="event.attend" -->
           <!-- TODO: poner comentario propio a la izquierda? -->
-          <form (ngSubmit)="postComment()">
-            <span class="list-group-item active">Nuevo comentario:</span>
+          <form (ngSubmit)="postComment()" *ngIf="!actividad.pasado">
+            <span class="list-group-item active h5 mb-0">Nuevo comentario:</span>
             <textarea
               class="form-control"
               name="comment"
@@ -115,7 +115,7 @@
               required
               rows="4"
             ></textarea>
-            <button type="submit" class="btn btn-primary float-end mt-1">Enviar</button>
+            <button type="submit" class="btn btn-primary mt-1">Enviar</button> <!-- float-end -->
           </form>
       </div>
 

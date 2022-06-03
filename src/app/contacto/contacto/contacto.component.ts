@@ -34,7 +34,7 @@ export class ContactoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Contacto");
+    this.titleService.setTitle("Contacto | SportNow");
   }
 
   contactar(){

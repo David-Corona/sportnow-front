@@ -18,7 +18,7 @@ export class InicioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Inicio");
+    this.titleService.setTitle("Inicio | SportNow");
 
     this.getProximasActividades();
   }

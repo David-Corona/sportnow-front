@@ -41,7 +41,7 @@ export class EditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Editar Perfil");
+    this.titleService.setTitle("Editar Perfil | SportNow");
     this.user = this.route.snapshot.data["user"].data; //get the user from the router's data.
     console.log(this.user);
   }

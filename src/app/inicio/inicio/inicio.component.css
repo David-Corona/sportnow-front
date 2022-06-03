@@ -1,6 +1,4 @@
 
-
-
 #miCarousel {
   width: 80% !important;
 }
@@ -10,8 +8,9 @@
 }
 
 .card:hover {
-  /* TODO: cambiar color */
-  background-color: rgb(204, 204, 204) !important;
+  /* TODO: cambiar color? */
+  /* background: #ffe298; */
+  background: #c5daf3;
   cursor: pointer;
 }
 
@@ -22,5 +21,4 @@ a {
 
 a:hover {
   text-decoration: underline;
-  /* color: rgb(180, 180, 180) !important; */
 }

@@ -12,15 +12,15 @@
             <div class="d-flex justify-content-between align-items-center list-group-item bg-primary">
               <h5 class="text-white mb-0">Deportes con más actividades</h5>
             </div>
-            <table mat-table [dataSource]="dataSourceDeportes" matSort class="w-100">
+            <table mat-table [dataSource]="dataSourceDeportes" class="w-100">
 
               <ng-container matColumnDef="deporte.nombre">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Deporte </th>
+                <th mat-header-cell *matHeaderCellDef> Deporte </th>
                 <td mat-cell *matCellDef="let element"> {{element.deporte.nombre}} </td>
               </ng-container>
 
               <ng-container matColumnDef="total">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Actividades </th>
+                <th mat-header-cell *matHeaderCellDef> Total Actividades </th>
                 <td mat-cell *matCellDef="let element"> {{element.total}} </td>
               </ng-container>
 
@@ -36,15 +36,15 @@
             <div class="d-flex justify-content-between align-items-center list-group-item bg-primary">
               <h5 class="text-white mb-0">Usuarios más activos</h5>
             </div>
-            <table mat-table [dataSource]="dataSourceUsuarios" matSort class="mat-elevation-z8 w-100">
+            <table mat-table [dataSource]="dataSourceUsuarios" class="mat-elevation-z8 w-100">
 
               <ng-container matColumnDef="usuario.name">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
+                <th mat-header-cell *matHeaderCellDef> Usuario </th>
                 <td mat-cell *matCellDef="let element"> {{element.usuario.name }} </td>
               </ng-container>
 
               <ng-container matColumnDef="total">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
+                <th mat-header-cell *matHeaderCellDef> Total </th>
                 <td mat-cell *matCellDef="let element"> {{element.total}} </td>
               </ng-container>
 
@@ -62,20 +62,20 @@
             <div class="d-flex justify-content-between align-items-center list-group-item bg-primary">
               <h5 class="text-white mb-0">Últimos mensajes recibidos</h5>
             </div>
-            <table mat-table [dataSource]="dataSourceContactos" matSort class="mat-elevation-z8 w-100">
+            <table mat-table [dataSource]="dataSourceContactos" class="mat-elevation-z8 w-100">
 
               <ng-container matColumnDef="created_at">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+                <th mat-header-cell *matHeaderCellDef> Fecha </th>
                 <td mat-cell *matCellDef="let element"> {{element.created_at | date:'dd/MM/y H:mm'}} </td>
               </ng-container>
 
               <ng-container matColumnDef="asunto">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Asunto </th>
+                <th mat-header-cell *matHeaderCellDef> Asunto </th>
                 <td mat-cell *matCellDef="let element"> {{element.asunto}} </td>
               </ng-container>
 
               <ng-container matColumnDef="autor.name">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
+                <th mat-header-cell *matHeaderCellDef> Usuario </th>
                 <td mat-cell *matCellDef="let element"> {{element.autor.name}} </td>
               </ng-container>
 
@@ -91,20 +91,20 @@
             <div class="d-flex justify-content-between align-items-center list-group-item bg-primary">
               <h5 class="text-white mb-0">Últimas actividades creadas</h5>
             </div>
-            <table mat-table [dataSource]="dataSourceActividades" matSort class="mat-elevation-z8 w-100">
+            <table mat-table [dataSource]="dataSourceActividades" class="mat-elevation-z8 w-100">
 
               <ng-container matColumnDef="created_at">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+                <th mat-header-cell *matHeaderCellDef> Fecha </th>
                 <td mat-cell *matCellDef="let element"> {{element.created_at | date:'dd/MM/y H:mm'}} </td>
               </ng-container>
 
               <ng-container matColumnDef="titulo">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Título </th>
+                <th mat-header-cell *matHeaderCellDef> Título </th>
                 <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
               </ng-container>
 
               <ng-container matColumnDef="deporte.nombre">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Deporte </th>
+                <th mat-header-cell *matHeaderCellDef> Deporte </th>
                 <td mat-cell *matCellDef="let element"> {{element.deporte.nombre}} </td>
               </ng-container>
 

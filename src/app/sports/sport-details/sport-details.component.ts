@@ -13,11 +13,8 @@ import { Router } from '@angular/router';
 export class SportDetailsComponent implements OnInit {
 
   actividad: any = [];
-  // comentarios: any = [];
-  // participantes: any = [];
   nuevoComentario: string = "";
   zoom = 14;
-
 
   constructor(
     private titleService: Title,
@@ -28,7 +25,7 @@ export class SportDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Detalles Actividad Deportiva");
+    this.titleService.setTitle("Detalles Actividad | SportNow");
     console.log( this.route.snapshot);
     this.actividad = this.route.snapshot.data["event"].data;
     // this.participantes = this.route.snapshot.data["event"].data.participantes;
@@ -72,6 +69,7 @@ export class SportDetailsComponent implements OnInit {
     } else {
       this.sportService.apuntarActividad(this.actividad.id).subscribe({
         next: (resp: any) => {
+          console.log(resp);
           this.actividad.participantes.push(resp.data);
           this.actividad.participo = true;
           this.toastr.success('Apuntado correctamente!');

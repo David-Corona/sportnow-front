@@ -28,7 +28,7 @@ export class MensajesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle("SportNow | Admin Mensajes");
+    this.titleService.setTitle("Admin Mensajes | SportNow");
     this.getMensajes();
   }
 

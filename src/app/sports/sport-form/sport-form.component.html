@@ -1,7 +1,13 @@
 
 
-<div class="container">
+<div class="container pb-4">
+
+
   <form #eventForm="ngForm" class="mt-4" novalidate>
+
+    <h4 *ngIf="!actividad.id">Nueva Actividad</h4>
+    <h4 *ngIf="actividad.id">Editar Actividad</h4>
+    <hr class="mt-0">
 
     <div class="mb-3">
       <label for="titulo" class="form-label">Título</label>
@@ -30,7 +36,6 @@
     <div class="mb-3">
       <label for="deporte" class="form-label">Tipo de Actividad</label>
       <div>
-        <!-- TODO: Cargar deportes API, o completar con más deportes -->
         <select
           name="deporte" id="deporte"
           class="form-select"
@@ -44,10 +49,6 @@
           <option value="3">Fútbol sala</option>
           <option value="4">Pádel</option>
           <option value="5">Running</option>
-          <!-- TODO -->
-          <!-- <option *ngFor="let xxx of xxxs" [value]="xxx.dep">
-            {{ xxx.dep }}
-          </option> -->
         </select>
         <div class="invalid-feedback">
           El tipo de actividad es obligatorio.
@@ -141,43 +142,15 @@
         <mgl-control mglGeocoder (result)="cambiarPosicion($event.result)"></mgl-control>
       </mgl-map>
     </div>
-    <!-- (click)="mapClicked($event)" -->
 
-    <div>
-      <!-- <button
-        class="btn btn-primary px-5 mb-4"
-        (click)="crearActividad()"
-        [disabled]="eventForm.invalid"
-        >Crear
-      </button> -->
-      <!-- *ngIf="!actividad.id" -->
-      <!-- <button
-        *ngIf="anEvent.id"
-        class="btn btn-primary px-5 mb-4"
-        (click)="editEvent()"
-        [disabled]="eventForm.invalid || eventForm.pristine"
-        >Edit
-      </button> -->
-
-      <button
-        *ngIf="!actividad.id"
-        class="btn btn-primary px-5"
-        (click)="crearActividad()"
-        [disabled]="eventForm.invalid"
-      >
+    <div class="d-flex">
+      <button *ngIf="!actividad.id" class="btn btn-primary px-5" (click)="crearActividad()" [disabled]="eventForm.invalid">
         Crear
       </button>
-      <button
-        *ngIf="actividad.id"
-        class="btn btn-primary px-5"
-        (click)="editActividad()"
-        [disabled]="eventForm.invalid || eventForm.pristine"
-      >
+      <button *ngIf="actividad.id" class="btn btn-primary px-5" (click)="editActividad()" [disabled]="eventForm.invalid || eventForm.pristine">
         Editar
       </button>
-      <button
-        *ngIf="actividad.id"
-        class="btn btn-danger px-5 ms-2"
+      <button *ngIf="actividad.id" class="btn btn-danger px-5 ms-auto" (confirm)="deleteActividad()"
         [swal]="{
           title: '¿Estás seguro?',
           text: 'La actividad junto a los apuntados se eliminarán de la base de datos.',
@@ -185,13 +158,11 @@
           showCancelButton: true,
           confirmButtonText: 'Sí',
           cancelButtonText: 'No'
-        }"
-        (confirm)="deleteActividad()"
-      >
+        }">
         Eliminar
       </button>
-
     </div>
+
   </form>
 </div>
 

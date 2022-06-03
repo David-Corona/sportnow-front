@@ -33,6 +33,12 @@ body {
   font-size: 1.5rem;
  } */
 
+ .list-group-item, .card-header {
+  /* background-color: #1b4d89 !important; */
+  background-color: #2975d1 !important;
+}
+
+
  .btn-filtros {
   width: 150px !important;
   margin-left: 5px;
@@ -53,13 +59,15 @@ body {
 
 .mat-row:hover {
   /* TODO: cambiar color */
-  background: rgb(255, 219, 151);
+  /* background: #ffe298; */
+  background: #c5daf3;
   cursor: pointer;
 }
 
 .btn-nuevo {
   width: 300px !important;
 }
+
 
 
 /* TODO: mejorar estilo toastr */
@@ -78,23 +86,4 @@ body {
 
 .mapboxgl-ctrl-geocoder {
   min-width: 500px !important;
-
-  /* width: 500px !important; */
 }
-
-  /* .geocoder {
-    position: absolute;
-    z-index: 1;
-    width: 50%;
-    left: 50%;
-    margin-left: -25%;
-    top: 10px;
-    }
-
-  .mapboxgl-ctrl-geocoder {
-      width: 300px !important;
-  }
-
-  .mapboxgl-ctrl-geocoder--input {
-    width: 300px !important;
- } */

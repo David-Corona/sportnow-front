@@ -3,7 +3,7 @@
   <div class="container-fluid">
 
     <div class="navbar-brand ms-2" style="align-content: center;text-align: center;">
-      <img src="assets/logo.png" [routerLink]="['/inicio']" height="90" alt="Logo SportNow">
+      <img src="assets/logo2.png" [routerLink]="['/inicio']" height="40" alt="Logo SportNow">
     </div>
 
     <ul class="navbar-nav ms-4 me-auto mb-lg-0 h4">
@@ -38,9 +38,14 @@
       Panel Administración
     </button>
 
-    <div class="nav-item dropdown me-4">
+    <div class="nav-item dropdown me-4 d-flex">
+      <!-- <div class="d-flex nav-link dropdown-toggle align-items-center py-0" href="#"
+      id="navbarDropdownMenuLink"
+      role="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"> -->
       <a
-        class="nav-link dropdown-toggle d-flex align-items-center"
+        class="nav-link dropdown-toggle d-flex align-items-center py-0"
         href="#"
         id="navbarDropdownMenuLink"
         role="button"
@@ -50,10 +55,13 @@
         <img
           src="{{user.avatar}}"
           class="rounded-circle"
-          height="80"
+          height="60"
           alt="Avatar Usuario"
         />
       </a>
+      <!-- {{user.name}} -->
+    <!-- </div> -->
+
       <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         <li>
           <a class="dropdown-item" [routerLink]="['/usuarios/me']">Mi Perfil</a>
