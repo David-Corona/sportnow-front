@@ -11,6 +11,7 @@ import { ContactoDetailsComponent } from './contacto-details/contacto-details.co
 import { ContactoComponent } from './contacto/contacto.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DeportesComponent } from './deportes/deportes.component';
+import { LogsComponent } from './logs/logs.component';
 import { MensajesComponent } from './mensajes/mensajes.component';
 import { ParticipantesComponent } from './participantes/participantes.component';
 import { ContactoResolver } from './resolvers/contacto.resolver';
@@ -137,6 +138,14 @@ const routes: Routes = [
     }
   },
 
+  {
+    path: 'admin/logs',
+    component: LogsComponent,
+    canActivate: [RolesGuard],
+    data: {
+      expectedRole: 'admin'
+    }
+  },
 
 
 

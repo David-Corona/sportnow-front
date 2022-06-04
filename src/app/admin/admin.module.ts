@@ -19,7 +19,7 @@ import { ContactoDetailsComponent } from './contacto-details/contacto-details.co
 import { ParticipantesComponent } from './participantes/participantes.component';
 import { MensajesComponent } from './mensajes/mensajes.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-// import {MatSidenavModule} from '@angular/material/sidenav';
+import { LogsComponent } from './logs/logs.component';
 
 
 
@@ -36,7 +36,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ContactoDetailsComponent,
     ParticipantesComponent,
     MensajesComponent,
-    DashboardComponent
+    DashboardComponent,
+    LogsComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +45,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     FormsModule,
     MatTableModule,
     MatPaginatorModule,
-    // MatSidenavModule,
     MatSortModule,
     SweetAlert2Module,
   ]

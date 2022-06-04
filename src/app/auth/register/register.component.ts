@@ -80,7 +80,7 @@ export class RegisterComponent implements OnInit {
       },
       error: error => {
         console.error(error);
-        this.toastr.success('Error al crear la cuenta');
+        this.toastr.error('Error al crear la cuenta');
       }
     });
   }

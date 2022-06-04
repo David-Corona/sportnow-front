@@ -91,4 +91,11 @@ export class AdminService {
     return this.http.get<any>(`${this.adminURL}/contacto-ultimos`);
   }
 
+    // Logs
+    getLogs(filtro = ""): Observable<any> {
+      let filter = filtro.length > 0 ? filtro : "";
+      return this.http.get(`${this.adminURL}/logs?${filter}`);
+    }
+
+
 }
