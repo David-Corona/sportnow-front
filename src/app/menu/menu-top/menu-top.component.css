@@ -14,3 +14,15 @@ img:hover {
   /* background-color: #1b4d89 !important; */
   /* #5d6c90 */
 }
+
+.nav-link {
+  color: rgb(223, 220, 255) !important;
+}
+
+.active {
+  color: white !important;
+  /* font-size: 28px; */
+  text-decoration: underline !important;
+}
+
+

@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatSort} from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-logs',
@@ -41,8 +41,6 @@ export class LogsComponent implements OnInit {
   getLogs(query?: string){
     this.adminService.getLogs(query).subscribe({
       next: (resp) => {
-        console.log(resp);
-
         this.logs=resp.data;
         this.dataSource = new MatTableDataSource(this.logs);
         this.dataSource.sort = this.sort;
