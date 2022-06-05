@@ -1,11 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
 import { Title } from '@angular/platform-browser';
 import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
-
-import {MatTableDataSource} from '@angular/material/table';
-import {MatSort} from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-mensajes',
@@ -35,9 +33,7 @@ export class MensajesComponent implements OnInit {
   getMensajes(){
     this.adminService.getMensajes().subscribe({
       next: (resp) => {
-        console.log(resp);
         this.mensajes=resp.data;
-        console.log(this.mensajes);
         this.dataSource = new MatTableDataSource(this.mensajes);
         this.dataSource.sort = this.sort;
       },

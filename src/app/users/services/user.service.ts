@@ -1,9 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
-import { AvatarResponse, UserResponse } from '../interfaces/responses';
-import { User } from '../interfaces/user';
-
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -17,12 +14,11 @@ export class UserService {
 
   getUser(id?: number): Observable<any> {
     let resp = null;
-    if (id) { //if id is received by parameter
+    if (id) { //si se recibe id
       resp = this.http.get<any>(`${this.userURL}/${id}`);
-    } else { //if no id, then get user logged in (me)
+    } else {
       resp = this.http.get<any>(`${this.userURL}/me`);
     }
-    // return resp.pipe(map(resp => resp.user));
     return resp;
   }
 
@@ -30,11 +26,9 @@ export class UserService {
     return this.http.put<void>(`${this.userURL}/me`, {name: name, email: email});
   }
 
+  // TODO
   savePhoto(data: any): Observable<any> {
     return this.http.post<any>(`${this.userURL}/me/avatar?_method=PUT`, data); // _method: 'put/patch'
-    // .pipe
-    //   (map(resp => resp)
-    // );
   }
 
   savePassword(password: string): Observable<void> {

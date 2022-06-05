@@ -1,18 +1,5 @@
-/* .card-footer .btn {
-  width: 150px !important;
-} */
-
 .filtros{
   width: 150px !important;
-  /* background-color: #ffd82a !important;
-  border: #ecc14b;
-  color: #1b4d89 !important; */
-}
-
-.filtros:hover {
-  /* background-color: #ffd82a !important;
-  border: #ecc14b;
-  color: #1b4d89 !important; */
 }
 
 .nuevo{
@@ -20,23 +7,7 @@
 }
 
 .list-group-item, .card-header {
-  /* background-color: #1b4d89 !important; */
   background-color: #2975d1 !important;
 }
 
-/* .card {
-  width: 100%;
-}
 
-.card img {
-  width: 100%;
-  max-width: 200px;
-}
-
-.card .btn {
-  width: 140px !important;
-}
-
-.card img:hover, .card h5:hover {
-  cursor: pointer;
-} */

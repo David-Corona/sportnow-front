@@ -1,15 +1,9 @@
 
 <div class="container">
-<!-- [routerLink]="['/sports', evento.id]" -->
 
   <div class="card mb-4 mt-2">
     <div class="card-header text-white bg-primary d-flex align-items-center">
       <h5 class="mb-0 me-auto">Filtrado de Actividades</h5>
-      <!-- <div class="card-header-actions">
-        <div class="card-header-btn-minimize">
-          <i class="icon-arrow-up"></i>
-        </div>
-      </div> -->
       <button class="btn btn-light me-2 filtros" (click)="reiniciar()">
         Reiniciar
       </button>
@@ -45,16 +39,6 @@
             <option value="5">Running</option>
           </select>
         </div>
-        <!-- <div class="col-md-3">
-          <label for="distancia" class="form-label">Distancia Máxima (km)</label>
-          <input
-            type="number"
-            class="form-control"
-            name="distancia"
-            [(ngModel)]="filtro.distancia"
-            placeholder="Introduce distancia"
-          >
-        </div> -->
         <div class="col-md-3">
           <label for="fecha_inicio" class="form-label">Fecha Inicio</label>
           <div>
@@ -79,133 +63,19 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="card-footer d-flex justify-content-end bg-white">
-      <button class="btn btn-primary px-4 me-2" (click)="reiniciar()">
-        Reiniciar
-      </button>
-      <button class="btn btn-primary px-4" (click)="filtrar()">
-        Filtrar
-      </button>
-    </div> -->
   </div>
-
-  <!-- <div class="d-flex justify-content-center mb-4">
-    <a [routerLink]="['/actividades/nuevo']" class="btn btn-primary">Crear actividad</a>
-  </div> -->
-
-  <!-- <li class="list-group-item active">
-    Participantes ({{actividad.participantes.length}}<span *ngIf="actividad.deporte.max_participantes">/{{actividad.deporte.max_participantes}}</span>)
-  </li> -->
 
   <div class="d-flex justify-content-between align-items-center list-group-item bg-primary mb-2">
     <h5 class="text-white mb-0">Listado de Actividades</h5>
     <a [routerLink]="['/actividades/nuevo']" class="btn btn-light nuevo">Nueva Actividad</a>
   </div>
 
-  <!-- list-group-item -->
-  <!-- class="d-flex justify-content-center" -->
   <div class="pb-2">
-
-    <!-- class="mb-4 mt-4 row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4" -->
     <div *ngIf="eventos.length">
       <app-sport-card *ngFor="let evento of eventos" [evento]="evento"></app-sport-card>
     </div>
-
-    <!-- <div *ngFor="let evento of eventos">
-      <div class="card mb-2">
-        <div class="row">
-          <div class="col-md-2" >
-            <img [routerLink]="['/actividades', evento.id]" src="https://i.ibb.co/0m9yTJn/sil-removebg-preview.jpg" alt="Imagen evento">
-          </div>
-          <div class="col-md-10">
-            <div class="card-body">
-              <div class="d-flex justify-content-between mb-3">
-                <h5 [routerLink]="['/actividades', evento.id]" class="card-title">{{evento.deporte.nombre}} ({{evento.participantes.length}}<span *ngIf="evento.deporte.max_participantes">/{{evento.deporte.max_participantes}}</span>)</h5>
-                <p class="card-text me-4">{{evento.fecha | date:'H:mm dd/MM/y'}}</p>
-              </div>
-              <div class="d-flex justify-content-between mb-2">
-                <div>
-                  <p class="card-text"><b>Título:</b> {{evento.titulo}}</p>
-                  <p class="card-text"><b>Descripción:</b> {{evento.descripcion}}</p>
-                  <p class="card-text"><b>Dirección:</b> {{evento.direccion}} (Distancia: {{evento.distancia | number: '1.2-2'}} km)</p>
-                </div>
-                <div class="mt-auto">
-                  <a [routerLink]="['/actividades', evento.id]" class="btn btn-primary me-3">Detalles</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
   </div>
+
 </div>
 
-<!-- <div class="mb-4 mt-4 row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4" *ngIf="events.length" @animatedList>
-  <sv-event-card class="col" @animateList *ngFor="let event of events | eventsFilter:search" [event]="event" (deleted)="delete(event)"></sv-event-card>
-</div> -->
 
-<!-- <div class="card shadow" id={{event.id}}>
-  <a *ngIf="!isDetails; else notDetails2" [routerLink]="['/events', event.id]">
-    <img class="card-img-top" src="{{event.image}}" />
-  </a>
-  <ng-template #notDetails2><img class="card-img-top" src="{{event.image}}" /></ng-template>
-  <div class="card-body">
-    <h4 class="card-title text-primary">
-      <a *ngIf="!isDetails; else notDetails" class="text-decoration-none" [routerLink]="['/events', event.id]">{{event.title}}</a>
-      <ng-template #notDetails>{{event.title}}</ng-template>
-    </h4>
-    <p class="card-text">{{event.description}}</p>
-    <div class="row">
-      <div class="col" *ngIf="event.mine">
-        <button
-          class="btn btn-danger"
-          [swal]="{
-            title: 'Are you sure?',
-            text: 'It will be deleted from the database.',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes',
-            cancelButtonText: 'No'
-          }"
-          (confirm)="delete()">
-          Delete
-        </button>
-        <a class="btn btn-primary ms-1 px-4 text-white" *ngIf="isDetails" [routerLink]="['/events', event.id, 'edit']">
-          Edit
-        </a>
-      </div>
-      <div class="col-auto ms-auto">
-        <div class="text-end attend-users">
-          <fa-icon [icon]="['fas', 'users']"></fa-icon> {{event.numAttend}}
-        </div>
-        <div class="text-success text-end m-0 btn attend-button" *ngIf="event.attend" (click)="attendance()">
-          <fa-icon [icon]="['fas', 'thumbs-up']"></fa-icon> I'm going
-        </div>
-        <div class="text-danger text-end m-0 btn attend-button" *ngIf="!event.attend" (click)="attendance()">
-          <fa-icon [icon]="['fas', 'thumbs-down']"></fa-icon> Not going
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card-footer text-muted row m-0">
-    <div class="avatar col-auto pl-1 pr-1">
-      <a [routerLink]="['/users', event.creator!.id]">
-        <img src="{{event.creator!.avatar}}" class="rounded-circle" />
-       </a>
-    </div>
-    <div class="col">
-      <div class="name">
-        <a [routerLink]="['/users', event.creator!.id]" class="text-decoration-none">
-          {{event.creator!.name}}
-        </a>
-        <div><small class="text-muted">{{event.date | date:'dd/MM/y H:mm'}}</small></div>
-      </div>
-    </div>
-    <div class="col-auto text-end text-muted">
-      <div><small>{{event.price | currency:'EUR':'symbol'}}</small></div>
-      <div><small>{{event.distance | number: '1.2-2'}} km</small></div>
-    </div>
-  </div>
-</div> -->

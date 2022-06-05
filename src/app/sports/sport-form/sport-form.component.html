@@ -1,10 +1,6 @@
 
-
 <div class="container pb-4">
-
-
   <form #eventForm="ngForm" class="mt-4" novalidate>
-
     <h4 *ngIf="!actividad.id">Nueva Actividad</h4>
     <h4 *ngIf="actividad.id">Editar Actividad</h4>
     <hr class="mt-0">
@@ -22,14 +18,9 @@
           [ngClass]="validClasses(tituloModel, 'is-valid', 'is-invalid')"
           placeholder="Introduce un título"
         >
-        <!-- pattern="[A-Za-z][A-Za-z\s]*" -->
         <div class="invalid-feedback">
           El título es obligatorio.
         </div>
-        <!-- *ngIf="tituloModel.errors?.['required']" -->
-        <!-- <div class="invalid-feedback" *ngIf="tituloModel.errors?.['pattern']">
-          Title must include letters and may include spaces.
-        </div> -->
       </div>
     </div>
 
@@ -95,26 +86,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="mb-3">
-      <label for="price" class="form-label">Price (in €)</label>
-      <div>
-        <input
-          type="number"
-          class="form-control"
-          name="price"
-          [(ngModel)]="anEvent.price"
-          min="0.01"
-          step="0.01"
-          required
-          #priceModel="ngModel"
-          [ngClass]="validClasses(priceModel, 'is-valid', 'is-invalid')"
-        />
-        <div class="invalid-feedback">
-          Price must be a positive number.
-        </div>
-      </div>
-    </div> -->
 
     <div class="mb-3">
       <label for="direccion" class="form-label">Dirección</label>

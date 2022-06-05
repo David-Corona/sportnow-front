@@ -11,7 +11,6 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { SportCardModule } from '../sport-card/sport-card.module';
 
 
-
 @NgModule({
   declarations: [
     SportListComponent,
@@ -25,7 +24,6 @@ import { SportCardModule } from '../sport-card/sport-card.module';
     SportCardModule,
     NgxMapboxGLModule,
     NgxMapboxGlGeocoderControlModule,
-    // FontAwesomeModule,
     SweetAlert2Module,
   ]
 })

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { SportService } from '../services/sport.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sport-list',
@@ -14,7 +15,6 @@ export class SportListComponent implements OnInit {
   filtro: any = {
     titulo: null,
     deporte: null,
-    // distancia: null,
     fecha_inicio: null,
     fecha_fin: null,
   };
@@ -22,11 +22,11 @@ export class SportListComponent implements OnInit {
   constructor(
     private titleService: Title,
     private sportService: SportService,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
     this.titleService.setTitle("Actividades | SportNow");
-
     this.getActividades();
   }
 
@@ -34,45 +34,32 @@ export class SportListComponent implements OnInit {
       this.sportService.getActividades(undefined, query).subscribe({
       next: (resp) => {
         this.eventos = resp.data;
-        console.log(this.eventos);
       },
       error: e => {
         console.error(e);
+        this.toastr.error('Error al obtener actividades');
       }
     });
   }
 
-    // const filtroOptions = `&jobs_category_type_id=1`;
-  // const resp = await getAllCategories({withRelations:false, page: null, filtro: filtroOptions});
   filtrar(){
-    console.log("en filtrar");
     let query = '';
-
     Object.keys(this.filtro).forEach((key) => {
       if (this.filtro[key]) {
-
         if (key == 'titulo') {
           query += `&${key}=${this.filtro[key]}`;
         }
         if (key == 'deporte') {
           query += `&deporte_id=${this.filtro[key]}`;
         }
-        // if (key == 'distancia') {
-        //   query += `&${key}=${this.filtro[key]}`;
-        // }
         if (key == 'fecha_inicio') {
           query += `&${key}=${this.filtro[key]}`;
         }
         if (key == 'fecha_fin') {
           query += `&${key}=${this.filtro[key]}`;
         }
-        // if (key == 'dates' && this.filter[key].length > 0) {
-        //   query += `&start_created_at=${this.filter[key][0]} 00:00:00`;
-        //   query += `&end_created_at=${this.filter[key][1]} 23:59:59`;
-        // }
       }
     });
-    console.log(query);
     this.getActividades(query);
   }
 
@@ -80,12 +67,10 @@ export class SportListComponent implements OnInit {
     this.filtro = {
       titulo: null,
       deporte: null,
-      // distancia: null,
       fecha_inicio: null,
       fecha_fin: null,
     };
     this.getActividades();
   }
-
 
 }

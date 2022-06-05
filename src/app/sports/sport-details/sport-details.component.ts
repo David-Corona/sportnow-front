@@ -26,27 +26,20 @@ export class SportDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle("Detalles Actividad | SportNow");
-    console.log( this.route.snapshot);
     this.actividad = this.route.snapshot.data["event"].data;
-    // this.participantes = this.route.snapshot.data["event"].data.participantes;
-    // this.comentarios = this.route.snapshot.data["event"].data.comentarios;
-    console.log(this.actividad);
-
-
-    // this.getActividad(this.participantes);
   }
-
 
   postComment(){
     this.sportService.postComentario(this.actividad.id, this.nuevoComentario).subscribe({
       next: (resp) => {
-        // this.comments.push(com);
-        console.log(resp);
         this.actividad.comentarios.push(resp.data);
         this.nuevoComentario = "";
         this.toastr.success('Comentario realizado correctamente');
       },
-      error: error => console.error(error)
+      error: e => {
+        console.error(e);
+        this.toastr.error('Error al comentar');
+      }
     });
   }
 
@@ -61,40 +54,24 @@ export class SportDetailsComponent implements OnInit {
             this.router.navigate(['/actividades']);
           }
         },
-        error: error => {
-          console.error(error);
+        error: e => {
+          console.error(e);
           this.toastr.error('Error al desapuntarse');
         }
       });
     } else {
       this.sportService.apuntarActividad(this.actividad.id).subscribe({
         next: (resp: any) => {
-          console.log(resp);
           this.actividad.participantes.push(resp.data);
           this.actividad.participo = true;
           this.toastr.success('Apuntado correctamente!');
         },
-        error: error => {
-          console.error(error);
+        error: e => {
+          console.error(e);
           this.toastr.error('No se ha podido apuntar');
         }
       });
     }
   }
-
-
-
-
-  // getActividad(){
-  //     this.sportService.getActividad().subscribe({
-  //     next: (resp) => {
-  //       this.evento = resp.data;
-  //       console.log(this.evento);
-  //     },
-  //     error: e => {
-  //       console.error(e);
-  //     }
-  //   });
-  // }
 
 }

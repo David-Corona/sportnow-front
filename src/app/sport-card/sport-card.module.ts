@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { SportCardRoutingModule } from './sport-card-routing.module';
 
 
-
 @NgModule({
   declarations: [
     SportCardComponent

@@ -7,12 +7,7 @@ img:hover {
 }
 
 .navbar {
-  /* TODO */
-  /* background-color: #ecc14b !important; */
   background-color: #1b4d89 !important;
-  /* background-color: #1b4d89 !important; */
-  /* background-color: #1b4d89 !important; */
-  /* #5d6c90 */
 }
 
 .nav-link {
@@ -21,7 +16,6 @@ img:hover {
 
 .active {
   color: white !important;
-  /* font-size: 28px; */
   text-decoration: underline !important;
 }
 

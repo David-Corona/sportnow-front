@@ -1,6 +1,12 @@
 
+/* .container {
+  background: white;
+  margin-bottom: 10px;
+  padding: 20px;
+} */
+
 #miCarousel {
-  width: 80% !important;
+  width: 85% !important;
 }
 
 .card {
@@ -8,8 +14,6 @@
 }
 
 .card:hover {
-  /* TODO: cambiar color? */
-  /* background: #ffe298; */
   background: #c5daf3;
   cursor: pointer;
 }

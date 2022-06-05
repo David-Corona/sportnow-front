@@ -1,6 +1,8 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { UserService } from 'src/app/users/services/user.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-menu-top',
@@ -17,6 +19,7 @@ export class MenuTopComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private userService: UserService,
+    private toastr: ToastrService,
     ) { }
 
   ngOnInit(): void {
@@ -28,7 +31,10 @@ export class MenuTopComponent implements OnInit {
           this.getUser();
         }
       },
-      error: error => console.error(error)
+      error: e => {
+        console.error(e);
+        this.toastr.error('Error al obtener autenticación');
+      }
     });
 
   }
@@ -40,6 +46,7 @@ export class MenuTopComponent implements OnInit {
       },
       error: e => {
         console.error(e);
+        this.toastr.error('Error al cargar usuario');
       }
     });
   }

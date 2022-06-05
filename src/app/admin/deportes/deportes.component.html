@@ -1,12 +1,10 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-2 mt-4" id="sticky-sidebar">
-
       <app-sidebar></app-sidebar>
     </div>
 
     <div class="col mt-4" id="main">
-
 
       <div class="mat-elevation-z8">
         <div class="d-flex justify-content-between align-items-center list-group-item bg-primary">
@@ -36,7 +34,8 @@
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="columnas"></tr>
-          <tr mat-row *matRowDef="let row; columns: columnas;" (click)="irDetalles(row)"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnas;" ></tr>
+          <!-- (click)="irDetalles(row)" -->
         </table>
       </div>
 

@@ -49,8 +49,8 @@ export class ProfileComponent implements OnInit {
       next: (resp) => {
         this.eventos = resp.data;
       },
-      error: error => {
-        console.error(error);
+      error: e => {
+        console.error(e);
         this.toastr.error('Error al cargar las actividades');
       }
     });
@@ -61,8 +61,8 @@ export class ProfileComponent implements OnInit {
       next: (resp) => {
         this.eventosPasados = resp.data;
       },
-      error: error => {
-        console.error(error);
+      error: e => {
+        console.error(e);
         this.toastr.error('Error al cargar el historial');
       }
     });

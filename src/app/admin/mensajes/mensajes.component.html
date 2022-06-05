@@ -48,7 +48,8 @@
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="columnas"></tr>
-          <tr mat-row *matRowDef="let row; columns: columnas;" (click)="irDetalles(row)"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnas;" ></tr>
+          <!-- (click)="irDetalles(row)" -->
         </table>
       </div>
 

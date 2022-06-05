@@ -12,7 +12,6 @@ export class ContactoService {
   constructor(private readonly http: HttpClient) { }
 
 
-
   postContacto(contacto: any): Observable<any> {
     return this.http.post(this.contactURL, contacto)
   }

@@ -104,8 +104,7 @@
               </div>
             </li>
           </ul>
-          <!-- TODO: hacer que solo puedan postear participantes? *ngIf="event.attend" -->
-          <!-- TODO: poner comentario propio a la izquierda? -->
+
           <form (ngSubmit)="postComment()" *ngIf="!actividad.pasado">
             <span class="list-group-item active h5 mb-0">Nuevo comentario:</span>
             <textarea

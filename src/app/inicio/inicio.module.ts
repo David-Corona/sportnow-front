@@ -4,7 +4,6 @@ import { InicioComponent } from './inicio/inicio.component';
 import { InicioRoutingModule } from './inicio-routing.module';
 
 
-
 @NgModule({
   declarations: [
     InicioComponent

@@ -99,17 +99,4 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  // TODO
-
-  // irDetallesDeporte(row: any) {
-  //   this.router.navigate(['/admin/deportes/'+row.id])
-  // }
-
-  // irDetallesActividad(row: any) {
-  //   this.router.navigate(['/admin/actividades/'+row.id])
-  // }
-
-  //irDetallesContacto
-
-  //irDetallesUsuario
 }

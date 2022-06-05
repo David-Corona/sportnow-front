@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgModel } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-// import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../services/auth.service';
 
@@ -44,9 +43,6 @@ export class RegisterComponent implements OnInit {
         this.newUser.latitude = position.coords.latitude;
         this.newUser.longitude = position.coords.longitude;
       }, () => {
-        // Swal.fire("Error Geolocalización",
-        // "No se han podido obtener las coordenadas.<br/>" + "Permita la geolocalización para crear una cuenta.",
-        // "error");
         this.toastr.error('Error geolocalización');
         // inputs inválidos => Form invalido => submit desactivado
         this.latModel.control.setErrors({'incorrect': true});
@@ -75,7 +71,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.newUser).subscribe({
       next: (e) => {
         console.log(e);
-        this.router.navigate(['/login']);
+        this.router.navigate(['/auth/login']);
         this.toastr.success('Cuenta creada correctamente');
       },
       error: error => {

@@ -4,8 +4,7 @@ import { Observable, of, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { TokenResponse, UserResponse } from "../interfaces/responses";
-import { User, UserLogin } from "../interfaces/user";
+import { UserLogin } from "../interfaces/user";
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 

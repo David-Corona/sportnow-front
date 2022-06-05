@@ -40,11 +40,13 @@ export class ContactoComponent implements OnInit {
   contactar(){
     this.contactoService.postContacto(this.contacto).subscribe({
       next: (resp) => {
-        console.log(resp);
         this.resetForm();
         this.toastr.success('Mensaje enviado correctamente');
       },
-      error: error => console.error(error)
+      error: error => {
+        console.error(error);
+        this.toastr.error('Error al enviar el mensaje');
+      }
     });
   }
 

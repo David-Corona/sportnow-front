@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+
 import { MenuModule } from './menu/menu.module';
 import { UsersModule } from './users/users.module';
 import { AdminModule } from './admin/admin.module';
@@ -13,23 +14,18 @@ import { SportCardModule } from './sport-card/sport-card.module';
 
 import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 
-// import { InicioComponent } from './inicio/inicio/inicio.component';
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { NgxMapboxGlGeocoderControlModule } from 'ngx-mapbox-gl-geocoder-control';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-// import { MatTableModule } from '@angular/material';
+
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatSidenavModule} from '@angular/material/sidenav';
-
-
-import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
-
-
 
 
 @NgModule({
@@ -47,7 +43,6 @@ import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
     InicioModule,
     ContactoModule,
     SportCardModule,
-
     MatSidenavModule,
     MatTableModule,
     MatPaginatorModule,

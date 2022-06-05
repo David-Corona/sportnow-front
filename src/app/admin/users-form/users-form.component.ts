@@ -5,7 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { NgModel, NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-// import Swal from 'sweetalert2';
 
 
 @Component({
@@ -24,7 +23,6 @@ export class UsersFormComponent implements OnInit {
   nuevoUsuario: boolean = true;
   // passRep: string = "";
 
-
   @ViewChild('imgPreview') imgPreview!: ElementRef;
   file:any;
   newAvatar: string = "";
@@ -41,30 +39,25 @@ export class UsersFormComponent implements OnInit {
   ngOnInit(): void {
     this.titleService.setTitle("Admin Usuario | SportNow");
     // this.resetForm();
-
-
     if (this.route.snapshot.paramMap.get('id')) {
       this.getUserToEdit();
     }
   }
 
-
   getUserToEdit(){
       this.nuevoUsuario = false;
       this.user = this.route.snapshot.data["user"].data;
-      console.log(this.user);
   }
 
+  // TODO
   editUser() {
     // const formData = new FormData();
     // formData.append("avatar", this.file, this.file.name);
     // console.log(formData);
     this.adminService.editUser(this.user).subscribe({ //formdata
       next: (resp) => {
-        console.log(resp);
         // this.user.avatar = resp.data.avatar;
         // this.newAvatar = "";
-        // this.createdOrEdited = true; // //changes boolean to true, so it doesn't ask for confirmation to leave page.
         this.userForm.form.markAsUntouched(); // mark all inputs as untouched when edited => cleaner
         this.toastr.success('Usuario editado correctamente');
       },
@@ -95,7 +88,6 @@ export class UsersFormComponent implements OnInit {
   deleteUser() {
     this.adminService.deleteUser(this.user.id).subscribe({
       next: (resp) => {
-        console.log(resp);
         this.router.navigate(['/admin/usuarios'])
         this.toastr.success('Usuario eliminado correctamente');
       },
@@ -108,9 +100,7 @@ export class UsersFormComponent implements OnInit {
 
   setUser() {
     this.adminService.createUser(this.user).subscribe({
-      next: (resp) => {
-        console.log(resp);
-        // this.createdOrEdited = true; //TODO changes boolean to true, so it doesn't ask for confirmation to leave page.
+      next: () => {
         this.router.navigate(['/admin/usuarios'])
         this.toastr.success('Usuario creado correctamente');
       },
