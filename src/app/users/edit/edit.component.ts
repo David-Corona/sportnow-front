@@ -5,7 +5,7 @@ import { User } from '../interfaces/user';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm, NgModel } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-
+import { almacenamiento } from 'src/constants'
 
 @Component({
   selector: 'app-edit',
@@ -28,6 +28,7 @@ export class EditComponent implements OnInit {
   @ViewChild('imgPreview') imgPreview!: ElementRef;
   newAvatar: string = "";
   file:any;
+  urlAlmacenamiento = almacenamiento.url;
 
   constructor(
     private titleService: Title,
@@ -83,17 +84,21 @@ export class EditComponent implements OnInit {
   // TODO
   editPhoto() {
     const formData = new FormData();
-    formData.append("avatar", this.file, this.file.name);
-    this.usersService.savePhoto(formData).subscribe({
-      next: resp => {
-        this.user.avatar = resp.data.avatar;
-        this.newAvatar = "";
-      },
-      error: e => {
-        console.error(e);
-        this.toastr.error('Error al actualizar avatar');
-      }
-    });
+    if(this.file){
+      formData.append("avatar", this.file, this.file.name);
+      console.log(formData);
+      this.usersService.savePhoto(formData).subscribe({
+        next: resp => {
+          this.toastr.success('Avatar actualizado correctamente');
+          this.user.avatar = resp.data.avatar;
+          this.newAvatar = "";
+        },
+        error: e => {
+          console.error(e);
+          this.toastr.error('Error al actualizar avatar');
+        }
+      });
+    }
   }
 
   // TODO

@@ -2,6 +2,7 @@ import { Component, Input, OnInit} from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { UserService } from 'src/app/users/services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { almacenamiento } from 'src/constants'
 
 
 @Component({
@@ -15,6 +16,7 @@ export class MenuTopComponent implements OnInit {
   logged: boolean = false;
   isAdmin: boolean = false;
   user: any = [];
+  urlAlmacenamiento = almacenamiento.url;
 
   constructor(
     private authService: AuthService,

@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgModel, NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { almacenamiento } from 'src/constants'
 
 
 @Component({
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
 })
 export class UsersFormComponent implements OnInit {
 
+  urlAlmacenamiento = almacenamiento.url;
   user: any = {
     // title: "",
     // description: "",
@@ -21,7 +23,7 @@ export class UsersFormComponent implements OnInit {
 
   @ViewChild('userForm') userForm!: NgForm;
   nuevoUsuario: boolean = true;
-  // passRep: string = "";
+  passRep: string = "";
 
   @ViewChild('imgPreview') imgPreview!: ElementRef;
   file:any;
@@ -52,38 +54,69 @@ export class UsersFormComponent implements OnInit {
   // TODO
   editUser() {
     // const formData = new FormData();
-    // formData.append("avatar", this.file, this.file.name);
-    // console.log(formData);
-    this.adminService.editUser(this.user).subscribe({ //formdata
-      next: (resp) => {
-        // this.user.avatar = resp.data.avatar;
-        // this.newAvatar = "";
-        this.userForm.form.markAsUntouched(); // mark all inputs as untouched when edited => cleaner
-        this.toastr.success('Usuario editado correctamente');
-      },
-      error: error => {
-        console.error(error);
-        this.toastr.error('Error al editar el usuario');
-      }
+    // if (this.file){
+      // formData.append("avatar", this.file, this.file.name);
+      // formData.append("name", this.user.name);
+      // formData.append("email", this.user.email);
+      // formData.append("name", this.user.name);
+
+      // console.log(formData);
+      // this.user.formData = formData;
+      // console.log(this.user);
+
+      this.adminService.editUser(this.user).subscribe({ //formdata
+        next: (resp) => {
+          console.log(resp);
+          this.user.password = "";
+          this.passRep = "";
+          this.userForm.form.markAsUntouched();
+          this.toastr.success('Usuario editado correctamente');
+        },
+        error: error => {
+          console.error(error);
+          this.toastr.error('Error al editar el usuario');
+        }
+      });
+    // }
+  }
+
+  editPhoto() {
+    const formData = new FormData();
+    if(this.file){
+      formData.append("avatar", this.file, this.file.name);
+      console.log(formData);
+      this.adminService.savePhoto(this.user.id, formData).subscribe({
+        next: resp => {
+          this.toastr.success('Avatar actualizado correctamente');
+          this.user.avatar = resp.data.avatar;
+          this.newAvatar = "";
+        },
+        error: e => {
+          console.error(e);
+          this.toastr.error('Error al actualizar avatar');
+        }
+      });
+    }
+  }
+
+
+
+  loadImage(event: any): void {
+    this.userForm.form.markAsDirty();
+    this.file = event.target.files[0];
+    const reader = new FileReader();
+    if (this.file && this.file.type.startsWith("image")) {
+      reader.readAsDataURL(this.file);
+    } else {
+      this.toastr.error('Debes subir una imagen');
+    }
+
+    reader.addEventListener("load", () => {
+      this.newAvatar = reader.result as string;
+      this.renderer.removeClass(this.imgPreview.nativeElement,"d-none");
     });
   }
 
-  // editPhoto() {
-  //   const formData = new FormData();
-  //   formData.append("avatar", this.file, this.file.name);
-  //   console.log(formData);
-  //   this.usersService.savePhoto(formData).subscribe({
-  //     next: resp => {
-  //       console.log(resp);
-  //       this.user.avatar = resp.data.avatar;
-  //       this.newAvatar = "";
-  //     },
-  //     error: error => {
-  //       console.error(error);
-  //       // Swal.fire("Error!", "The introduced input is invalid.", "error");
-  //     }
-  //   });
-  // }
 
   deleteUser() {
     this.adminService.deleteUser(this.user.id).subscribe({
@@ -111,21 +144,7 @@ export class UsersFormComponent implements OnInit {
     });
   }
 
-  // loadImage(event: any): void {
-  //   this.file = event.target.files[0];
-  //   const reader = new FileReader();
-  //   if (this.file && this.file.type.startsWith("image")) {
-  //     reader.readAsDataURL(this.file);
-  //   } else {
-  //     this.toastr.error('Debes subir una imagen');
-  //   }
 
-  //   reader.addEventListener("load", () => {
-  //     this.newAvatar = reader.result as string;
-  //     this.renderer.removeClass(this.imgPreview.nativeElement,"d-none");
-  //   });
-
-  // }
 
 
   validClasses(ngModel: NgModel, validClass: string, errorClass: string) {

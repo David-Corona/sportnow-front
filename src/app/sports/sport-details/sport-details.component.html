@@ -72,7 +72,7 @@
         </li>
         <li class="list-group-item white d-flex align-items-center" *ngFor="let participante of actividad.participantes" style="height: 100px;">
           <a [routerLink]="['/usuarios', participante.user_id]">
-            <img class="rounded-circle float-start me-4" style="width: 80px;" src="{{participante.usuario.avatar}}" alt="" />
+            <img class="rounded-circle float-start me-4" style="width: 80px;" src="{{urlAlmacenamiento}}{{participante.usuario.avatar}}" alt="" />
           </a>
           <div>
             <div><a class="text-decoration-none h5" [routerLink]="['/usuarios', participante.user_id]">{{participante.usuario.name}}</a></div>
@@ -91,7 +91,7 @@
               <div class="row">
                 <div class="col-auto text-center user-info">
                   <a [routerLink]="['/usuarios', comentario.user_id]">
-                    <img class="avatar rounded-circle" style="width: 80px;" src="{{comentario.autor.avatar}}" />
+                    <img class="avatar rounded-circle" style="width: 80px;" src="{{urlAlmacenamiento}}{{comentario.autor.avatar}}" />
                   </a>
                   <div>
                     <a [routerLink]="['/usuarios', comentario.user_id]" class="text-decoration-none">{{comentario.autor.name}}</a>

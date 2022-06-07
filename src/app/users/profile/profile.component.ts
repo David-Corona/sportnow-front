@@ -4,6 +4,7 @@ import { User } from '../interfaces/user';
 import { ActivatedRoute } from '@angular/router';
 import { SportService } from 'src/app/sports/services/sport.service';
 import { ToastrService } from 'ngx-toastr';
+import { almacenamiento } from 'src/constants'
 
 @Component({
   selector: 'app-profile',
@@ -23,6 +24,7 @@ export class ProfileComponent implements OnInit {
   isMe: boolean = false;
   eventos: any = [];
   eventosPasados: any = [];
+  urlAlmacenamiento = almacenamiento.url;
 
   constructor(
     private titleService: Title,

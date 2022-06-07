@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SportService } from '../services/sport.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { almacenamiento } from 'src/constants'
 
 @Component({
   selector: 'app-sport-details',
@@ -15,6 +16,7 @@ export class SportDetailsComponent implements OnInit {
   actividad: any = [];
   nuevoComentario: string = "";
   zoom = 14;
+  urlAlmacenamiento = almacenamiento.url;
 
   constructor(
     private titleService: Title,

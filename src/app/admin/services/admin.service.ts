@@ -23,7 +23,17 @@ export class AdminService {
   }
 
   editUser(user: any): Observable<any>{
-    return this.http.put<any>(`${this.adminURL}/users/${user.id}`, user);
+    return this.http.post(`${this.adminURL}/users/${user.id}?_method=PUT`, user
+    // {
+    //   headers: {
+    //     'Content-Type': 'multipart/form-data'
+    //   }
+    // }
+    );
+  }
+  // users/{id}/avatar
+  savePhoto(userId: number, data: any): Observable<any> {
+    return this.http.post<any>(`${this.adminURL}/users/${userId}/avatar?_method=PUT`, data); // _method: 'put/patch'
   }
 
   deleteUser(userId: number): Observable<any>{
