@@ -18,6 +18,11 @@ export class SportService {
     return this.http.get<any>(this.sportURL+'?'+user+filter);
   }
 
+  getActividadesFiltradas(filtro = ""): Observable<any> { //
+    const filter = filtro.length > 0 ? filtro : "";
+    return this.http.get<any>(`${this.sportURL}-filtrado`+'?'+filter);
+  }
+
   getHistorial(userId?: number): Observable<any> {
     const user = userId ? `?user_id=${userId}` : "";
     return this.http.get<any>(`${this.sportURL}-historial`+user);

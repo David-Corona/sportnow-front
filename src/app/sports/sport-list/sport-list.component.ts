@@ -13,7 +13,8 @@ export class SportListComponent implements OnInit {
   eventos: any = [];
 
   filtro: any = {
-    titulo: null,
+    distancia: null,
+    // titulo: null,
     deporte: null,
     fecha_inicio: null,
     fecha_fin: null,
@@ -31,8 +32,9 @@ export class SportListComponent implements OnInit {
   }
 
   getActividades(query?: string){
-      this.sportService.getActividades(undefined, query).subscribe({
+      this.sportService.getActividadesFiltradas(query).subscribe({
       next: (resp) => {
+        console.log(resp);
         this.eventos = resp.data;
       },
       error: e => {
@@ -46,7 +48,10 @@ export class SportListComponent implements OnInit {
     let query = '';
     Object.keys(this.filtro).forEach((key) => {
       if (this.filtro[key]) {
-        if (key == 'titulo') {
+        // if (key == 'titulo') {
+        //   query += `&${key}=${this.filtro[key]}`;
+        // }
+        if (key == 'distancia') {
           query += `&${key}=${this.filtro[key]}`;
         }
         if (key == 'deporte') {
@@ -65,7 +70,8 @@ export class SportListComponent implements OnInit {
 
   reiniciar(){
     this.filtro = {
-      titulo: null,
+      distancia: null,
+      // titulo: null,
       deporte: null,
       fecha_inicio: null,
       fecha_fin: null,

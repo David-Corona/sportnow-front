@@ -14,7 +14,7 @@
 
     <div class="card-body bg-white">
       <div class="row">
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
           <label for="titulo" class="form-label">Título</label>
           <input
             type="text"
@@ -22,6 +22,16 @@
             name="titulo"
             [(ngModel)]="filtro.titulo"
             placeholder="Introduce un titulo"
+          >
+        </div> -->
+        <div class="col-md-3">
+          <label for="distancia" class="form-label">Distancia</label>
+          <input
+            type="number"
+            class="form-control"
+            name="distancia"
+            [(ngModel)]="filtro.distancia"
+            placeholder="Introduce distancia en km"
           >
         </div>
         <div class="col-md-3">
