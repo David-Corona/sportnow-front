@@ -4,7 +4,73 @@
       <app-sidebar></app-sidebar>
     </div>
 
-    <div class="col mt-4" id="main">
+    <div class="col mt-4">
+
+      <div class="card mb-4 mat-elevation-z8">
+        <div class="card-header text-white bg-primary d-flex align-items-center">
+          <h5 class="mb-0 me-auto">Filtrado de Contactos</h5>
+          <button class="btn btn-light me-2 btn-filtros" (click)="reiniciar()">
+            Reiniciar
+          </button>
+          <button class="btn btn-light btn-filtros" (click)="filtrar()">
+            Filtrar
+          </button>
+        </div>
+
+        <div class="card-body bg-white">
+          <div class="row">
+            <div class="col-md-3">
+              <label for="autor" class="form-label">Autor</label>
+              <input
+                type="text"
+                class="form-control"
+                name="autor"
+                [(ngModel)]="filtro.autor"
+                placeholder="Introduce un nombre"
+              >
+            </div>
+            <div class="col-md-3">
+              <label for="motivo" class="form-label">Motivo</label>
+              <select
+                name="motivo" id="motivo"
+                class="form-select"
+                [(ngModel)]="filtro.motivo"
+              >
+                <option value="null" disabled selected hidden> - Seleccionar -</option>
+                <option value="Actividades">Actividades</option>
+                <option value="Noticias">Sugerir noticia</option>
+                <option value="Propuestas">Propuestas</option>
+                <option value="Quejas">Quejas</option>
+                <option value="Usuarios">Usuarios</option>
+                <option value="Otros">Otros</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="fecha_inicio" class="form-label">Fecha Inicio</label>
+              <div>
+                <input
+                  type="date"
+                  class="form-control"
+                  name="fecha_inicio"
+                  [(ngModel)]="filtro.fecha_inicio"
+                >
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label for="fecha_fin" class="form-label">Fecha Fin</label>
+              <div>
+                <input
+                  type="date"
+                  class="form-control"
+                  name="fecha_fin"
+                  [(ngModel)]="filtro.fecha_fin"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
       <div class="mat-elevation-z8">
         <div class="d-flex justify-content-between align-items-center list-group-item bg-primary">

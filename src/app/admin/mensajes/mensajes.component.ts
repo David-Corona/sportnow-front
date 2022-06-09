@@ -4,6 +4,7 @@ import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-mensajes',
@@ -12,7 +13,7 @@ import { MatSort } from '@angular/material/sort';
 })
 export class MensajesComponent implements OnInit {
 
-  columnas = ['evento.titulo', 'autor.name', 'created_at', 'mensaje']; //'evento.fecha', 'evento_id', 'user_id',
+  columnas = ['evento.titulo', 'autor.name', 'created_at', 'mensaje', 'eliminar']; //'evento.fecha', 'evento_id', 'user_id',
   mensajes: any[] = [];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatSort) sort!: MatSort;
@@ -21,6 +22,7 @@ export class MensajesComponent implements OnInit {
     private titleService: Title,
     private adminService: AdminService,
     private router: Router,
+    private toastr: ToastrService,
   ) {
     this.dataSource = new MatTableDataSource();
   }
@@ -39,6 +41,24 @@ export class MensajesComponent implements OnInit {
       },
       error: error => {
         console.error(error);
+        this.toastr.error('Error al cargar mensajes');
+      }
+    });
+  }
+
+  deleteMensaje(row: any){
+    this.adminService.deleteMensaje(row.id).subscribe({
+      next: () => {
+        this.mensajes = this.mensajes.filter(function(item) {
+          return item.id != row.id;
+        });
+        this.dataSource = new MatTableDataSource(this.mensajes);
+        this.dataSource.sort = this.sort;
+        this.toastr.success('Comentario eliminadp correctamente');
+      },
+      error: error => {
+        console.error(error);
+        this.toastr.error('Error al eliminar comentario');
       }
     });
   }

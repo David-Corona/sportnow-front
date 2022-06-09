@@ -27,7 +27,7 @@ export class SportFormComponent implements OnInit {
     "participar": true
   }
   zoom = 16;
-  @ViewChild('contactForm') eventForm!: NgForm;
+  @ViewChild('eventForm') eventForm!: NgForm;
 
   constructor(
     private titleService: Title,

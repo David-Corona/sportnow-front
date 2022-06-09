@@ -4,6 +4,7 @@ import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-participantes',
@@ -12,7 +13,7 @@ import {MatSort} from '@angular/material/sort';
 })
 export class ParticipantesComponent implements OnInit {
 
-  columnas = ['evento_id','evento.titulo', 'evento.fecha', 'user_id', 'usuario.name', 'created_at'];
+  columnas = ['evento_id','evento.titulo', 'evento.fecha', 'user_id', 'usuario.name', 'created_at', 'eliminar'];
   participantes: any[] = [];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatSort) sort!: MatSort;
@@ -21,6 +22,7 @@ export class ParticipantesComponent implements OnInit {
     private titleService: Title,
     private adminService: AdminService,
     private router: Router,
+    private toastr: ToastrService,
   ) {
     this.dataSource = new MatTableDataSource();
   }
@@ -39,12 +41,26 @@ export class ParticipantesComponent implements OnInit {
       },
       error: error => {
         console.error(error);
+        this.toastr.error('Error al listar los participantes');
       }
     });
   }
 
-  irDetalles(row: any) {
-    // this.router.navigate(['/admin/participantes/'+row.id])
+  deleteParticipacion(row: any){
+    this.adminService.deleteParticipante(row.id).subscribe({
+      next: () => {
+        this.participantes = this.participantes.filter(function(item) {
+          return item.id != row.id;
+        });
+        this.dataSource = new MatTableDataSource(this.participantes);
+        this.dataSource.sort = this.sort;
+        this.toastr.success('Participación eliminada correctamente');
+      },
+      error: error => {
+        console.error(error);
+        this.toastr.error('Error al eliminar participación');
+      }
+    });
   }
 
 

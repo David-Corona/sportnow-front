@@ -47,6 +47,10 @@ export class AdminService {
     return this.http.get<any>(`${this.adminURL}/eventos?${filter}`);
   }
 
+  getActividadesSelect(): Observable<any> {
+    return this.http.get(`${this.adminURL}/eventos-select`);
+  }
+
   editActividad(actividad: any): Observable<any>{
     return this.http.put<any>(`${this.adminURL}/eventos/${actividad.id}`, actividad);
   }
@@ -76,6 +80,10 @@ export class AdminService {
     return this.http.get(`${this.adminURL}/eventos-usuarios?${filter}`);
   }
 
+  deleteParticipante(participacionId: number): Observable<any>{
+    return this.http.delete<any>(`${this.adminURL}/eventos-usuarios/${participacionId}`);
+  }
+
   getUsuariosActivos(): Observable<any> {
     return this.http.get(`${this.adminURL}/eventos-usuarios-activos`);
   }
@@ -84,6 +92,10 @@ export class AdminService {
   getMensajes(filtro = ""): Observable<any> {
     let filter = filtro.length > 0 ? filtro : "";
     return this.http.get(`${this.adminURL}/eventos-comentarios?${filter}`);
+  }
+
+  deleteMensaje(mensajeId: number): Observable<any>{
+    return this.http.delete(`${this.adminURL}/eventos-comentarios/${mensajeId}`);
   }
 
 

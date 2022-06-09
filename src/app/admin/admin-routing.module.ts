@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DeportesComponent } from './deportes/deportes.component';
 import { LogsComponent } from './logs/logs.component';
 import { MensajesComponent } from './mensajes/mensajes.component';
+import { ParticipantesFormComponent } from './participantes-form/participantes-form.component';
 import { ParticipantesComponent } from './participantes/participantes.component';
 import { ContactoResolver } from './resolvers/contacto.resolver';
 import { UsersFormComponent } from './users-form/users-form.component';
@@ -95,6 +96,14 @@ const routes: Routes = [
   {
     path: 'admin/participantes',
     component: ParticipantesComponent,
+    canActivate: [RolesGuard],
+    data: {
+      expectedRole: 'admin'
+    }
+  },
+  {
+    path: 'admin/participantes/nuevo',
+    component: ParticipantesFormComponent,
     canActivate: [RolesGuard],
     data: {
       expectedRole: 'admin'

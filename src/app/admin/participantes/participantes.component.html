@@ -9,7 +9,7 @@
       <div class="mat-elevation-z8">
         <div class="d-flex justify-content-between align-items-center list-group-item bg-primary">
           <h5 class="text-white mb-0">Listado de Participantes</h5>
-          <!-- <a [routerLink]="['/admin/participantes/nuevo']" class="btn btn-light btn-nuevo">Nuevo Participante</a> -->
+          <a [routerLink]="['/admin/participantes/nuevo']" class="btn btn-light btn-nuevo">Nuevo Participante</a>
         </div>
         <table mat-table [dataSource]="dataSource" matSort class="w-100">
 
@@ -43,8 +43,25 @@
             <td mat-cell *matCellDef="let element"> {{element.created_at | date:'dd/MM/y H:mm'}} </td>
           </ng-container>
 
+          <ng-container matColumnDef="eliminar">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Eliminar </th>
+            <td mat-cell *matCellDef="let element">
+              <div (confirm)="deleteParticipacion(element)"
+                [swal]="{
+                  title: '¿Estás seguro?',
+                  text: 'El usuario será desapuntado de la actividad',
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonText: 'Sí',
+                  cancelButtonText: 'No'
+                }">
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </div>
+            </td>
+          </ng-container>
+
           <tr mat-header-row *matHeaderRowDef="columnas"></tr>
-          <tr mat-row *matRowDef="let row; columns: columnas;" (click)="irDetalles(row)"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
         </table>
       </div>
 

@@ -17,6 +17,13 @@ export class ContactoComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatSort) sort!: MatSort;
 
+  filtro: any = {
+    autor: null,
+    motivo: null,
+    fecha_inicio: null,
+    fecha_fin: null,
+  };
+
   constructor(
     private titleService: Title,
     private adminService: AdminService,
@@ -30,8 +37,8 @@ export class ContactoComponent implements OnInit {
     this.getContactos();
   }
 
-  getContactos(){
-    this.adminService.getContactos().subscribe({
+  getContactos(query?: string){
+    this.adminService.getContactos(query).subscribe({
       next: (resp) => {
         this.contactos=resp.data;
         this.dataSource = new MatTableDataSource(this.contactos);
@@ -41,6 +48,37 @@ export class ContactoComponent implements OnInit {
         console.error(error);
       }
     });
+  }
+
+  filtrar(){
+    let query = '';
+    Object.keys(this.filtro).forEach((key) => {
+      if (this.filtro[key]) {
+        if (key == 'autor') {
+          query += `&${key}=${this.filtro[key]}`;
+        }
+        if (key == 'motivo') {
+          query += `&${key}=${this.filtro[key]}`;
+        }
+        if (key == 'fecha_inicio') {
+          query += `&${key}=${this.filtro[key]}`;
+        }
+        if (key == 'fecha_fin') {
+          query += `&${key}=${this.filtro[key]}`;
+        }
+      }
+    });
+    this.getContactos(query);
+  }
+
+  reiniciar(){
+    this.filtro = {
+      autor: null,
+      motivo: null,
+      fecha_inicio: null,
+      fecha_fin: null,
+    };
+    this.getContactos();
   }
 
   irDetalles(row: any) {
