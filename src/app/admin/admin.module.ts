@@ -20,6 +20,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LogsComponent } from './logs/logs.component';
 import { BooleanoPipe } from './pipes/booleano.pipe';
 import { ParticipantesFormComponent } from './participantes-form/participantes-form.component';
+import { MensajesFormComponent } from './mensajes-form/mensajes-form.component';
 
 
 
@@ -38,7 +39,8 @@ import { ParticipantesFormComponent } from './participantes-form/participantes-f
     DashboardComponent,
     LogsComponent,
     BooleanoPipe,
-    ParticipantesFormComponent
+    ParticipantesFormComponent,
+    MensajesFormComponent
   ],
   imports: [
     CommonModule,

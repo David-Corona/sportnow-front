@@ -52,6 +52,8 @@ export class ParticipantesFormComponent implements OnInit {
   getActividades(){
     this.adminService.getActividadesSelect().subscribe({
       next: (resp) => {
+        console.log(resp);
+
         this.actividades = resp.data;
       },
       error: e => {
@@ -64,6 +66,7 @@ export class ParticipantesFormComponent implements OnInit {
   getUsuarios(){
     this.adminService.getUsers().subscribe({
       next: (resp) => {
+        console.log(resp);
         this.usuarios=resp.data;
       },
       error: error => {

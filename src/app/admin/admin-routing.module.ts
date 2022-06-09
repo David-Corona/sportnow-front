@@ -10,6 +10,7 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DeportesComponent } from './deportes/deportes.component';
 import { LogsComponent } from './logs/logs.component';
+import { MensajesFormComponent } from './mensajes-form/mensajes-form.component';
 import { MensajesComponent } from './mensajes/mensajes.component';
 import { ParticipantesFormComponent } from './participantes-form/participantes-form.component';
 import { ParticipantesComponent } from './participantes/participantes.component';
@@ -113,6 +114,14 @@ const routes: Routes = [
   {
     path: 'admin/mensajes',
     component: MensajesComponent,
+    canActivate: [RolesGuard],
+    data: {
+      expectedRole: 'admin'
+    }
+  },
+  {
+    path: 'admin/mensajes/nuevo',
+    component: MensajesFormComponent,
     canActivate: [RolesGuard],
     data: {
       expectedRole: 'admin'
