@@ -7,6 +7,7 @@
 
 #miCarousel {
   width: 85% !important;
+  /* height: 500px !important; */
 }
 
 .card {
@@ -25,4 +26,34 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+
+#anuncio-ofertas {
+  /* border: solid 1px rgb(173, 173, 173); */
+  /* padding: 20px; */
+  background-color: white;
+  text-align: center;
+}
+
+#anuncio-ofertas h1 {
+  letter-spacing: 4px;
+  font-size: 44px;
+  color: red;
+  transition: all 0s;
+}
+
+#anuncio-ofertas:hover h1 {
+  transform: scale(1.2);
+}
+
+#anuncio-ofertas p {
+  font-size: 20px;
+  margin-top: 12px;
+  color: black;
+}
+
+#anuncio-ofertas p:nth-child(4) {
+  font-weight: bold;
+  font-size: 26px;
 }
