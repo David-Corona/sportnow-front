@@ -17,6 +17,11 @@ export class ParticipantesComponent implements OnInit {
   participantes: any[] = [];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatSort) sort!: MatSort;
+  filtro: any = {
+    usuario: null,
+    fecha_inicio: null,
+    fecha_fin: null,
+  };
 
   constructor(
     private titleService: Title,
@@ -32,8 +37,8 @@ export class ParticipantesComponent implements OnInit {
     this.getParticipantes();
   }
 
-  getParticipantes(){
-    this.adminService.getParticipantes().subscribe({
+  getParticipantes(query?: string){
+    this.adminService.getParticipantes(query).subscribe({
       next: (resp) => {
         this.participantes=resp.data;
         this.dataSource = new MatTableDataSource(this.participantes);
@@ -61,6 +66,33 @@ export class ParticipantesComponent implements OnInit {
         this.toastr.error('Error al eliminar participación');
       }
     });
+  }
+
+  filtrar(){
+    let query = '';
+    Object.keys(this.filtro).forEach((key) => {
+      if (this.filtro[key]) {
+        if (key == 'usuario') {
+          query += `&${key}=${this.filtro[key]}`;
+        }
+        if (key == 'fecha_inicio') {
+          query += `&${key}=${this.filtro[key]}`;
+        }
+        if (key == 'fecha_fin') {
+          query += `&${key}=${this.filtro[key]}`;
+        }
+      }
+    });
+    this.getParticipantes(query);
+  }
+
+  reiniciar(){
+    this.filtro = {
+      usuario: null,
+      fecha_inicio: null,
+      fecha_fin: null,
+    };
+    this.getParticipantes();
   }
 
 

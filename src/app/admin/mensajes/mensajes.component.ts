@@ -17,6 +17,11 @@ export class MensajesComponent implements OnInit {
   mensajes: any[] = [];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatSort) sort!: MatSort;
+  filtro: any = {
+    usuario: null,
+    fecha_inicio: null,
+    fecha_fin: null,
+  };
 
   constructor(
     private titleService: Title,
@@ -32,8 +37,8 @@ export class MensajesComponent implements OnInit {
     this.getMensajes();
   }
 
-  getMensajes(){
-    this.adminService.getMensajes().subscribe({
+  getMensajes(query?: string){
+    this.adminService.getMensajes(query).subscribe({
       next: (resp) => {
         this.mensajes=resp.data;
         this.dataSource = new MatTableDataSource(this.mensajes);
@@ -61,6 +66,33 @@ export class MensajesComponent implements OnInit {
         this.toastr.error('Error al eliminar comentario');
       }
     });
+  }
+
+  filtrar(){
+    let query = '';
+    Object.keys(this.filtro).forEach((key) => {
+      if (this.filtro[key]) {
+        if (key == 'usuario') {
+          query += `&${key}=${this.filtro[key]}`;
+        }
+        if (key == 'fecha_inicio') {
+          query += `&${key}=${this.filtro[key]}`;
+        }
+        if (key == 'fecha_fin') {
+          query += `&${key}=${this.filtro[key]}`;
+        }
+      }
+    });
+    this.getMensajes(query);
+  }
+
+  reiniciar(){
+    this.filtro = {
+      usuario: null,
+      fecha_inicio: null,
+      fecha_fin: null,
+    };
+    this.getMensajes();
   }
 
   irDetalles(row: any) {
