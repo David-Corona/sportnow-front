@@ -34,7 +34,6 @@ export class SportListComponent implements OnInit {
   getActividades(query?: string){
       this.sportService.getActividadesFiltradas(query).subscribe({
       next: (resp) => {
-        console.log(resp);
         this.eventos = resp.data;
       },
       error: e => {

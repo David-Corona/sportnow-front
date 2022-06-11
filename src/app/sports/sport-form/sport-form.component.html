@@ -57,7 +57,7 @@
           [(ngModel)]="actividad.fecha"
           required
           #dateModel="ngModel"
-          svMinDate
+          appMinDate
           [ngClass]="validClasses(dateModel, 'is-valid', 'is-invalid')"
         >
         <div class="invalid-feedback" *ngIf="dateModel.errors?.['required']">

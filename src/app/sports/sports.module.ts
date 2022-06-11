@@ -9,6 +9,7 @@ import { NgxMapboxGlGeocoderControlModule } from 'ngx-mapbox-gl-geocoder-control
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { SportCardModule } from '../sport-card/sport-card.module';
+import { MinDateDirective } from './validators/min-date.directive';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { SportCardModule } from '../sport-card/sport-card.module';
     SportListComponent,
     SportDetailsComponent,
     SportFormComponent,
+    MinDateDirective,
   ],
   imports: [
     CommonModule,
