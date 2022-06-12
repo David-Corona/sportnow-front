@@ -8,7 +8,6 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { UsersFormComponent } from './users-form/users-form.component';
 import { DeportesComponent } from './deportes/deportes.component';
-import { DeportesFormComponent } from './deportes-form/deportes-form.component';
 import { ActividadesComponent } from './actividades/actividades.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -29,7 +28,6 @@ import { MensajesFormComponent } from './mensajes-form/mensajes-form.component';
     UsersComponent,
     UsersFormComponent,
     DeportesComponent,
-    DeportesFormComponent,
     ActividadesComponent,
     SidebarComponent,
     ContactoComponent,

@@ -81,12 +81,10 @@ export class EditComponent implements OnInit {
     }
   }
 
-  // TODO
   editPhoto() {
     const formData = new FormData();
     if(this.file){
       formData.append("avatar", this.file, this.file.name);
-      console.log(formData);
       this.usersService.savePhoto(formData).subscribe({
         next: resp => {
           this.toastr.success('Avatar actualizado correctamente');
@@ -101,7 +99,6 @@ export class EditComponent implements OnInit {
     }
   }
 
-  // TODO
   loadImage(event: any): void {
     this.file = event.target.files[0];
     const reader = new FileReader();
@@ -123,6 +120,5 @@ export class EditComponent implements OnInit {
       [errorClass]: ngModel.touched && ngModel.invalid,
     };
   }
-
 
 }

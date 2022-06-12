@@ -68,7 +68,6 @@ export class MensajesFormComponent implements OnInit {
   getActividades(){
     this.adminService.getActividades().subscribe({
       next: (resp) => {
-        console.log(resp);
         this.actividades = resp.data;
       },
       error: e => {

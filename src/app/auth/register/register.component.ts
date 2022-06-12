@@ -69,8 +69,7 @@ export class RegisterComponent implements OnInit {
 
   createAccount() {
     this.authService.register(this.newUser).subscribe({
-      next: (e) => {
-        console.log(e);
+      next: () => {
         this.router.navigate(['/auth/login']);
         this.toastr.success('Cuenta creada correctamente');
       },

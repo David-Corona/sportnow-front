@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { almacenamiento } from 'src/constants'
 
 @Component({
   selector: 'app-sport-card',
@@ -7,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SportCardComponent implements OnInit {
 
+  urlAlmacenamiento = almacenamiento.url;
   @Input() evento!: any;
 
   constructor() { }

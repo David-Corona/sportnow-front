@@ -31,7 +31,7 @@
           <div class="card-body">
             <div class="row">
               <div class="col-md-3 mb-2" >
-                <img src="{{actividad.deporte.imagen}}" alt="Imagen Deporte">
+                <img src="{{urlAlmacenamiento}}{{actividad.deporte.imagen}}" alt="Imagen Deporte">
               </div>
               <div class="col-md-9 d-flex flex-column">
                 <div class="card-body">
@@ -65,7 +65,6 @@
         </div>
       </div>
 
-
       <div class="tab-pane fade" id="participantes" role="tabpanel" aria-labelledby="participantes-tab">
         <li class="list-group-item active ">
           <h5 class="mb-0">Participantes ({{actividad.participantes.length}}<span *ngIf="actividad.deporte.max_participantes">/{{actividad.deporte.max_participantes}}</span>)</h5>
@@ -82,7 +81,6 @@
           </div>
         </li>
       </div>
-
 
       <div class="tab-pane fade" id="comentarios" role="tabpanel" aria-labelledby="comentarios-tab" *ngIf="actividad.participo">
           <ul class="list-group mb-4">

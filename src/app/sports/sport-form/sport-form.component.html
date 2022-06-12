@@ -35,6 +35,7 @@
           [(ngModel)]="actividad.deporte_id"
           [ngClass]="validClasses(deporteModel, 'is-valid', 'is-invalid')"
         >
+          <option value="null" disabled selected hidden> - Seleccionar -</option>
           <option value="1">Baloncesto</option>
           <option value="2">Ciclismo</option>
           <option value="3">Fútbol sala</option>
@@ -64,7 +65,7 @@
           La fecha es obligatoria.
         </div>
         <div class="invalid-feedback" *ngIf="dateModel.errors?.['minDate']">
-          La fecha no puede ser anterior a la fecha de hoy.
+          La fecha no pueden ser anterior a la actual.
         </div>
       </div>
     </div>

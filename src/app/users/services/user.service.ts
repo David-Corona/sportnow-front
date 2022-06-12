@@ -26,9 +26,8 @@ export class UserService {
     return this.http.put<void>(`${this.userURL}/me`, {name: name, email: email});
   }
 
-  // TODO
   savePhoto(data: any): Observable<any> {
-    return this.http.post<any>(`${this.userURL}/me/avatar?_method=PUT`, data); // _method: 'put/patch'
+    return this.http.post<any>(`${this.userURL}/me/avatar?_method=PUT`, data);
   }
 
   savePassword(password: string): Observable<void> {

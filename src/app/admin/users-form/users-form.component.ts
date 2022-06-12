@@ -16,10 +16,7 @@ import { almacenamiento } from 'src/constants'
 export class UsersFormComponent implements OnInit {
 
   urlAlmacenamiento = almacenamiento.url;
-  user: any = {
-    // title: "",
-    // description: "",
-  };
+  user: any = {};
 
   @ViewChild('userForm') userForm!: NgForm;
   nuevoUsuario: boolean = true;
@@ -40,51 +37,35 @@ export class UsersFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle("Admin Usuario | SportNow");
-    // this.resetForm();
     if (this.route.snapshot.paramMap.get('id')) {
       this.getUserToEdit();
     }
   }
 
   getUserToEdit(){
-      this.nuevoUsuario = false;
-      this.user = this.route.snapshot.data["user"].data;
+    this.nuevoUsuario = false;
+    this.user = this.route.snapshot.data["user"].data;
   }
 
-  // TODO
   editUser() {
-    // const formData = new FormData();
-    // if (this.file){
-      // formData.append("avatar", this.file, this.file.name);
-      // formData.append("name", this.user.name);
-      // formData.append("email", this.user.email);
-      // formData.append("name", this.user.name);
-
-      // console.log(formData);
-      // this.user.formData = formData;
-      // console.log(this.user);
-
-      this.adminService.editUser(this.user).subscribe({ //formdata
-        next: (resp) => {
-          console.log(resp);
-          this.user.password = "";
-          this.passRep = "";
-          this.userForm.form.markAsUntouched();
-          this.toastr.success('Usuario editado correctamente');
-        },
-        error: error => {
-          console.error(error);
-          this.toastr.error('Error al editar el usuario');
-        }
-      });
-    // }
+    this.adminService.editUser(this.user).subscribe({
+      next: () => {
+        this.user.password = "";
+        this.passRep = "";
+        this.userForm.form.markAsUntouched();
+        this.toastr.success('Usuario editado correctamente');
+      },
+      error: error => {
+        console.error(error);
+        this.toastr.error('Error al editar el usuario');
+      }
+    });
   }
 
   editPhoto() {
     const formData = new FormData();
     if(this.file){
       formData.append("avatar", this.file, this.file.name);
-      console.log(formData);
       this.adminService.savePhoto(this.user.id, formData).subscribe({
         next: resp => {
           this.toastr.success('Avatar actualizado correctamente');
@@ -98,8 +79,6 @@ export class UsersFormComponent implements OnInit {
       });
     }
   }
-
-
 
   loadImage(event: any): void {
     this.userForm.form.markAsDirty();
@@ -117,10 +96,9 @@ export class UsersFormComponent implements OnInit {
     });
   }
 
-
   deleteUser() {
     this.adminService.deleteUser(this.user.id).subscribe({
-      next: (resp) => {
+      next: () => {
         this.router.navigate(['/admin/usuarios'])
         this.toastr.success('Usuario eliminado correctamente');
       },
@@ -144,33 +122,11 @@ export class UsersFormComponent implements OnInit {
     });
   }
 
-
-
-
   validClasses(ngModel: NgModel, validClass: string, errorClass: string) {
     return {
       [validClass]: ngModel.touched && ngModel.valid,
       [errorClass]: ngModel.touched && ngModel.invalid,
     };
   }
-
-
-
-
-
-
-  // resetForm() {
-  //   this.anEvent = {
-  //     title: '',
-  //     date: '',
-  //     description: '',
-  //     image: '',
-  //     price: 0,
-  //     lat: 0,
-  //     lng: 0,
-  //     address: ""
-  //   };
-  //   this.imageName = "";
-  // }
 
 }

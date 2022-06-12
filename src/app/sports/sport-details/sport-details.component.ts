@@ -49,7 +49,6 @@ export class SportDetailsComponent implements OnInit {
     if (this.actividad.participo) {
       this.sportService.desapuntarActividad(this.actividad.id).subscribe({
         next: (resp: any) => {
-          console.log(resp.data);
           this.actividad.participantes = resp.data;
           this.actividad.participo = false;
           this.toastr.success('Desapuntado correctamente!');
@@ -65,10 +64,7 @@ export class SportDetailsComponent implements OnInit {
     } else {
       this.sportService.apuntarActividad(this.actividad.id).subscribe({
         next: (resp: any) => {
-          console.log(resp.data);
-
           this.actividad.participantes = resp.data;
-          // this.actividad.participantes.push(resp.data);
           this.actividad.participo = true;
           this.toastr.success('Apuntado correctamente!');
         },

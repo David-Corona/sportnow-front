@@ -1,13 +1,6 @@
 
-/* .container {
-  background: white;
-  margin-bottom: 10px;
-  padding: 20px;
-} */
-
 #miCarousel {
   width: 85% !important;
-  /* height: 500px !important; */
 }
 
 .card {
@@ -28,10 +21,7 @@ a:hover {
   text-decoration: underline;
 }
 
-
 #anuncio-ofertas {
-  /* border: solid 1px rgb(173, 173, 173); */
-  /* padding: 20px; */
   background-color: white;
   text-align: center;
 }

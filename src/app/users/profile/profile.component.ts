@@ -37,14 +37,12 @@ export class ProfileComponent implements OnInit {
     this.titleService.setTitle("Perfil | SportNow");
 
     // Carga router data el usuario y booleano si es el perfil del usuario logueado
-    console.log( this.route.snapshot.data["user"]);
     this.user = this.route.snapshot.data["user"].data;
     this.isMe =  this.route.snapshot.data["user"].me;
 
     this.getMisActividades();
     this.getMiHistorial();
   }
-
 
   getMisActividades(){
     this.sportService.getActividades(this.user.id).subscribe({

@@ -4,40 +4,17 @@
 html, body {
   height: 100%;
   font-size: 1em;
-  background: #EBEDF2; /*TODO cambiar a otro color clarito*/
+  background: #EBEDF2;
 }
 
 body {
   margin: 0;
-  /* font-family: Roboto, "Helvetica Neue", sans-serif; */
-
 }
 
-/* button {
-    background: #1885c7 !important;
-} */
 
-/* p {
-  font-size: 1rem;
- }
-
- h1 {
-  font-size: 2.5rem;
- }
-
- h2 {
-  font-size: 2rem;
- }
-
- h3 {
-  font-size: 1.5rem;
- } */
-
- .list-group-item, .card-header {
-  /* background-color: #1b4d89 !important; */
+.list-group-item, .card-header {
   background: #2975d1 !important;
 }
-
 
 .btn-filtros {
   width: 150px !important;
@@ -54,11 +31,8 @@ body {
 
 
 
-
 /* Panel Admin */
 .mat-header-cell {
-  /* TODO: cambiar color header tablas */
-  /* background: rgb(197, 197, 197); */
   font-size: 16px;
 }
 
@@ -67,8 +41,6 @@ body {
 }
 
 .mat-row:hover {
-  /* TODO: cambiar color */
-  /* background: #ffe298; */
   background: #c5daf3;
   cursor: pointer;
 }
@@ -78,8 +50,7 @@ body {
 }
 
 
-
-/* TODO: mejorar estilo toastr */
+/* Toastr */
 .toast-container {
   font-size: 15px;
 }
@@ -91,8 +62,7 @@ body {
 }
 
 
-
-
+/* Mapbox */
 .mapboxgl-ctrl-geocoder {
   min-width: 500px !important;
 }

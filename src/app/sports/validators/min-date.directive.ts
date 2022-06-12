@@ -15,7 +15,6 @@ export class MinDateDirective implements Validator {
   validate(control: AbstractControl): ValidationErrors | null {
     this.appMinDate = formatDate(new Date(), 'yyyy-MM-dd H:mm', 'en');
     this.appMinDate = this.appMinDate.replace(" ", "T");
-    console.log(this.appMinDate, control.value);
     if (this.appMinDate && control.value && this.appMinDate > control.value) {
       return { minDate: true };
     }
